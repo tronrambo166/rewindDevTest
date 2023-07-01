@@ -367,8 +367,8 @@ $insta_id =$collect->insta_pageid_of_fb;
 
         $response=curl_exec($curl); //dd($response);
         $response=json_decode($response,true);
-        if($response['data'][0]['values'][0]['value']){
-        $data['fans_by_gender'] = $response['data'][0]['values'][0]['value'];
+        if($response['data'][0]['values'][1]['value']){
+        $data['fans_by_gender'] = $response['data'][0]['values'][1]['value'];
        // $data['weekly_new_taking'] = $response['data'][1]['values'][1]['value']; 
        // $data['monthly_new_taking'] = $response['data'][2]['values'][1]['value'];
         }
@@ -392,7 +392,7 @@ $insta_id =$collect->insta_pageid_of_fb;
 
         $response=curl_exec($curl); //dd($response);
         $response=json_decode($response,true);
-        $data['fans_by_city'] = $response['data'][0]['values'][0]['value'];
+        $data['fans_by_city'] = $response['data'][0]['values'][1]['value'];
 
         //echo '<pre> taking = ';print_r($data['fans_by_city']);echo '<pre>'; exit;
 
@@ -413,7 +413,7 @@ $insta_id =$collect->insta_pageid_of_fb;
 
         $response=curl_exec($curl); //dd($response);
         $response=json_decode($response,true);
-        $data['fans_by_country'] = $response['data'][0]['values'][0]['value'];
+        $data['fans_by_country'] = $response['data'][0]['values'][1]['value'];
 
         //echo '<pre> taking = ';print_r($data['fans_by_country']);echo '<pre>'; exit;
 
@@ -515,7 +515,7 @@ $insta_id =$collect->insta_pageid_of_fb;
             $fans_country = $fans_country.$key.','; $i++;
         } 
 
-        $userA=User::where('email',Session::get('logged'))->first();
+       $userA=User::where('email',Session::get('logged'))->first();
         $user_id=$userA->id;
         $business_name=$userA->stage_name;
         $user = Audience::where('user_id',$user_id)->first();
@@ -684,14 +684,14 @@ $insta_id =$collect->insta_pageid_of_fb;
     }
 	
 	 public function tiktok()
-    { 
+    {
 		$redirect_uri ='https://muziqyrewind.com/social/tiktok/callback';
-		$client_key='aw89q2eh5tn914vy';
+		$client_key='awudsc70wb3h7hsw';
 		
         $curl=curl_init();
         curl_setopt_array($curl, array(
-       
-          CURLOPT_URL=> 'https://www.tiktok.com/auth/authorize?client_key=aw89q2eh5tn914vy&response_type=code&scope=user.info.basic,video.list&redirect_uri=muziqyrewind.com&state=production',
+       // CURLOPT_URL=> 'https://www.tiktok.com/auth/authorize?client_key='.$client_key.'&response_type=code&scope=user.info.basic,video.list&redirect_uri='.$redirect_uri.'&state=Staging',
+          CURLOPT_URL=> 'https://www.tiktok.com/auth/authorize?client_key=awudsc70wb3h7hsw&response_type=code&scope=user.info.basic,video.list&redirect_uri=muziqyrewind.com&state=Staging',
 
 		CURLOPT_RETURNTRANSFER=> TRUE,
         CURLOPT_ENCODING=> '',
@@ -718,10 +718,10 @@ $insta_id =$collect->insta_pageid_of_fb;
     { 
 	      $code = $_GET['code'];
        // echo "<script> 
-		 //window.location.href='http://localhost/laravel_projects/radio/public/social/tiktok/callback?code=$code' </script>";
+         //window.location.href='http://localhost/laravel_projects/radio/public/social/tiktok/callback?code=$code' </script>";
        
-        $client_key  ='aw89q2eh5tn914vy'; 
-        $client_secret  ='f6d39f81ccf35cd2edd942a6c38edcf7';
+        $client_key  ='awudsc70wb3h7hsw'; 
+        $client_secret  ='78827251ba07d82c5781f4b38fdfec3a';
         
         //POST format
         $curl=curl_init();
@@ -754,7 +754,7 @@ $insta_id =$collect->insta_pageid_of_fb;
         curl_setopt_array($curl, array(
           CURLOPT_URL=> 'https://open.tiktokapis.com/v2/user/info/?fields=open_id,union_id,follower_count,likes_count',
 
-		CURLOPT_RETURNTRANSFER=> TRUE,
+        CURLOPT_RETURNTRANSFER=> TRUE,
         CURLOPT_ENCODING=> '',
         CURLOPT_MAXREDIRS=> 10,
         CURLOPT_TIMEOUT=> 30,
@@ -765,56 +765,10 @@ $insta_id =$collect->insta_pageid_of_fb;
         ),
         ));
 
-         $response=curl_exec($curl); 
+         $response=curl_exec($curl);//  
         $response=json_decode($response,true);       
-        //echo '<pre>';print_r($response);echo '<pre>';exit;
-        $user =array();
-        $user['followers']=$response['data']['user']['follower_count'];
-        $user['likes']=$response['data']['user']['likes_count'];
-        $user = json_encode($user);
+        echo '<pre>';print_r($response);echo '<pre>';exit;
         
-        //echo '<script>window.location.href="http://localhost/laravel_projects/radio/public/tiktok_social?data=$response" </script>';
-        
-        
-        //Videos
-        //POST format
-        $curl=curl_init();
-        curl_setopt_array($curl, array(
-        CURLOPT_URL=> 'https://open.tiktokapis.com/v2/video/list/?fields=cover_image_url,id,title,like_count',
-        CURLOPT_RETURNTRANSFER=> TRUE,
-        CURLOPT_ENCODING=> '',
-        CURLOPT_MAXREDIRS=> 10,
-        CURLOPT_TIMEOUT=> 30,
-        CURLOPT_HTTP_VERSION=> CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST=> 'POST',
-        
-        CURLOPT_HTTPHEADER=> array(
-        'Content-type:application/json',
-        'Authorization: Bearer '.$access_token
-        
-        ),
-        ));
-        
-        $response=curl_exec($curl); 
-        $response=json_decode($response,true);
-        $video= array();
-        
-        if(!isset($response['data']['videos'])) {
-            Session::put('curl_error', 'Access Denied! or You do not have any videos!');
-            Session::save();
-            //return redirect('social');
-        }
-        //echo '<pre>';print_r($response);echo '<pre>';exit;
-        
-        $data = $response['data']['videos'];
-        
-        $i=0;foreach($data as $d){
-        $video[$i]['id'] = $d['id'];
-        $video[$i]['title'] = $d['title'];
-         $video[$i]['likes'] = $d['like_count'];$i++;
-    }
-        $video = json_encode($video);
-        header('location:https://muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);
 
 }
 

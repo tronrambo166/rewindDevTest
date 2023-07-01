@@ -2,6 +2,7 @@
 @section('page')
 
 <style type="text/css"> .smalls{color: black;font-size: 13px;} </style>
+
 @php $data = Session::get('fb_info');  @endphp
 <div class=" mx-auto" style="width:95%; background:#161616;" >  
    <h4 class="text-center my-3 text-light ">Facebook Insights <a href="{{route('social')}}" class="float-right text-light rounded-0 mr-2 px-4 btn btn-outline-dark font-weight-bold my-1">Back</a>
@@ -43,8 +44,6 @@ foreach($city as $key => $value)
 
  foreach($country as $key => $value)
    $countryArray[]= array("label"=> $key, "y"=> $value);
-   
-   if(!isset($female['13-17'])) $female['13-17']=0;
 
 
 //SETTING END

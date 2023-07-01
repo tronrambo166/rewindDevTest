@@ -11,7 +11,7 @@
 		
 		 Please use the following Artist Id during sign up, 
 		 Your Artist Id: {{$art_id}}
-		<a class="h5 btn btn-danger w-100  " href="https://muziqyrewind.com/artist_signup/{{$email}}" 
+		<a class="h5 btn btn-danger w-100  " href="http://localhost/laravel_projects/radio/public/artist_signup/{{$email}}" 
 				style="text-decoration:none; border-radius:7px;  font-weight:bold; padding-top:15px; padding-bottom:15px; text-align:center; width:100%; background-color:aliceblue;"  >
 				    
 				<h1 style=" font-family:arial; border-radius:7px;  font-weight:bold; padding-top:15px; padding-bottom:15px; text-align:center; width:100%; background-color:aliceblue;

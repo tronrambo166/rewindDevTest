@@ -27,10 +27,176 @@
 
 <body>
 <div class="container-fluid" style="background: #161616; color:white;">
+  
+
+@if(!Session::has('edit_permit') ) 
+<!-- LANDING -->   
+ <div class="row  pt-2 pb-0" style="background:black;">
+<nav class=" navbar navbar-expand-md navbar-light py-0 w-100">
+  
+  <div class="  navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav links w-75">
+      <li class="nav-item text-responsive  text-light  mr-md-5 sm-f30">
+      <a class="pt-0 pb-2" href="{{route('static20')}}">
+          <h3 class="text-success font-weight-bold"> <img style="width:142px; height:55px;" src="images/logo.png"></h3>
+      </a>
+      
+      </li>
+ <li class="font-weight-bold nav-item text-responsive  text-light  mr-md-5 sm-f30 mt-3">
+      Welcome Stranger,
+      
+      </li>
+    
+    </ul>
+
+	
+	 <ul class="navbar-nav links float-right">
+     <li class="nav-item">
+        <a href=""class="nav-link font-weight-bold btn btn-outline-success px-4 text-light" data-target="#loginModal-editor" data-toggle="modal"> Manage the site</a>
+      </li>
+	  </ul>
+
+  </div>
+</nav>
+</div>
+
+
+<div class="row mx-auto shadow h-100" style="width:90%; background:#161616;">  
+ <div class="col-md-5 mt-5"> 
+            <h1 class="text-center mt-5 pt-5" style="font-family:fantasy;">We are launcing the site very soon.</h1> <hr> 
+
+
+
+<div class="clearfix py-3"></div>
+
+
+
+</div>  
+
+         <div class="col-md-1"> </div>
+           <div class="col-sm-6 text-center" style="background-image: url('images/rewind.png');background-repeat:no-repeat; height: 600px; background-size:contain; background-position:center;">
+           
+
+          <h2 class="px-4 w-100 d-block  text-left text-dark">
+
+
+            
+             
+
+           </div>    
+          
+</div>
+
+<!-- MODAL -->
+<div  class="modal fade" id="loginModal-editor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+         <div class="card-header w-100">
+            <button id="login"  class="w-50 d-block m-auto btn  px-4 ">Admin Login</button>
+
+
+             @if(Session::has('email')) <p class="text-danger ml-5">{{Session::get('email')}} @php Session::forget('email'); @endphp </p> @endif
+        </div>
+
+              
+
+        <button type="button" class="m-0 close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     
     
+      <div class="modal-body">
+
+         
+
+        
+      <div class="hidden_currency ">
+
+    <div class="row justify-content-center py-3 mb-5">
+        <div class="px-0 w-100 py-2">
+
+                <!-- HIDDEN login-->
+
+
+ <div id="artist_log" class="card-body text-center py-0">
+
+                          <form method="POST" class="" action="{{ route('loginEditor') }}">
+                           @csrf
+
+                                            <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
+                                            value=""    />
+                                                                       
+                                          
+                                            <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password"
+                                            value=""  />
+                                            
+
+                                          
+
+                                          @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                           @enderror
+
+                                       
+                                           
+                                            @if (Route::has('forgetPass')) 
+                                            <a href="{{ route('password.request') }}" class="small text">Forgot password ?</a> @endif
+                                            
+                                            <input  type="submit"class=" d-block w-25 mx-auto my-2 btn btn-outline-success  font-weight-bold " href="" name="Log In" value="Login" />
+                    </form>
+
+                    
+                    @if(Session::has('reset'))<p class="text-light font-weight-bold">{{Session::get('reset')}}   @php Session::forget('reset'); @endphp </p>@endif
+                    
+
+                   @if(Session::has('login_err'))
+                   <div class="alert alert-danger" role="alert">
+                                  <p class="">{{Session::get('login_err')}}   @php Session::forget('login_err'); @endphp </p> 
+
+                                 </div>  @endif
+                   
+                        
+                       <hr>  <div class="row">
+                              <div class="col-sm-12 pr-1">
+                    <a href="{{ route('forgot','email') }}" class=" text-responsive font-weight-bold text-info mx-auto my-2 d-inline-block py-0 small">Forgot Password?</a>
+                    </div>
+                  
+                    
+                    </div>
+                    
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+  
+  </div>
+    
+    
+      </div>
+    
+    
+     
+    </div>
+  </div>
+  <!-- MODAL --> 
+  
+</div>
+
+ <!-- LANDING --> 
+ 
+ 
+ @else
+ 
        
-  <div class="row  pt-2 pb-0" style="background:black;">
+<div class="h-100 row  pt-2 pb-0" style="background:black;">
 <nav class=" navbar navbar-expand-md navbar-light py-0 w-100">
   
   <div class="  navbar-collapse" id="navbarNav">
@@ -225,6 +391,7 @@
     @yield('content')
 
 
+@endif
 <div class="container-fluid px-0 ">
        
         

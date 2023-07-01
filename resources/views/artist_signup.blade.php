@@ -79,7 +79,7 @@
 				
 						 <div id="artist_reg" class="card-body w-75 m-auto bg-light px-5 my-4">
 
-                    <form class="form" method="POST" action="{{ route('registerP') }}" enctype="multipart/form-data">
+                    <form class="form" style="font-size: 13px" method="POST" action="{{ route('registerP') }}" enctype="multipart/form-data">
                         @csrf
 
 

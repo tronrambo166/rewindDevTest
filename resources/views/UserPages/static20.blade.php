@@ -21,6 +21,7 @@
 
    @foreach($static20 as $static) <?php $cnt=0; $duplicate =0; ?>
    @foreach($lastDay as $yester)
+   
 
 @if($static->song == $yester->song)  
 @if($static->position < $yester->position) 
@@ -35,31 +36,31 @@
 <?php $duplicate =1; ?>
  @endif @endforeach
 
-   @if($duplicate==0) <tr id="loading">
+   @if($duplicate==0)
+	   
+
+	   <tr id="loading">
      
       <td scope="row" class="text-center"> {{$static->position}} </td>
-      
-      @if($static->song == 'Ayra Starr')
-      <td scope="row" class="text-center"> {{$static->song}} </td>
-      <td scope="row" class="text-center"> {{$static->artist}} </td>
-        @else
        <td scope="row" class="text-center"> {{$static->artist}} </td>
         <td scope="row" class="text-center"> {{$static->song}} </td>
-        @endif
-        
          <td id="move{{$static->id}}" scope="row" class="text-center small">
           @if($pos=='up') <i class="fas fa-arrow-alt-circle-up text-success fa-2x"></i>
           @elseif($pos=='down') <i class="fas fa-arrow-alt-circle-down text-danger fa-2x"></i>
           @else -
           @endif 
         </td>
-    </tr> @endif
+    </tr> 
+
+	
+	@endif
 
 
    @endif
    @endforeach
 
 @if($cnt==0)
+
     <tr id="loading">
      
       <td scope="row" class="text-center"> {{$static->position}} </td>
@@ -67,6 +68,7 @@
         <td scope="row" class="text-center"> {{$static->song}} </td>
          <td id="move{{$static->id}}" scope="row" class="text-center small"> <i class="fas fa-arrow-alt-circle-up text-success fa-2x"></i> </td>
     </tr>
+
     
    @endif
     @endforeach

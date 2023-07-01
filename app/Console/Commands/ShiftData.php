@@ -38,7 +38,7 @@ class ShiftData extends Command
      * @return int
      */
     public function handle()
-    {
+    { 
     
     $data=array(); $data['song']=uniqid();
     //API
@@ -121,7 +121,7 @@ $cn++;
 
   foreach($title_count as $k=>$val) {
   foreach($titles as $index => $arr){
-  if($k == $arr['title']) {
+  if($k == $arr['title'] && $arr['title'] != 'Breaking News' ) {
     if(isset($arr['title']))  $datas['song'] = $arr['title'];
 
     //if(isset($arr['album'])) echo ' // Album = '.$arr['album'];  

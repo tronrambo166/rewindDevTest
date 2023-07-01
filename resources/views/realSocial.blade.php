@@ -68,7 +68,7 @@
 
 
  <div class="col-md-2">
-  <a style="font-size: 11px;" href="{{route('socialIds','Twit')}}" class="py-1 small mx-2 btn btn-light rounded">Update Twitter id</a>
+  <a style="font-size: 11px;" href="{{route('socialIds','Twitter')}}" class="py-1 small mx-2 btn btn-light rounded">Update Twitter id</a>
 
    <a style="font-size: 11px;" href="{{route('socialIds','Insta')}}" class="py-1 pr-4 mt-2 small mx-2 btn btn-light rounded">Update Insta id</a>
 

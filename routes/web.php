@@ -15,6 +15,7 @@ use App\Http\Controllers\homeController;
 |
 */
 
+Route::post('loginEditor', 'adminController@editorLogin')->name('loginEditor');
 
 Route::group(['middleware'=>['checkAuth']], function(){
 

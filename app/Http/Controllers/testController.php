@@ -423,8 +423,8 @@ public function updateBio(Request $hos)
 
          DB::table('users')->where('art_id',$art_id)->update($data);
            Session::put('logged',$email);
-           
-           //Streaming
+		   
+		   //Streaming
            streaming::create([
           'user_id' =>  $art->id
           ]);
@@ -494,7 +494,7 @@ public function updateBio(Request $hos)
           'phone' => $phone,
           'approved' => 0
           ]);
-          //Session::put('logged',$email);
+          Session::put('logged',$email);
       
           
           /* Send Email

@@ -55,8 +55,8 @@ public function artists()
        User::where('id',$id)->update(['approved' => 1]);
        $artist=User::where('id',$id)->first();
 
-        //Send Email
-        $email=$artist->email;
+       /* Send Email
+    $email=$artist->email;
         $info=['art_id'=>$artist->art_id, 'email' => $email];
         $user['to']= $email;
         Mail::send('mails.approve_mail', $info, function($msg) use ($user){
@@ -64,7 +64,7 @@ public function artists()
             $msg->subject('Approve Mail');
 
         });
-        //Send Email 
+         Send Email */
     
 
        return back()->with('success', "Approved!"); 
@@ -167,7 +167,33 @@ public function reset(Request $request, $remail)
 
 //______________________________________________________________________________
 
-     public function adminLogin(Request $formData)
+public function editorLogin(Request $formData)
+{      
+$email = $formData->email;
+$password = $formData->password;
+$user= admins::where('email', $email)->get(); 
+$check_user=json_decode($user);
+//print_r($check_user); echo $check_user[0]->password; exit;
+
+if($user->count() >0 ) {
+$db_password=$check_user[0]->password; //opd_admin
+if(password_verify($password, $db_password)) { 
+    Session::put('edit_permit',true); 
+    return redirect('/'); 
+	}
+else{
+    Session::put('log_err','Password wrong!'); return redirect()->back();
+   
+
+}
+    }
+
+      Session::put('log_err','User dont exist!'); return redirect()->back();
+
+}
+
+
+public function adminLogin(Request $formData)
 {      
 $email = $formData->email;
 $password = $formData->password;

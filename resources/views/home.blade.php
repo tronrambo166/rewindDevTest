@@ -100,7 +100,7 @@ function getSongs() {
            const [key, value] = entry; //console.log(key+'=>'+value);
            if(title != value.artist) {
             
-           if( value.title == title && i<21){
+           if( value.title == title && i<22){
             if(value.duration<10) dur=value.duration; else dur=(value.duration/60).toFixed();
             
             //New Move
@@ -112,11 +112,9 @@ function getSongs() {
             move='-'; 
                    
             //New Move
-           if(value.title=='Ayra Starr')
-           {value.title='Rush'; value.artist='Ayra Starr';} 
-           
+           if(value.title != 'Breaking News'){
             $('#songs').append('<tr><th scope="row" class="text-center">'+i+'</th> <td>'+value.artist+'</td> <td>'+value.title+' </td> <td> '+move+'</td>  </tr>');
-            
+		   }
                $('#loading').remove();
 
 
