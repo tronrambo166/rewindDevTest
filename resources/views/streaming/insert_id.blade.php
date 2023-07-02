@@ -25,14 +25,14 @@
      <input hidden type="text" name="type" value="{{$platform}}">
      <input required="" class="form-group form-control  d-inline w-50"type="text" name="id" placeholder="Enter your id">
      
-     @if($platform == 'YouTube Channel' || $platform == 'Spotify Artist' || || $platform == 'Mdundo Artist')
+     @if($platform == 'YouTube Channel' || $platform == 'Spotify Artist' || $platform == 'Mdundo Artist')
      <div>
      <input required="" class="form-group form-control d-inline  w-50"type="text" name="regid" placeholder="Enter region playlist id, ex:'856783'">
      <p class="font-italic text-warning w-50 d-inline">(For the playlist from the platform within your region)</p>
      </div>
      @else
      <div>
-     <input required="" class="form-group form-control d-inline  w-50"type="text" name="regid" placeholder="Enter Country code, ex:'KE' for Kenya">
+     <input class="form-group form-control d-inline  w-50"type="text" name="regid" placeholder="Enter Country code, ex:'KE' for Kenya">
      <p class="font-italic text-warning w-50 d-inline">(For the playlist from the platform within your region)</p>
      </div>
 

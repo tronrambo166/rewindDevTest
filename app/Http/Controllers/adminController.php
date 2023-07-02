@@ -88,8 +88,9 @@ public function artists()
  public function remove_song($id)
     {           
        DB::table('live_songs')->where('id', $id)->delete();
-	   for($i=$id;$i<21;$i++){
-	   DB::table('live_songs')->where('id', $i)->update(['position' => $i-1]);
+	   for($i=$id+1;$i<21;$i++){
+		   $pos = DB::table('live_songs')->where('id', $i)->first();
+	   DB::table('live_songs')->where('id', $i)->update(['position' => $pos->position-1]);
 	   }
        return back()->with('success', "Deleted!"); 
  }
