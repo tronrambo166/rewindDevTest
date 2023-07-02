@@ -1,0 +1,17 @@
+1. Read insights for facebook, pages_show_list
+2. For Instagram
+-instagram_basic***
+-instagram_manage_insights***
+-business_management***
+-pages_read_engagement***
+ 
+Below not mandatory
+-instagram_manage_comments
+-instagram_manage_messages
+-instagram_shopping_tag_products
+-instagram_content_publish
+-instagram_shopping_tag_products
+
+
+3.Twitter -> user id to be given
+3.TikTok-> user id to be given

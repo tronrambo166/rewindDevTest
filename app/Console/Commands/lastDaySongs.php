@@ -121,7 +121,7 @@ $cn++;
 
   foreach($title_count as $k=>$val) {
   foreach($titles as $index => $arr){
-  if($k == $arr['title'] $arr['title'] != 'Breaking News' ) {
+  if($k == $arr['title'] && $arr['title'] != 'Breaking News' ) {
     if(isset($arr['title']))  $datas['song'] = $arr['title'];
 
     //if(isset($arr['album'])) echo ' // Album = '.$arr['album'];  

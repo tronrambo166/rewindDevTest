@@ -43,7 +43,7 @@
       
       </li>
  <li class="font-weight-bold nav-item text-responsive  text-light  mr-md-5 sm-f30 mt-3">
-      Welcome Stranger,
+      Welcome To The Home of Brand Data!
       
       </li>
     
@@ -63,7 +63,7 @@
 
 <div class="row mx-auto shadow h-100" style="width:90%; background:#161616;">  
  <div class="col-md-5 mt-5"> 
-            <h1 class="text-center mt-5 pt-5" style="font-family:fantasy;">We are launcing the site very soon.</h1> <hr> 
+            <h1 class="text-center mt-5 pt-5" style="font-family:fantasy;">We are launcing soon.</h1> <hr> 
 
 
 

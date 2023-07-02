@@ -20,6 +20,7 @@
       <th scope="col">Artist</th>
       <th scope="col">Song</th>
       <th scope="col">Move</th>
+	   <th scope="col">Action</th>
     
     </tr>
   </thead>
@@ -47,6 +48,8 @@
           @else -
           @endif 
         </td>
+		
+		 <td scope="row" class="text-center"> <a onclick="return confirm('are you sure?');" href="{{route('remove_song',$static->id) }}" class="py-0 small btn btn-outline-danger" > Remove </a> </td>
     </tr>
 
    @endif
@@ -59,7 +62,8 @@
        <td scope="row" class="text-center"> {{$static->artist}} </td>
         <td scope="row" class="text-center"> {{$static->song}} </td>
          <td id="move{{$static->id}}" scope="row" class="text-center small"> <i class="fas fa-arrow-alt-circle-up text-success fa-2x"></i> </td>
-    </tr>
+		<td scope="row" class="text-center"> <a onclick="return confirm('are you sure?');" href="{{route('remove_song',$static->id) }}" class="py-0 small btn btn-outline-danger" > Remove </a> </td>
+   </tr>
     
    @endif
     @endforeach

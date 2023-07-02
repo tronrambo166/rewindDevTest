@@ -139,7 +139,8 @@ Route::get('AjaxRegion10', 'streamController@region10');
 //** __________________________________________ADMIN_____________________________________________ **//
 
 Route::group([ 'prefix' => 'admin'], function(){ 
-
+	
+	Route::get('/', function () {return view('admin.login');})->name('loginA');
     Route::get('/index_admin','adminController@index_admin')->name('index_admin');
     Route::get('/logout','adminController@logout')->name('logout');
 
@@ -147,6 +148,7 @@ Route::group([ 'prefix' => 'admin'], function(){
         Route::get('/approve/{id}', 'adminController@approve')->name('approve');
         Route::get('/restrict/{id}', 'adminController@restrict')->name('restrict');
         Route::get('/del_artist/{id}', 'adminController@del_artist')->name('del_artist');
+		Route::get('/remove_song/{id}', 'adminController@remove_song')->name('remove_song');
       
         Route::get('/users', 'adminController@users')->name('users');   
         Route::get('/songs', 'adminController@songs')->name('songs');         
