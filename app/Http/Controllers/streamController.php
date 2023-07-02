@@ -802,9 +802,11 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 
     for($b=0;$b<10;$b++)
     {
+		if( isset($this->merge2[$b])) {
         $this->merge2[$b]['title']=$this->name2[$b];
         $this->merge2[$b]['artist']=$this->artist2[$b];
         $this->merge2[$b]['duration']=$this->duration2[$b];
+		}
     }
 //echo '<pre>'; print_r($this->merge2); echo '<pre>'; return; 
 //Top 10 songs
