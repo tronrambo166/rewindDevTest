@@ -104,10 +104,10 @@ class Calendar {
 
 // (G) DATABASE SETTINGS - CHANGE TO YOUR OWN!
 define("DB_HOST", "127.0.0.1");
-define("DB_NAME", "muziqind_radio");
+define("DB_NAME", "radio");
 define("DB_CHARSET", "utf8");
-define("DB_USER", "muziqind_radio");
-define("DB_PASSWORD", "7lnplHafgLpL");
+define("DB_USER", "root");
+define("DB_PASSWORD", "");
 
 // (H) NEW CALENDAR OBJECT
 $_CAL = new Calendar();

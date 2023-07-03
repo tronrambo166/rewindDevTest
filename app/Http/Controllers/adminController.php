@@ -188,7 +188,8 @@ $check_user=json_decode($user);
 if($user->count() >0 ) {
 $db_password=$check_user[0]->password; //opd_admin
 if(password_verify($password, $db_password)) { 
-    Session::put('edit_permit',true); 
+    Session::put('edit_permit',true);
+    setcookie("edit_permit", true, time() + (60 * 30)); 
     return redirect('/'); 
 	}
 else{
