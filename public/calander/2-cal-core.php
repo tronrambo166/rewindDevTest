@@ -103,11 +103,11 @@ class Calendar {
 }
 
 // (G) DATABASE SETTINGS - CHANGE TO YOUR OWN!
-define("DB_HOST", "127.0.0.1");
-define("DB_NAME", "radio");
+define("DB_HOST", "rewindtest.cl2gw0jna8ks.us-east-1.rds.amazonaws.com");
+define("DB_NAME", "rewindTest");
 define("DB_CHARSET", "utf8");
-define("DB_USER", "root");
-define("DB_PASSWORD", "");
+define("DB_USER", "rewindTest");
+define("DB_PASSWORD", "4n5YBCfoe4yYpU8xDrru");
 
 // (H) NEW CALENDAR OBJECT
 $_CAL = new Calendar();
