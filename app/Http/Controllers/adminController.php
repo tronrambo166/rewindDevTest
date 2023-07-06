@@ -10,6 +10,7 @@ use App\Models\admins;
 use App\Models\User;
 use App\Models\visitors;
 use App\Models\liveSongs;
+use App\Models\RemovedSongs;
 use App\Models\mymusic;
 use App\Models\albums;
 use Mail;
@@ -86,7 +87,10 @@ public function artists()
  }
 
  public function remove_song($id)
-    {           
+    {  
+       $song = array();
+       $removed = DB::table('live_songs')->where('position',$id)->first();
+
        DB::table('live_songs')->where('position', $id)->delete();
 	   for($i=$id+1;$i<26;$i++){
 	   $pos = DB::table('live_songs')->where('position',$i)->first();
@@ -95,6 +99,11 @@ public function artists()
 	   DB::table('live_songs')->where('position', $i)->
        update(['position' => $pos->position-1]);
 	   }
+
+       //Adding to DB
+       $song['artist'] = $removed->artist;
+       $song['song'] = $removed->song;
+       RemovedSongs::insert($song);
        return back()->with('success', "Deleted!"); 
  }
  

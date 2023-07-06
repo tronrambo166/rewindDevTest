@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\User;
 use App\Models\liveSongs;
+use App\Models\RemovedSongs;
 use DB;
 
 class ShiftData extends Command
@@ -118,7 +119,8 @@ $cn++;
 //echo '<pre>';echo $cn++; echo $k.'=>'.$val; echo '<pre>';  }exit;
 
   $datas=array();
-  $position=1;
+  $position=1; $test =0;
+  $loop_break;
 
   //Get las position
       $last = liveSongs::orderBy('id','DESC')->first();
@@ -130,7 +132,22 @@ $cn++;
 
   foreach($title_count as $k=>$val) {
   foreach($titles as $index => $arr){
-  if($k == $arr['title'] && $arr['title'] != 'Breaking News' ) {
+  $loop_break = 0;
+
+  if($k == $arr['title'] ) {
+
+    //Check if removed song
+    $RemovedSongs = RemovedSongs::get();
+    foreach($RemovedSongs as $removed){
+      if($removed->song == $arr['title'])
+        $loop_break = 1;
+    }
+
+    if($loop_break == 1)
+      break;
+
+    //Check if removed song
+
     if(isset($arr['title']))  $datas['song'] = $arr['title'];
 
     //if(isset($arr['album'])) echo ' // Album = '.$arr['album'];  
@@ -140,20 +157,20 @@ $cn++;
       if(isset($arr['duration'])){
         if($arr['duration'] <= 10)
         $datas['duration'] =$arr['duration'].' mins';
-        else  $datas['duration'] =round(($arr['duration']/60)).' mins';
+        else  $datas['duration'] = round(($arr['duration']/60)).' mins';
 
       }
       $datas['position']=$position; 
 
       DB::table('live_songs')->where('position',$position)->update($datas);
-      if($last_pos <= $position  && $position <=26){
+      if($last_pos <= $position  && $position <=31){
       DB::table('live_songs')->insert($datas);
       }
-
       $position++; break;
   } 
-}
-if($position>25) break;
+
+ } 
+if($position>30) break;
 }
 
 //DATABASE INSERT/UPDATE
