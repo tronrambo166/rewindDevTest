@@ -14,10 +14,10 @@ class CreateRemovedSongsTable extends Migration
     public function up()
     {
         Schema::create('removed_songs', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id'); 
             $table->string('artist');
             $table->string('title');
+            $table->timestamps();
         });
     }
 
