@@ -87,10 +87,13 @@ public function artists()
 
  public function remove_song($id)
     {           
-       DB::table('live_songs')->where('id', $id)->delete();
-	   for($i=$id+1;$i<21;$i++){
-		   $pos = DB::table('live_songs')->where('id', $i)->first();
-	   DB::table('live_songs')->where('id', $i)->update(['position' => $pos->position-1]);
+       DB::table('live_songs')->where('position', $id)->delete();
+	   for($i=$id+1;$i<26;$i++){
+	   $pos = DB::table('live_songs')->where('position',$i)->first();
+
+       if($pos != null)
+	   DB::table('live_songs')->where('position', $i)->
+       update(['position' => $pos->position-1]);
 	   }
        return back()->with('success', "Deleted!"); 
  }
@@ -108,7 +111,7 @@ public function users()
 
 public function songs()
     {       
-   $static20=liveSongs::get();
+   $static20=liveSongs::take(20)->get();
    $lastDay=DB::table('last_day_songs')->get();
   return view('admin.songs',compact('static20','lastDay'));     
     }

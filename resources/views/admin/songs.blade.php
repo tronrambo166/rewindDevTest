@@ -49,7 +49,7 @@
           @endif 
         </td>
 		
-		 <td scope="row" class="text-center"> <a onclick="return confirm('Are you sure to remove?');" href="{{route('remove_song',$static->id) }}" class="py-0 small btn btn-outline-danger" > Remove </a> </td>
+		 <td scope="row" class="text-center"> <a onclick="return confirm('Are you sure to remove?');" href="{{route('remove_song',$static->position) }}" class="py-0 small btn btn-outline-danger" > Remove </a> </td>
     </tr>
 
    @endif
@@ -62,7 +62,7 @@
        <td scope="row" class="text-center"> {{$static->artist}} </td>
         <td scope="row" class="text-center"> {{$static->song}} </td>
          <td id="move{{$static->id}}" scope="row" class="text-center small"> <i class="fas fa-arrow-alt-circle-up text-success fa-2x"></i> </td>
-		<td scope="row" class="text-center"> <a onclick="return confirm('Are you sure to remove?');" href="{{route('remove_song',$static->id) }}" class="py-0 small btn btn-outline-danger" > Remove </a> </td>
+		<td scope="row" class="text-center"> <a onclick="return confirm('Are you sure to remove?');" href="{{route('remove_song',$static->position) }}" class="py-0 small btn btn-outline-danger" > Remove </a> </td>
    </tr>
     
    @endif

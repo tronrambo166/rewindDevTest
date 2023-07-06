@@ -25,7 +25,7 @@ class userController extends Controller
 
 public function static20() { 
    if(Session::has('logged')) return redirect('home');
-   $static20=liveSongs::get();
+   $static20=liveSongs::take(20)->get();
    $lastDay=DB::table('last_day_songs')->get();
   return view('UserPages.static20',compact('static20','lastDay'));
  }

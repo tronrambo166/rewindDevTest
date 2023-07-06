@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\User;
+use App\Models\liveSongs;
 use DB;
 
 class ShiftData extends Command
@@ -119,6 +120,14 @@ $cn++;
   $datas=array();
   $position=1;
 
+  //Get las position
+      $last = liveSongs::orderBy('id','DESC')->first();
+      if($last == null)
+      $last_pos = 1;
+      else
+      $last_pos = $last->position+1;
+      //echo $last_pos; exit;
+
   foreach($title_count as $k=>$val) {
   foreach($titles as $index => $arr){
   if($k == $arr['title'] && $arr['title'] != 'Breaking News' ) {
@@ -137,10 +146,14 @@ $cn++;
       $datas['position']=$position; 
 
       DB::table('live_songs')->where('position',$position)->update($datas);
+      if($last_pos <= $position  && $position <=26){
+      DB::table('live_songs')->insert($datas);
+      }
+
       $position++; break;
   } 
 }
-if($position>20) break;
+if($position>25) break;
 }
 
 //DATABASE INSERT/UPDATE
