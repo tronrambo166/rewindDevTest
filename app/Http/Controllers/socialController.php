@@ -368,11 +368,12 @@ $insta_id =$collect->insta_pageid_of_fb;
 
         $response=curl_exec($curl); //dd($response);
         $response=json_decode($response,true);
-        if($response['data'][0]['values'][1]['value']){
+        if(isset($response['data'][0]['values'][1]['value'])){
         $data['fans_by_gender'] = $response['data'][0]['values'][1]['value'];
        // $data['weekly_new_taking'] = $response['data'][1]['values'][1]['value']; 
        // $data['monthly_new_taking'] = $response['data'][2]['values'][1]['value'];
         }
+        else $data['fans_by_gender'] = $response['data'][0]['values'][0]['value'];
         //echo '<pre> Audience = ';print_r($response);echo '<pre>'; exit;
 
 
