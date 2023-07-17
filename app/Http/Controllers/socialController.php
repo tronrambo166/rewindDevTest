@@ -16,6 +16,7 @@ use App\Models\Audience;
 use Laravel\Socialite\Facades\Socialite;
 use Phpfastcache\Helper\Psr16Adapter;
 use Atymic\Twitter\Twitter as TwitterContract;
+use Abraham\TwitterOAuth\TwitterOAuth;
 use Illuminate\Http\JsonResponse;
 use Twitter;
 use Auth;
@@ -551,9 +552,13 @@ $insta_id =$collect->insta_pageid_of_fb;
 
    public function twitter()
     {
+    $connection = new TwitterOAuth('x6QSwY7ubMXNCtaePpVheGoT9', 'cNC6alohnBqCTsj96DMTlfJMjLIQ6Zd1X81juZIW65pBudkxsk', '1587075783545217025-GwvtkKCohf2kEdYnTfYTWvbwWp2qrs', 'zxPJly707EoaK5C6MlMlpuLMz1FCmZ44eExlJxPPlXa8a',2);
+    $connection->setApiVersion('2');
+    $response = $connection->get('users', ['ids' => 12]);
+    echo '<pre>'; print_r($response);echo '<pre>'; exit;
+
     $collect = User::where('email', Session::get('logged'))->first();
     $twitt_id =$collect->twitter_id;
-
     $data = array(); 
     $user_id = $twitt_id;//1587075783545217025; 
     // twiter profile->view source->search 'user_id';//1616803039956045824(sohaan)
@@ -567,11 +572,11 @@ $insta_id =$collect->insta_pageid_of_fb;
     //$data['tweets'] = $result->data;
     // echo '<pre>'; print_r($data); echo '<pre>'; exit;
 
-    $result = $querier
-    ->withOAuth2Client()
-    ->get('users/'.$user_id.'/followers');
+    // $result = $querier
+    // ->withOAuth2Client()
+    // ->get('users/'.$user_id.'/followers');
 
-     $data['followers'] = $result->meta->result_count;
+    //  $data['followers'] = $result->meta->result_count;
 
      //tweets
      $res = $querier
@@ -685,7 +690,7 @@ $insta_id =$collect->insta_pageid_of_fb;
 	
 	 public function tiktok()
     {
-		$redirect_uri ='https://muziqyrewind.com/social/tiktok/callback';
+		$redirect_uri ='https://test.muziqyrewind.com/social/tiktok/callback';
 		$client_key='awudsc70wb3h7hsw';
 		
         $curl=curl_init();

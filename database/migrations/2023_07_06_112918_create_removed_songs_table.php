@@ -17,7 +17,7 @@ class CreateRemovedSongsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('artist');
-            $table->string('title');
+            $table->string('song');
             //$table->increments('id'); 
         });
     }

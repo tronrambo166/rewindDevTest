@@ -33,13 +33,13 @@ return [
     'facebook' => [
     'client_id' => env('FACEBOOK_CLIENT_ID'),
     'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-    'redirect' => 'https://muziqyrewind.com/social/facebook/callback',
+    'redirect' => 'https://test.muziqyrewind.com/social/facebook/callback',
 ],
 
 'instagram' => [
     'client_id' => env('FACEBOOK_CLIENT_ID'),
     'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-    'redirect' => 'https://muziqyrewind.com/social/instagram/callback',
+    'redirect' => 'https://test.muziqyrewind.com/social/instagram/callback',
 ],
 
 'tiktok' => [

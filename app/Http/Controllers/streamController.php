@@ -290,7 +290,7 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 // **Latest Monthly Views
  //uuid = ca22091a-3c00-11e9-974f-549f35141000
   $artist_id='7KY9NaOVRmptl8vlpVomi6';
-  $base_url='https://sandbox.api.soundcharts.com/api/v2/artist/'.$uuid.'/streaming/youtube/views/2020/10';
+  $base_url='https://customer.api.soundcharts.com/api/v2/artist/'.$uuid.'/streaming/youtube/views/2020/10';
 
 $curl=curl_init();
 curl_setopt_array($curl, array(
@@ -313,7 +313,11 @@ $response=curl_exec($curl);
 $response=json_decode($response,true);
 
 $error=curl_error($curl);
-if($error) echo $error;
+if($error){
+   echo $error; 
+   Session::put('exception',$error);
+   return redirect()->back(); 
+}  
   // echo '<pre>'; print_r($response); echo '<pre>'; return; 
 
 // $views=array();$i=0;
@@ -377,7 +381,7 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
         "code" => $code,
         //"client_id" => '578068797874-bhv1egn4tsiljt1g71gakmrkop4t2fkg.apps.googleusercontent.com',
         //"client_secret" => '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',
-        "redirect_uri" => 'http://localhost/laravel_projects/radio/public/spotify'
+        "redirect_uri" => 'http://localhost/laravel_projects/rewindLive/public/spotify'
    );
 
 //POST format
@@ -412,7 +416,7 @@ $access_token= $response['access_token'];
     $params = array(
         "response_type" => "code",
         "client_id" => '0aadf46389f04aef84cd7a910fb48b5e',
-        "redirect_uri" => 'http://localhost/laravel_projects/radio/public/spotify',
+        "redirect_uri" => 'http://localhost/laravel_projects/rewindLive/public/spotify',
         "state" => "random_state"
     );
 
@@ -427,7 +431,7 @@ die(); //return 'An error happened'. $request_to;
 // Monthly Listeners
   //$uuid='11e81bcc-9c1c-ce38-b96b-a0369fe50396';
   $artist_id='7KY9NaOVRmptl8vlpVomi6';
-  $base_url='https://sandbox.api.soundcharts.com/api/v2/artist/'.$uuid.'/streaming/spotify/listeners/2020/10';
+  $base_url='https://customer.api.soundcharts.com/api/v2/artist/'.$uuid.'/streaming/spotify/listeners/2020/10';
   //$api_url = $base_url.'?id='.$artist_id.'&country=ES'; 
 
 $curl=curl_init();
@@ -451,9 +455,10 @@ $response=curl_exec($curl);
 $response=json_decode($response,true);
 
 $error=curl_error($curl);
-if($error) echo $error;
-  // echo '<pre>'; print_r($response); echo '<pre>'; return; 
-
+if($error) {
+   Session::put('exception',$error);
+   return redirect()->back();
+}
  $listeners=$response['items'][0]['value'];
 //Monthly Listeners
 
