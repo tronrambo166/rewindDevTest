@@ -559,10 +559,12 @@ $insta_id =$collect->insta_pageid_of_fb;
 
    public function twitter()
     {
+    echo 'Twitter API currently under maintanance!'; exit;
     $connection = new TwitterOAuth('x6QSwY7ubMXNCtaePpVheGoT9', 'cNC6alohnBqCTsj96DMTlfJMjLIQ6Zd1X81juZIW65pBudkxsk', '1587075783545217025-GwvtkKCohf2kEdYnTfYTWvbwWp2qrs', 'zxPJly707EoaK5C6MlMlpuLMz1FCmZ44eExlJxPPlXa8a',2);
-    $connection->setApiVersion('2');
-    $response = $connection->get('users', ['ids' => 12]);
-    echo '<pre>'; print_r($response);echo '<pre>'; exit;
+    //$connection->setApiVersion('2');
+    $response = $connection->get("search/tweets", ["q" => "#HarryKane"]);
+    echo '<pre>';print_r($response);echo '<pre>'; exit;
+
 
     $collect = User::where('email', Session::get('logged'))->first();
     $twitt_id =$collect->twitter_id;
@@ -575,15 +577,6 @@ $insta_id =$collect->insta_pageid_of_fb;
      $result = $querier
     ->withOAuth2Client()
     ->get('tweets/counts/recent', ['query' => 'foo']);
-
-    //$data['tweets'] = $result->data;
-    // echo '<pre>'; print_r($data); echo '<pre>'; exit;
-
-    // $result = $querier
-    // ->withOAuth2Client()
-    // ->get('users/'.$user_id.'/followers');
-
-    //  $data['followers'] = $result->meta->result_count;
 
      //tweets
      $res = $querier
