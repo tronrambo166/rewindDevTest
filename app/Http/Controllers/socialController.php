@@ -696,7 +696,7 @@ $insta_id =$collect->insta_pageid_of_fb;
         //$data=$response['data'];  $user=$response['data']['user']; 
         $videos=json_decode($data,true);
         $user=json_decode($user,true);
-        echo '<pre>';print_r($videos);echo '<pre>';exit;
+        //echo '<pre>';print_r($videos);echo '<pre>';exit;
         $tweets='';
         $mentions='';
         return view('social.tiktok',compact('videos','user','mentions'));
