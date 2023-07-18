@@ -700,7 +700,7 @@ $insta_id =$collect->insta_pageid_of_fb;
 	
 	 public function tiktok()
     {
-		$redirect_uri ='https://test.muziqyrewind.com/social/tiktok/callback';
+		$redirect_uri ='https://test.muziqyrewind.com/social/tiktok/callback/';
 		$client_key='awudsc70wb3h7hsw';
 		
         $curl=curl_init();
@@ -781,7 +781,8 @@ $insta_id =$collect->insta_pageid_of_fb;
         ));
 
          $response=curl_exec($curl);//  
-        $response=json_decode($response,true);       
+        $response=json_decode($response,true); 
+        window.location.href='https://test.muziqyrewind.com/social/tiktok/callback?data=$response["data"]&user=$response["data"]["user"]';      
         echo '<pre>';print_r($response);echo '<pre>';exit;
         
 
