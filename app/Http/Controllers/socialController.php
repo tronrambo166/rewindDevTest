@@ -689,7 +689,7 @@ $insta_id =$collect->insta_pageid_of_fb;
 	
 	 public function tiktok_social()
     { 
-        $response = json_decode($_GET['data']);
+        $response = json_decode($_GET['data'],true);
         $data=$response['data'];  $user=$response['data']['user'];
         $videos=json_decode($data,true);
         $user=json_decode($user,true);
