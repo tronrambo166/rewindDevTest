@@ -696,7 +696,7 @@ $insta_id =$collect->insta_pageid_of_fb;
         $curl=curl_init();
         curl_setopt_array($curl, array(
        // CURLOPT_URL=> 'https://www.tiktok.com/auth/authorize?client_key='.$client_key.'&response_type=code&scope=user.info.basic,video.list&redirect_uri='.$redirect_uri.'&state=Staging',
-          CURLOPT_URL=> 'https://www.tiktok.com/auth/authorize?client_key=awudsc70wb3h7hsw&response_type=code&scope=user.info.basic,video.list&redirect_uri=muziqyrewind.com&state=Staging',
+          CURLOPT_URL=> 'https://www.tiktok.com/auth/authorize?client_key='.$client_key.'&response_type=code&scope=user.info.basic,video.list&redirect_uri='.$redirect_uri.'&state=Staging',
 
 		CURLOPT_RETURNTRANSFER=> TRUE,
         CURLOPT_ENCODING=> '',
