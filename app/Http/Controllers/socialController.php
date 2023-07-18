@@ -689,8 +689,9 @@ $insta_id =$collect->insta_pageid_of_fb;
 	
 	 public function tiktok_social()
     { 
-        $response = json_decode($_GET['data'],true);
-        echo '<pre>'; print_r($response);echo '<pre>'; exit;
+        //$response = json_decode($_GET['data'],true);
+        $response = $_GET['data'];
+        echo '<pre>';print_r($response);echo '<pre>'; exit;
         $data=$response['data'];  $user=$response['data']['user']; 
         $videos = '';
         //$videos=json_decode($data,true);
@@ -787,7 +788,8 @@ $insta_id =$collect->insta_pageid_of_fb;
         $response=curl_exec($curl);//  
         $response=json_decode($response,true); 
         $response = json_encode($response);
-        echo "<script> window.location.href='https://test.muziqyrewind.com/tiktok_social?data=$response'  </script>";      
+        $response = $response['data'];
+        echo "<script> window.location.href='http://localhost/laravel_projects/rewindLive/public/tiktok_social?data=$response'  </script>";      
         echo '<pre>';print_r($response);echo '<pre>';exit;
         
 
