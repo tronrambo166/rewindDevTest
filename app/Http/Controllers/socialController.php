@@ -825,7 +825,7 @@ $insta_id =$collect->insta_pageid_of_fb;
          $video[$i]['likes'] = $d['like_count'];$i++;
     }
         $video = json_encode($video);
-        header('location:test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);      
+        header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);      
         echo '<pre>';print_r($response);echo '<pre>';exit;
         
 
