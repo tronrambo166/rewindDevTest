@@ -689,7 +689,7 @@ $insta_id =$collect->insta_pageid_of_fb;
 	
 	 public function tiktok_social()
     { 
-        $data=$_GET['data'];  $user=$_GET['user'];
+        $data=$_GET['response']['data'];  $user=$_GET['response']['user'];
         $videos=json_decode($data,true);
         $user=json_decode($user,true);
         //echo '<pre>';print_r($data);echo '<pre>';exit;
@@ -782,7 +782,7 @@ $insta_id =$collect->insta_pageid_of_fb;
 
          $response=curl_exec($curl);//  
         $response=json_decode($response,true); 
-        echo "<script> window.location.href='https://test.muziqyrewind.com/social/tiktok/callback?data=$response["data"]&user=$response["data"]["user"]'  </script>";      
+        echo "<script> window.location.href='https://test.muziqyrewind.com/tiktok_social?data=$response'  </script>";      
         echo '<pre>';print_r($response);echo '<pre>';exit;
         
 
