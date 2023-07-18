@@ -696,7 +696,7 @@ $insta_id =$collect->insta_pageid_of_fb;
         //$data=$response['data'];  $user=$response['data']['user']; 
         $videos=json_decode($data,true);
         $user=json_decode($user,true);
-        echo '<pre>';print_r($data);echo '<pre>';exit;
+        echo '<pre>';print_r($videos);echo '<pre>';exit;
         $tweets='';
         $mentions='';
         return view('social.tiktok',compact('videos','user','mentions'));
@@ -825,7 +825,7 @@ $insta_id =$collect->insta_pageid_of_fb;
          $video[$i]['likes'] = $d['like_count'];$i++;
     }
         $video = json_encode($video);
-        header('location:http://localhost/laravel_projects/radio/public/tiktok_social?data='.$video.'&user='.$user);      
+        header('location:test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);      
         echo '<pre>';print_r($response);echo '<pre>';exit;
         
 
