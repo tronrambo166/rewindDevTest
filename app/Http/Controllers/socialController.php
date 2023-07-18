@@ -689,11 +689,12 @@ $insta_id =$collect->insta_pageid_of_fb;
 	
 	 public function tiktok_social()
     { 
-        //$response = json_decode($_GET['data'],true);
-        $response = $_GET['data'];
-        $data=$response['data'];  $user=$response['data']['user'];
-        $videos=json_decode($data,true);
-        $user=json_decode($user,true);
+        $response = json_decode($_GET['data'],true);
+        echo '<pre>'; print_r($response);echo '<pre>'; exit;
+        $data=$response['data'];  $user=$response['data']['user']; 
+        $videos = '';
+        //$videos=json_decode($data,true);
+        //$user=json_decode($user,true);
         //echo '<pre>';print_r($data);echo '<pre>';exit;
         $tweets='';
         $mentions='';
@@ -769,14 +770,15 @@ $insta_id =$collect->insta_pageid_of_fb;
         //GET USER INFO
         $curl=curl_init();
         curl_setopt_array($curl, array(
-          CURLOPT_URL=> 'https://open.tiktokapis.com/v2/user/info/?fields=open_id,union_id,follower_count,likes_count',
+          // CURLOPT_URL=> 'https://open.tiktokapis.com/v2/user/info/?fields=open_id,union_id,follower_count,likes_count',
 
+        CURLOPT_URL=> 'https://open.tiktokapis.com/v2/video/list/?fields=cover_image_url,id,title',
         CURLOPT_RETURNTRANSFER=> TRUE,
         CURLOPT_ENCODING=> '',
         CURLOPT_MAXREDIRS=> 10,
         CURLOPT_TIMEOUT=> 30,
         CURLOPT_HTTP_VERSION=> CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST=> 'GET',
+        CURLOPT_CUSTOMREQUEST=> 'POST',
         CURLOPT_HTTPHEADER=> array(
         'Authorization: Bearer '.$access_token    
         ),
