@@ -786,9 +786,10 @@ $insta_id =$collect->insta_pageid_of_fb;
         ));
 
         $response=curl_exec($curl);//  
-        $response=json_decode($response,true); 
+        $response=json_decode($response,true);
+        $response = $response['data']; 
         $response = json_encode($response);
-        $response = $response['data'];
+
         echo "<script> window.location.href='http://localhost/laravel_projects/rewindLive/public/tiktok_social?data=$response'  </script>";      
         echo '<pre>';print_r($response);echo '<pre>';exit;
         
