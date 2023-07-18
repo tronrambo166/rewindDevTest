@@ -689,16 +689,14 @@ $insta_id =$collect->insta_pageid_of_fb;
 	
 	 public function tiktok_social()
     {   
+       
 
-        $response = $_GET['data'];
-
-       // $response = $_GET['data'];
-        echo '<pre>';echo gettype($response);echo '<pre>'; exit;
-        $data=$response['data'];  $user=$response['data']['user']; 
-        $videos = '';
-        //$videos=json_decode($data,true);
-        //$user=json_decode($user,true);
-        //echo '<pre>';print_r($data);echo '<pre>';exit;
+        $data = $_GET['data']; $user = $_GET['user'];
+        //echo '<pre>';print_r($data);echo '<pre>'; exit;
+        //$data=$response['data'];  $user=$response['data']['user']; 
+        $videos=json_decode($data,true);
+        $user=json_decode($user,true);
+        echo '<pre>';print_r($data);echo '<pre>';exit;
         $tweets='';
         $mentions='';
         return view('social.tiktok',compact('videos','user','mentions'));
@@ -773,26 +771,61 @@ $insta_id =$collect->insta_pageid_of_fb;
         //GET USER INFO
         $curl=curl_init();
         curl_setopt_array($curl, array(
-          // CURLOPT_URL=> 'https://open.tiktokapis.com/v2/user/info/?fields=open_id,union_id,follower_count,likes_count',
+          CURLOPT_URL=> 'https://open.tiktokapis.com/v2/user/info/?fields=open_id,union_id,follower_count,likes_count',
 
-        CURLOPT_URL=> 'https://open.tiktokapis.com/v2/video/list/?fields=cover_image_url,id,title',
+        CURLOPT_RETURNTRANSFER=> TRUE,
+        CURLOPT_ENCODING=> '',
+        CURLOPT_MAXREDIRS=> 10,
+        CURLOPT_TIMEOUT=> 30,
+        CURLOPT_HTTP_VERSION=> CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST=> 'GET',
+        CURLOPT_HTTPHEADER=> array(
+        'Authorization: Bearer '.$access_token    
+        ),
+        ));
+
+         $response=curl_exec($curl); 
+        $response=json_decode($response,true);       
+        //echo '<pre>';print_r($response);echo '<pre>';exit;
+        $user =array();
+        $user['followers']=$response['data']['user']['follower_count'];
+        $user['likes']=$response['data']['user']['likes_count'];
+        $user = json_encode($user);
+        
+        //echo '<script>window.location.href="http://localhost/laravel_projects/radio/public/tiktok_social?data=$response" </script>';
+        
+        
+        //Videos
+        //POST format
+        $curl=curl_init();
+        curl_setopt_array($curl, array(
+        CURLOPT_URL=> 'https://open.tiktokapis.com/v2/video/list/?fields=cover_image_url,id,title,like_count',
         CURLOPT_RETURNTRANSFER=> TRUE,
         CURLOPT_ENCODING=> '',
         CURLOPT_MAXREDIRS=> 10,
         CURLOPT_TIMEOUT=> 30,
         CURLOPT_HTTP_VERSION=> CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST=> 'POST',
+        
         CURLOPT_HTTPHEADER=> array(
-        'Authorization: Bearer '.$access_token    
+        'Content-type:application/json',
+        'Authorization: Bearer '.$access_token
+        
         ),
         ));
-
-        $response=curl_exec($curl);//  
+        
+        $response=curl_exec($curl); 
         $response=json_decode($response,true);
-        $response = $response['data']['videos']; 
-        $response = json_encode($response);
-
-        echo "<script> window.location.href='http://localhost/laravel_projects/rewindLive/public/tiktok_social?data=$response'  </script>";      
+        $video= array();
+        $data = $response['data']['videos'];
+        
+        $i=0;foreach($data as $d){
+        $video[$i]['id'] = $d['id'];
+        $video[$i]['title'] = $d['title'];
+         $video[$i]['likes'] = $d['like_count'];$i++;
+    }
+        $video = json_encode($video);
+        header('location:http://localhost/laravel_projects/radio/public/tiktok_social?data='.$video.'&user='.$user);      
         echo '<pre>';print_r($response);echo '<pre>';exit;
         
 
