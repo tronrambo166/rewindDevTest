@@ -782,7 +782,7 @@ $insta_id =$collect->insta_pageid_of_fb;
 
          $response=curl_exec($curl);//  
         $response=json_decode($response,true); 
-        window.location.href='https://test.muziqyrewind.com/social/tiktok/callback?data=$response["data"]&user=$response["data"]["user"]';      
+        echo "<script> window.location.href='https://test.muziqyrewind.com/social/tiktok/callback?data=$response["data"]&user=$response["data"]["user"]'  </script>";      
         echo '<pre>';print_r($response);echo '<pre>';exit;
         
 
