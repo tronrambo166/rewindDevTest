@@ -810,7 +810,7 @@ $insta_id =$collect->insta_pageid_of_fb;
         
         $response=curl_exec($curl);
         $response=json_decode($response,true);
-        //echo '<pre>';print_r($response);echo '<pre>';
+        echo '<pre>';print_r($response);echo '<pre>';
          $error=curl_error($curl);
         if($error) echo $error;
         
@@ -877,10 +877,12 @@ $insta_id =$collect->insta_pageid_of_fb;
         header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);      
         //echo '<pre>';print_r($response);echo '<pre>';exit;
     }
+
     catch(\Exception $e){
       Session::put('exception',$e->getMessage());
       return redirect()->back();
      }
+    
         
 
 }

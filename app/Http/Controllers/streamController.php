@@ -151,8 +151,9 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 //FANS
     $url2 = 'https://www.deezer.com/us/artist/'.$platform_id;
     $data2= $client->request('GET', $url2); 
-    $fans=$data2->text();  $fan=  substr($fans,0,300);
-    $fan = (int) filter_var($fan, FILTER_SANITIZE_NUMBER_INT); 
+    $fans=$data2->text();  $fan=  substr($fans,0,145);
+    $fan = (int) filter_var($fan, FILTER_SANITIZE_NUMBER_INT);
+
 
     return view('streaming.deezer', ['school' => $this->RegSongs, 'school2' => $this->RegSongs2, 'fan' => $fan] );
 }
@@ -1221,7 +1222,7 @@ catch(\Exception $e){
 
  public function region10() { 
 
-    
+
         $thisUser=User::where('email', Session::get('logged'))->first();
         $id=$thisUser->id; $platform = 'Deezer Artist';
         $stream=Streaming::where('user_id', $id)->first(); 
