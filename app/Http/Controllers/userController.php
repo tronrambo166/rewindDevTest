@@ -11,6 +11,7 @@ use App\Models\liveSongs;
 use Hash;
 use PDF;
 use Mail;
+use Exception;
 
 class userController extends Controller
 {
@@ -39,25 +40,39 @@ public function static20() {
 
  public function artist_contact(){
   
+  try{
     $userEmail=Session::get('Userlogged');  
     $id=Session::get('contact_id');
 
     $artist_contact=User::where('id', $id)->first();
     $userEmail= visitors::where('email', $userEmail)->first();
   return view ('UserPages.artist_contact',compact('artist_contact','userEmail'));
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
  }
 
 
  public function artist_profile($id) { 
+
+try{
   $thisArtist=User::where('id', $id)->first();
   $artistSchedule=DB::table('events')->where('artist_id', $id)->get();
   return view('UserPages.artist_profile',compact('thisArtist','artistSchedule'));
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
  }
 
 
 
  public function user_reg(Request $hos)
     {    
+      try{
            $name=$hos->name;
            $email=$hos->email;
            $password=$hos->password;
@@ -94,6 +109,11 @@ public function static20() {
 
          return redirect('UserHome')->with('success', "You are registered!"); 
      }
+ }
+ catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
     }
 
@@ -101,6 +121,7 @@ public function static20() {
     public function UserLogin(Request $formData)
 {  
 
+try{
 $email = $formData->email;
 $password = $formData->password;
 $user= visitors::where('email', $email)->first(); 
@@ -125,6 +146,11 @@ else
 }
 
   else { Session::put('login_err','user dont exist!'); return redirect()->back(); }
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
  
  }
 
@@ -132,6 +158,8 @@ else
 
  public function sendEmail(Request $hos)
     {    
+     
+     try{
            $to=$hos->toEmail;
            $from=$hos->fromEmail; 
            $userName=$hos->userName;
@@ -151,6 +179,11 @@ else
         // Send Email
 
          return redirect('UserHome')->with('success', "Message sent successfully!"); 
+     }
+     catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
      
 
     }
@@ -159,6 +192,8 @@ else
 
      public function searchArtist(Request $hos)
     {    
+      try{
+        
       $searchName=$hos->searchArtist; 
       $result=DB::table('users')->where('stage_name', 'like', '%'.$searchName.'%') //->get();
       ->orWhere('country', 'like', '%'.$searchName.'%')->orWhere('city', 'like', '%'.$searchName.'%')->get();
@@ -166,6 +201,11 @@ else
 
       $artists=User::get(); 
       return view('UserPages.artists', compact('result','artists','searchName'));
+  }
+  catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
      
 
     }
@@ -336,6 +376,7 @@ public function live() {
 $i=0;$j=0;
 $titles=array();
 $currentdate = date('Ymd');
+try{
 $url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2010/channels/246131/results?type=last";
 
 $curl = curl_init($url);
@@ -368,6 +409,11 @@ if(isset($songs['metadata']['music'][0]['artists'][0]['name'])) $titles['artist'
 // Recent
 
     return view('UserPages.live',compact('titles'));
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
  }
 
 

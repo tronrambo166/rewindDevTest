@@ -33,6 +33,7 @@ public $i=0, $j=0, $cnt2=0, $cnt=1, $k=0;
  
 public function insert_id(Request $req)
 { 
+    try{
     $art=User::where('email', Session::get('logged'))->first();$art_id=$art->id;
 
     if($req->type == "YouTube Channel")
@@ -84,11 +85,23 @@ public function insert_id(Request $req)
         return redirect('mdundo');
     }
 }
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
+}
 
 public function update_id($type)
-{  $thisUser=User::where('email', Session::get('logged'))->first();
+{  
+    try{
+    $thisUser=User::where('email', Session::get('logged'))->first();
    $id=$thisUser->id; $platform = $type;   
    return view('streaming.insert_id',compact('platform'));
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 }
 
 
@@ -97,8 +110,9 @@ public function update_id($type)
  
 
 //DEEZER
-    public function getDeezer() { //return view('home'); 
+public function getDeezer() { //return view('home'); 
 
+try{
 $thisUser=User::where('email', Session::get('logged'))->first();
 $id=$thisUser->id; $platform = 'Deezer Artist';
 $stream=Streaming::where('user_id', $id)->first(); $platform_id = $stream->deezer_id;
@@ -141,6 +155,11 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
     $fan = (int) filter_var($fan, FILTER_SANITIZE_NUMBER_INT); 
 
     return view('streaming.deezer', ['school' => $this->RegSongs, 'school2' => $this->RegSongs2, 'fan' => $fan] );
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
 //Ex: 
 //$this->schools[$this->j] = $item->attr('href'); $this->j++;  
@@ -243,7 +262,7 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 //    echo '<pre>'; print_r($response); echo '<pre>'; return; 
 
 // Channel Report
-
+try{
 $thisUser=User::where('email', Session::get('logged'))->first();
 $id=$thisUser->id; $platform = 'YouTube Channel';
 $stream=Streaming::where('user_id', $id)->first(); $platform_id = $stream->youtube_id;
@@ -352,6 +371,11 @@ if($error){
    
     
     return view('streaming.youtube', compact('tracks','tracks_reg','viewCount','subscribers','videoCount','views') );
+    }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }    
 
 }
 
@@ -361,6 +385,8 @@ if($error){
 
 //SPOTIFY
  public function spotify() { 
+
+try{
 
 $thisUser=User::where('email', Session::get('logged'))->first();
 $id=$thisUser->id; $platform = 'Spotify Artist';
@@ -381,7 +407,7 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
         "code" => $code,
         //"client_id" => '578068797874-bhv1egn4tsiljt1g71gakmrkop4t2fkg.apps.googleusercontent.com',
         //"client_secret" => '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',
-        "redirect_uri" => 'http://localhost/laravel_projects/rewindLive/public/spotify'
+        "redirect_uri" => 'https://test.muziqyrewind.com/spotify'
    );
 
 //POST format
@@ -507,6 +533,11 @@ foreach($response['tracks'] as $track){
 //Artist Top Tracks
 
   return view('streaming.spotify', compact('tracks','listeners') );
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
 }
 //SPOTIFY END
@@ -516,6 +547,7 @@ foreach($response['tracks'] as $track){
 //APPLE
  public function apple() {  
 
+try{
 $thisUser=User::where('email', Session::get('logged'))->first();
 $id=$thisUser->id; $platform = 'Apple Artist';
 $stream=Streaming::where('user_id', $id)->first(); $platform_id = $stream->apple_id;
@@ -607,6 +639,11 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 
 
     return view('streaming.apple', ['merge' => $this->merge, 'merge2' => $this->merge2] );
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
 }
 //APPLE END
@@ -617,6 +654,7 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 //BOOMPLAY
  public function boomplay() {  //artistName/rankingCurrent  /songNameWrap  
 
+try{
 $thisUser=User::where('email', Session::get('logged'))->first();
 $id=$thisUser->id; $platform = 'Boomplay Artist';
 $stream=Streaming::where('user_id', $id)->first(); $platform_id = $stream->boomplay_id;
@@ -715,6 +753,11 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 
 
     return view('streaming.boomplay', ['cRank'=>$currentRank,'aRank'=>$currentAll,'favorite'=>$favorite,'merge' => $this->merge, 'merge2' => $this->merge2] );
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
 
 }
@@ -726,6 +769,7 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 //MDUNDO
  public function mdundo() {
 
+try{
 $thisUser=User::where('email', Session::get('logged'))->first();
 $id=$thisUser->id; $platform = 'Mdundo Artist';
 $stream=Streaming::where('user_id', $id)->first(); $platform_id = $stream->mdundo_id;
@@ -827,6 +871,11 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 
 
     return view('streaming.mdundo', ['lis'=>$lis, 'rank'=>$rank, 'merge' => $this->merge, 'merge2' => $this->merge2] );
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
 
 }
@@ -873,6 +922,8 @@ public $duration2_mdn =array();
 
 
     public function overall10() { 
+
+        try{
         $thisUser=User::where('email', Session::get('logged'))->first();
         $id=$thisUser->id; $platform = 'Deezer Artist';
         $stream=Streaming::where('user_id', $id)->first(); 
@@ -1152,6 +1203,11 @@ foreach($combined as $song) {
 //**SP    
 
     return view('streaming.overall10', ['school' => $this->RegSongs, 'school2' => $this->RegSongs2, 'fan' => $fan] );
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
 
 }
@@ -1164,6 +1220,8 @@ foreach($combined as $song) {
 //_____AllRegions__________
 
  public function region10() { 
+
+    
         $thisUser=User::where('email', Session::get('logged'))->first();
         $id=$thisUser->id; $platform = 'Deezer Artist';
         $stream=Streaming::where('user_id', $id)->first(); 

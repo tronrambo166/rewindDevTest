@@ -13,6 +13,7 @@ use App\Models\streaming;
 use Hash;
 use PDF;
 use Mail;
+use Exception;
 
 class testController extends Controller
 { 
@@ -30,6 +31,7 @@ public function home() {
 
  public function myMusic() { 
 
+try{
   $thisUser=User::where('email', Session::get('logged'))->first();
   $id=$thisUser->id;
   $musics=mymusic::where('artist_id',$id)->get();
@@ -38,6 +40,11 @@ public function home() {
 
   //echo '<pre>'; print_r($albums); echo '<pre>'; exit;
   return view('myMusic',compact('musics','albumMusics','albums'));
+  }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
  }
 
 
@@ -63,7 +70,7 @@ public function home() {
     $today=array();
     $todaySongs=array();
 
-
+try{
     // // 5 D A Y S
 for($day=0;$day<=4;$day++) {
 
@@ -114,7 +121,14 @@ if(isset($songs['metadata']['music'][0]['release_date'])) $titles[$i]['release_d
     //return view ('success',compact('titles')); 
     $pdf = PDF::loadView('success',compact('titles')); 
     return $pdf->download('breakdown.pdf');
+  }
+
+  catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
      }
+
+  }
 
 
 
@@ -275,13 +289,13 @@ $today=array_count_values($todays); arsort($today);
 
   public function radio() {
 
-
     // Recent
 $i=0;$j=0;
 $titles=array();
 $currentdate = date('Ymd');
 $url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2010/channels/246131/results?type=last";
 
+try {
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -312,6 +326,12 @@ if(isset($songs['metadata']['music'][0]['artists'][0]['name'])) $titles['artist'
 // Recent
 
     return view('radio',compact('titles'));
+  }
+  catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
+
 }
 
 
@@ -320,13 +340,20 @@ if(isset($songs['metadata']['music'][0]['artists'][0]['name'])) $titles['artist'
     return view('bio',compact('thisUser'));
 }
 
-public function streaming() { 
+public function streaming() {
+
+try{ 
    $art=User::where('email', Session::get('logged'))->first();$art_id=$art->id;
    $stream = streaming::where('user_id',$art_id)->first();
    if($stream->apple_id == null || $stream->deezer_id == null || $stream->youtube_id == null || $stream->spotify_id == null || $stream->boomplay_id == null || $stream->mdundo_id == null)
      $complete = 0;
      else $complete = 1;
      return view('streaming',compact('complete'));
+   }
+   catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
  }
 
  public function realSocial() { 
@@ -365,7 +392,10 @@ public function logout() {
 }
 
 public function updateBio(Request $hos)
-    {    $thisUser=User::where('email', Session::get('logged'))->first();
+    {   
+
+        try{
+         $thisUser=User::where('email', Session::get('logged'))->first();
          $id=$thisUser->id;
           User::where('id',$id)->update($hos->except(['_token']));
 
@@ -381,17 +411,22 @@ public function updateBio(Request $hos)
           $datas['image']=$create_name;
           DB::table('users')->where('id',$id)->update($datas);
        
- }
+           }
          //SINGLE IMG
-
-          return redirect()->back(); 
-      }
+          return redirect()->back();
+          }
+      catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     } 
+  }
 
 
 
  public function register_post(Request $hos)
     {    
 
+try{
 //Private Sign up
   if(isset($hos->art_id)){
   $art_id=$hos->art_id;
@@ -510,14 +545,20 @@ public function updateBio(Request $hos)
 
          Session::put('login_err',"Thank you, Rewind has received your sign up request and will reach out for next steps, your account is yet to be approved!"); return redirect('/');
      }
+   }
+   catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
-    }
+}
 
 
 
 public function registerB(Request $hos)
     {    
-    
+        
+        try{
           if($hos->image!=''){
           $image=$hos->file('image');
           $uniqid=hexdec(uniqid());
@@ -560,6 +601,11 @@ public function registerB(Request $hos)
           Session::put('logged',$email);
           return redirect('home');
      }
+   }
+   catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
     }
 
@@ -568,6 +614,7 @@ public function registerB(Request $hos)
 public function login_post(Request $formData)
 {  
 
+try{
 $email = $formData->email;
 $password = $formData->password;
 $user= User::where('email', $email)->first(); 
@@ -594,6 +641,11 @@ else
 }
 
   else { Session::put('login_err',"user don't exist!"); return  redirect('/');  }
+}
+catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
  
  }
  
@@ -611,6 +663,7 @@ else
 public function send_reset_email(Request $request)
     {
 
+      try{
         $remail=$request->email;
         $user= User::where('email', $remail)->first(); 
         if($user==null)
@@ -631,6 +684,11 @@ public function send_reset_email(Request $request)
         echo "We sent you a reset link, Check your email!"; exit;
 
         // Send Email
+      }
+      catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
     }
 
@@ -639,6 +697,7 @@ public function send_reset_email(Request $request)
     public function send_artist_approve_email(Request $request)
     {
 
+      try{
         $remail=$request->email;
         $user= User::where('email', $remail)->first(); 
         if($user==null)
@@ -657,7 +716,11 @@ public function send_reset_email(Request $request)
         });
 
         echo "Approved!"; exit;
-
+      }
+      catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
         // Send Email
 
     }
@@ -666,8 +729,8 @@ public function send_reset_email(Request $request)
 
 public function reset(Request $request, $remail)
     {
-
-       $email=$remail;
+    try{
+        $email=$remail;
         $password_1=$request->password; 
        $password=$request->c_password; 
 
@@ -682,6 +745,11 @@ public function reset(Request $request, $remail)
             Session::put('wrong_pwd', 'password do not match! try again');
           return redirect()->back();
       }
+    }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
     }
 
@@ -691,6 +759,8 @@ public function reset(Request $request, $remail)
         $thisUser=User::where('email', Session::get('logged'))->first();
         $id=$thisUser->id;
 
+      try{
+        //ini_set('memory_limit','256M');
        // validation
        $validatedData = $request->validate([
             'song' =>'required|mimes:audio/mpeg,mp3',
@@ -728,13 +798,18 @@ public function reset(Request $request, $remail)
        Session::put('song','Song added successfully!');
        return redirect()->back();
       //DB::table('mymusics')->where('id',$id)->update($datas);
+     }
+     catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
     }
 
 
      public function albumUpload(Request $request)
     {
-
+      try{
        $thisUser=User::where('email', Session::get('logged'))->first();
        $id=$thisUser->id;
 
@@ -782,6 +857,11 @@ public function reset(Request $request, $remail)
        //Multi Song
           Session::put('song','Album added successfully!');
           return redirect()->back();
+        }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
     }
 

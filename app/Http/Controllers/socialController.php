@@ -31,6 +31,8 @@ class socialController extends Controller
 
     public function insert_id(Request $req)
     { 
+
+    try{    
     $art=User::where('email', Session::get('logged'))->first();
     $art_id=$art->id;
 
@@ -49,11 +51,18 @@ class socialController extends Controller
 
     Session::put('social_id','Id added!');
         return redirect('social');
+    }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 }
 
 
 //FACEBOOK
-public function facebook() { 
+public function facebook() {
+
+try{ 
 $collect = User::where('email', Session::get('logged'))->first();
 $insta_id =$collect->insta_pageid_of_fb;
 
@@ -553,22 +562,37 @@ $insta_id =$collect->insta_pageid_of_fb;
 
 
         return redirect()->route('social_facebook');
-
+    }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
    
     }
+
+
     public function gotoFacebook()
     {
+        try{
         $user=User::where('email',Session::get('logged'))->first();
 
         $audience_me = Audience::where('user_id',$user->id)->first();
         $audience_all = Audience::where('user_id','<>',$user->id)->get();
         return view('social.facebook', compact('audience_all','audience_me'));
     }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
+
+    }
 
 
    public function twitter()
     {
+
+    try{
     echo 'Twitter API currently under maintanance!'; exit;
     $connection = new TwitterOAuth('x6QSwY7ubMXNCtaePpVheGoT9', 'cNC6alohnBqCTsj96DMTlfJMjLIQ6Zd1X81juZIW65pBudkxsk', '1587075783545217025-GwvtkKCohf2kEdYnTfYTWvbwWp2qrs', 'zxPJly707EoaK5C6MlMlpuLMz1FCmZ44eExlJxPPlXa8a',2);
     //$connection->setApiVersion('2');
@@ -605,14 +629,21 @@ $insta_id =$collect->insta_pageid_of_fb;
 
      
      return view('social.twitter',compact('data','tweets','mentions'));
+ }
+ catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
-    }
+}
 
 
      public function instagram()
     {
 		// insta fb id =200952529947077
 		//"https://graph.facebook.com/v15.0/134895793791914?fields=instagram_business_account&access_token={access-token}"
+
+        try{
 
 		$pageId=17841444949513102;// insta business id =17841444949513102
 		// insta fb id =200952529947077		
@@ -677,6 +708,11 @@ $insta_id =$collect->insta_pageid_of_fb;
 		
 
         return redirect()->route('social_instagram');
+    }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
    
     }
@@ -690,7 +726,7 @@ $insta_id =$collect->insta_pageid_of_fb;
 	 public function tiktok_social()
     {   
        
-
+    try{
         $data = $_GET['data']; $user = $_GET['user'];
         //echo '<pre>';print_r($data);echo '<pre>'; exit;
         //$data=$response['data'];  $user=$response['data']['user']; 
@@ -701,9 +737,16 @@ $insta_id =$collect->insta_pageid_of_fb;
         $mentions='';
         return view('social.tiktok',compact('videos','user','mentions'));
     }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
+
+}
 	
 	 public function tiktok()
     {
+        try{
 		$redirect_uri ='https://test.muziqyrewind.com/social/tiktok/callback/';
 		$client_key='awudsc70wb3h7hsw';
 		
@@ -731,10 +774,16 @@ $insta_id =$collect->insta_pageid_of_fb;
 		 window.location.href='https://www.tiktok.com/$res[1]' </script>";
         //$response=json_decode($response,true);       
         //echo '<pre>';print_r($response);echo '<pre>';exit;
+        }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
     }
 	
 	public function tiktok_callback()
-    { 
+    {   
+        try{
 	      $code = $_GET['code'];
        // echo "<script> 
          //window.location.href='http://localhost/laravel_projects/radio/public/social/tiktok/callback?code=$code' </script>";
@@ -826,7 +875,12 @@ $insta_id =$collect->insta_pageid_of_fb;
     }
         $video = json_encode($video);
         header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);      
-        echo '<pre>';print_r($response);echo '<pre>';exit;
+        //echo '<pre>';print_r($response);echo '<pre>';exit;
+    }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
         
 
 }

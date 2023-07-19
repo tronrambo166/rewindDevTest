@@ -15,6 +15,7 @@ use App\Models\mymusic;
 use App\Models\albums;
 use Mail;
 use Session;
+use Exception;
 class AdminController extends Controller
 {
 
@@ -47,12 +48,13 @@ class AdminController extends Controller
 public function artists()
     {       
         $artists= User::latest('id')->get();
-  return view('admin.artists', compact('artists'));       
+        return view('admin.artists', compact('artists'));       
     }
 
 
     public function approve($id)
  {      
+    try{
        User::where('id',$id)->update(['approved' => 1]);
        $artist=User::where('id',$id)->first();
 
@@ -68,14 +70,26 @@ public function artists()
          Send Email */
     
 
-       return back()->with('success', "Approved!"); 
+       return back()->with('success', "Approved!");
+       }
+       catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     } 
    }
 
 
     public function restrict($id)
  {     
+
+    try{
        User::where('id',$id)->update(['approved' => 0]);
        return back()->with('success', "Restricted!"); 
+   }
+   catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
    }
 
 
@@ -88,6 +102,7 @@ public function artists()
 
  public function remove_song($id)
     {  
+       try{ 
        $song = array();
        $removed = DB::table('live_songs')->where('position',$id)->first();
 
@@ -105,6 +120,11 @@ public function artists()
        $song['song'] = $removed->song;
        RemovedSongs::insert($song);
        return back()->with('success', "Deleted!"); 
+   }
+   catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
  }
  
  // Artists
@@ -114,7 +134,7 @@ public function artists()
 public function users()
     {       
     $users= visitors::get();
-  return view('admin.users', compact('users'));       
+    return view('admin.users', compact('users'));       
     }
 
 
@@ -122,7 +142,7 @@ public function songs()
     {       
    $static20=liveSongs::take(20)->get();
    $lastDay=DB::table('last_day_songs')->get();
-  return view('admin.songs',compact('static20','lastDay'));     
+   return view('admin.songs',compact('static20','lastDay'));     
     }
 
 
@@ -144,9 +164,8 @@ public function forgot($remail)
 public function send_reset_email(Request $request)
     {
 
+        try{
         $remail=$request->email;   
-        
-
         // Send Email
 
         $info=['Name'=>'Dele', 'email' => $remail];
@@ -159,15 +178,19 @@ public function send_reset_email(Request $request)
         });
 
         echo "Check your email"; exit;
-
+    }
+    catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
         // Send Email
 
     }
 
 
 public function reset(Request $request, $remail)
-    { echo "hello";
-
+    {
+    try{ 
        $email=$remail;
        $password_1=$request->password; 
        $password=$request->c_password; 
@@ -183,14 +206,21 @@ public function reset(Request $request, $remail)
             Session::put('wrong_pwd', 'password do not match! try again');
           return redirect()->back();
       }
-
-    }
+  }
+  catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
+}
 
 
 //______________________________________________________________________________
 
 public function editorLogin(Request $formData)
-{      
+{
+
+try{
+
 $email = $formData->email;
 $password = $formData->password;
 $user= admins::where('email', $email)->get(); 
@@ -212,12 +242,19 @@ else{
     }
 
       Session::put('log_err','User dont exist!'); return redirect()->back();
+  }
+  catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
 }
 
 
 public function adminLogin(Request $formData)
-{      
+{    
+
+try{  
 $email = $formData->email;
 $password = $formData->password;
 $user= admins::where('email', $email)->get(); 
@@ -237,6 +274,11 @@ else{
     }
 
       Session::put('log_err','User dont exist!'); return redirect()->back();
+  }
+  catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
 
 }
 
@@ -246,11 +288,8 @@ else{
     public function adminLogout(Request $request)
 {
     Auth::guard('admin')->logout();
-
     $request->session()->invalidate();
-
     $request->session()->regenerateToken();
-
     return redirect('admin/login');
 }
 

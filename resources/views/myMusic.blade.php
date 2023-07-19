@@ -225,7 +225,7 @@
 
                        
                          <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Song art') }} <span title="Required" class="text-danger">(optional)</span></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Song art') }} <span title="Required" class="text-danger">*</span></label>
 
                             <div class="col-md-6">
                                  <input required="" type="file" class="form-control" name="song_art"  >

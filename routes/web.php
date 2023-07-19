@@ -195,7 +195,7 @@ Route::get('/tiktok_social','socialController@tiktok_social')->name('tiktok_soci
  
 // Clear Config
 
-Route::get('/clear-cache', function() {
+Route::get('/clear', function() {
    \Artisan::call('config:cache');
     \Artisan::call('view:clear');
     \Artisan::call('route:clear');

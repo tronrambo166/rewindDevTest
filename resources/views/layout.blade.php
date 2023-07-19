@@ -102,6 +102,10 @@ $stage_name=$user->fname;
  <div class="text-center bg-light"><p class="text-danger ml-5">{{Session::get('curl_error')}} @php Session::forget('curl_error'); @endphp </p> </div>
   @endif
 
+ @if(Session::has('exception')) 
+ <div class="text-center bg-light w-50 m-auto card"><p class="text-danger text-center m-auto py-2">{{Session::get('exception')}} @php Session::forget('exception'); @endphp </p> </div>
+  @endif
+
     @yield('page')
 
 

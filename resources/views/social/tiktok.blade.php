@@ -25,6 +25,7 @@
   </thead>
   <tbody id="songs">  <?php $i=0;?>
 
+  @if($videos)
   @foreach($videos as $video)
   
     <tr id="loading">
@@ -37,6 +38,7 @@
     </tr>
 
 @endforeach
+@endif
  
   </tbody>
 </table>
@@ -51,9 +53,9 @@
      <p class="text-left py-3 my-0  font-weight-bold text-success h5 pl-0">Followers</p> 
 
  
-     <p class="text-light font-weight-bold">Followers : <span class="text-success">{{$user['followers']}}</span></p>
+     <p class="text-light font-weight-bold">Followers : <span class="text-success">@if($user) {{$user['followers']}} @endif</span></p>
 
-        <p class="text-light font-weight-bold">Likes : <span class="text-success">{{$user['likes']}}</span></p>
+        <p class="text-light font-weight-bold">Likes : <span class="text-success">@if($user) {{$user['likes']}} @endif</span></p>
               
   </div>
           

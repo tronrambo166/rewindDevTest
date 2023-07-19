@@ -10,6 +10,7 @@ use File;
 use Exception;
 use Http;
 
+
 class graphController extends Controller
 {
     //##**_______________________________________REPORTS____________________________________##**
