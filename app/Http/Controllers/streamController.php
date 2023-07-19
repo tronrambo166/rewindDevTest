@@ -151,7 +151,7 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 //FANS
     $url2 = 'https://www.deezer.com/us/artist/'.$platform_id;
     $data2= $client->request('GET', $url2); 
-    $fans=$data2->text();  $fan=  substr($fans,0,144);
+    $fans=$data2->text();  $fan=  substr($fans,0,145);
     $fan = (int) filter_var($fan, FILTER_SANITIZE_NUMBER_INT);
 
 
