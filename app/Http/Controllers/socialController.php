@@ -790,8 +790,8 @@ $insta_id =$collect->insta_pageid_of_fb;
     {   
         try{
 	      $code = $_GET['code'];
-       // echo "<script> 
-         //window.location.href='http://localhost/laravel_projects/radio/public/social/tiktok/callback?code=$code' </script>";
+        echo "<script> 
+         window.location.href='http://localhost/laravel_projects/rewindLive/public/social/tiktok/callback?code=$code' </script>";
        
         $client_key  ='awudsc70wb3h7hsw'; 
         $client_secret  ='78827251ba07d82c5781f4b38fdfec3a';
