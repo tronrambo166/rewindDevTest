@@ -880,7 +880,7 @@ $insta_id =$collect->insta_pageid_of_fb;
 
         //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);
    
-       $test = echo '<script> window.location.href="https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user.'" </script>';
+       $test = '<script> window.location.href="https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user.'" </script>';
         //echo '<pre>';print_r($response);echo '<pre>';exit;
        echo $test;
        if ($test = null); echo 'NULL'; exit;
