@@ -844,7 +844,7 @@ $insta_id =$collect->insta_pageid_of_fb;
         $user =array();
         $user['followers']=$response['data']['user']['follower_count'];
         $user['likes']=$response['data']['user']['likes_count'];
-        $user = json_encode($user);
+        //$user = json_encode($user);
         
         //echo '<script>window.location.href="http://localhost/laravel_projects/radio/public/tiktok_social?data=$response" </script>';
         
@@ -878,11 +878,10 @@ $insta_id =$collect->insta_pageid_of_fb;
         $video[$i]['title'] = $d['title'];
          $video[$i]['likes'] = $d['like_count'];$i++;
     }
-        $video = json_encode($video);
+        //$video = json_encode($video);
         //$video = str_replace('&','_',$video);
         //$user = str_replace('&','_',$user);
 
-        echo $video; exit;
         //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);
        echo '<script> window.location.href="https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user.'" </script>';
         //echo '<pre>';print_r($response);echo '<pre>';exit;
