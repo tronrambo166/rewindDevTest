@@ -881,7 +881,6 @@ $insta_id =$collect->insta_pageid_of_fb;
         $video = json_encode($video);
 
         //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);
-       $video ='test'; $user = 'test';
        $test = '<script> window.location.href="https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user.'" </script>';
         //echo '<pre>';print_r($response);echo '<pre>';exit;
        echo $test;
