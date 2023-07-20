@@ -882,7 +882,7 @@ $insta_id =$collect->insta_pageid_of_fb;
         //$video = str_replace('&','_',$video);
         //$user = str_replace('&','_',$user);
 
-        //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);
+        header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);
        echo '<script> window.location.href="https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user.'" </script>';
         //echo '<pre>';print_r($response);echo '<pre>';exit;
 
