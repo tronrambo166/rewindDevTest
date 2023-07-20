@@ -443,7 +443,7 @@ $access_token= $response['access_token'];
     $params = array(
         "response_type" => "code",
         "client_id" => '0aadf46389f04aef84cd7a910fb48b5e',
-        "redirect_uri" => 'http://localhost/laravel_projects/rewindLive/public/spotify',
+        "redirect_uri" => 'https://test.muziqyrewind.com/spotify',
         "state" => "random_state"
     );
 
