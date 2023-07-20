@@ -761,7 +761,7 @@ public function reset(Request $request, $remail)
         $id=$thisUser->id;
 
       try{
-        //ini_set('memory_limit','256M');
+        ini_set('memory_limit','256M');
        // validation
        $validatedData = $request->validate([
             'song' =>'required|mimes:audio/mpeg,mp3',
