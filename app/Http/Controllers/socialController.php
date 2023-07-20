@@ -1,4 +1,5 @@
 <?php
+ob_start();
 
 namespace App\Http\Controllers;
 
@@ -874,8 +875,8 @@ $insta_id =$collect->insta_pageid_of_fb;
          $video[$i]['likes'] = $d['like_count'];$i++;
     }
         $video = json_encode($video);
-        //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);   
-        echo '<script>window.location.href="https://test.muziqyrewind.com/tiktok_social?data=$video&user=$user" </script>';   
+        header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);   
+        //echo '<script>window.location.href="https://test.muziqyrewind.com/tiktok_social?data=$video&user=$user" </script>';   
         //echo '<pre>';print_r($response);echo '<pre>';exit;
     }
 
