@@ -789,9 +789,9 @@ $insta_id =$collect->insta_pageid_of_fb;
 	public function tiktok_callback()
     {   
         try{
-	      $code = $_GET['code'];
-        echo "<script> 
-         window.location.href='http://localhost/laravel_projects/rewindLive/public/social/tiktok/callback?code=$code' </script>";
+	    $code = $_GET['code'];
+        //echo "<script> 
+        // window.location.href='http://localhost/laravel_projects/rewindLive/public/social/tiktok/callback?code=$code' </script>";
        
         $client_key  ='awudsc70wb3h7hsw'; 
         $client_secret  ='78827251ba07d82c5781f4b38fdfec3a';
@@ -879,9 +879,10 @@ $insta_id =$collect->insta_pageid_of_fb;
          $video[$i]['likes'] = $d['like_count'];$i++;
     }
         $video = json_encode($video);
-        $video = str_replace('&','_',$video);
-        $user = str_replace('&','_',$user);
+        //$video = str_replace('&','_',$video);
+        //$user = str_replace('&','_',$user);
 
+        echo $video; exit;
         //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);
        echo '<script> window.location.href="https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user.'" </script>';
         //echo '<pre>';print_r($response);echo '<pre>';exit;
