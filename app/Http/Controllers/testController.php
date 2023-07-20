@@ -754,7 +754,7 @@ public function reset(Request $request, $remail)
     }
 
 
-//MP3 My Music
+//MP3 My Musics
     public function singleMp3Upload(Request $request)
     {
         $thisUser=User::where('email', Session::get('logged'))->first();
