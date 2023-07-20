@@ -878,8 +878,14 @@ $insta_id =$collect->insta_pageid_of_fb;
     }
         $video = json_encode($video);
 
-        //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);   
-        echo '<script> window.location.href="http://localhost/laravel_projects/rewindLive/public/tiktok_social?data='.$video.'&user='.$user.'" </script>';   
+        //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);
+        try{   
+        echo '<script> window.location.href="https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user.'" </script>';
+        }
+        catch(\Exception $e){
+        echo $e->getMessage(); exit;
+              
+             }   
         //echo '<pre>';print_r($response);echo '<pre>';exit;
     }
 
