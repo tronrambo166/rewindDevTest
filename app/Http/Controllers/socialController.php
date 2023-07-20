@@ -879,17 +879,19 @@ $insta_id =$collect->insta_pageid_of_fb;
          $video[$i]['likes'] = $d['like_count'];$i++;
     }
         $video = json_encode($video);
+        $video = str_replace('&','_',$video);
+        $user = str_replace('&','_',$user);
 
         //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);
-       $test = '<script> window.location.href="https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user.'" </script>';
+       echo '<script> window.location.href="https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user.'" </script>';
         //echo '<pre>';print_r($response);echo '<pre>';exit;
-       echo $test;
-       if ($test = null); echo 'NULL'; exit;
+
     }
 
     catch(\Exception $e){
       Session::put('exception',$e->getMessage());
-      return redirect()->back();
+      echo $e->getMessage(); exit;
+      //return redirect()->back();
      }
     
         
