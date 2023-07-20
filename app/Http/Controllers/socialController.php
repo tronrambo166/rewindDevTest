@@ -730,7 +730,6 @@ $insta_id =$collect->insta_pageid_of_fb;
 	
 	 public function tiktok_social()
     {   
-       print_r($_GET['data']); exit;
     try{
         $data = $_GET['data']; $user = $_GET['user'];
         //echo '<pre>';print_r($data);echo '<pre>'; exit;
@@ -885,7 +884,7 @@ $insta_id =$collect->insta_pageid_of_fb;
        //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);
        //echo $video; exit;
 
-        echo "<script> window.location.href='https://test.muziqyrewind.com/tiktok_social?data=$video' </script>";
+        echo "<script> window.location.href='https://test.muziqyrewind.com/tiktok_social?data=$video&user=$user' </script>";
 
        //echo '<script> window.location.href="https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user.'" </script>';
         //echo '<pre>';print_r($response);echo '<pre>';exit;
