@@ -1,6 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
-ob_start();
+
 use Illuminate\Http\Request;
 use DB;
 use Session;
@@ -592,6 +593,9 @@ $insta_id =$collect->insta_pageid_of_fb;
     {
 
     try{
+//$video ='test'; $user = 'test';
+//$test = '<script> window.location.href="http://localhost/laravel_projects/rewindLive/public/tiktok_social?data='.$video.'&user='.$user.'" </script>';
+
     echo 'Twitter API currently under maintanance!'; exit;
     $connection = new TwitterOAuth('x6QSwY7ubMXNCtaePpVheGoT9', 'cNC6alohnBqCTsj96DMTlfJMjLIQ6Zd1X81juZIW65pBudkxsk', '1587075783545217025-GwvtkKCohf2kEdYnTfYTWvbwWp2qrs', 'zxPJly707EoaK5C6MlMlpuLMz1FCmZ44eExlJxPPlXa8a',2);
     //$connection->setApiVersion('2');
@@ -874,10 +878,8 @@ $insta_id =$collect->insta_pageid_of_fb;
     }
         $video = json_encode($video);
 
-        
-        header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);  
-        ob_end_clean(); 
-        //echo '<script>window.location.href="https://test.muziqyrewind.com/tiktok_social?data=$video&user=$user" </script>';   
+        //header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);   
+        echo '<script> window.location.href="http://localhost/laravel_projects/rewindLive/public/tiktok_social?data='.$video.'&user='.$user.'" </script>';   
         //echo '<pre>';print_r($response);echo '<pre>';exit;
     }
 
