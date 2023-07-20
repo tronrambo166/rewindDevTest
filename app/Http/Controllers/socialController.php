@@ -1,7 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
-
+ob_start();
 use Illuminate\Http\Request;
 use DB;
 use Session;
@@ -875,8 +874,9 @@ $insta_id =$collect->insta_pageid_of_fb;
     }
         $video = json_encode($video);
 
-        ob_start();
-        header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);   
+        
+        header('location:https://test.muziqyrewind.com/tiktok_social?data='.$video.'&user='.$user);  
+        ob_end_clean(); 
         //echo '<script>window.location.href="https://test.muziqyrewind.com/tiktok_social?data=$video&user=$user" </script>';   
         //echo '<pre>';print_r($response);echo '<pre>';exit;
     }
