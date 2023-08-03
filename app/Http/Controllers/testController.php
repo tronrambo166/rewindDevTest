@@ -760,11 +760,11 @@ public function reset(Request $request, $remail)
         $thisUser=User::where('email', Session::get('logged'))->first();
         $id=$thisUser->id;
 
-      //try{
-       // validation
-       // $validatedData = $request->validate([
-       //      'song' =>'required|mimes:audio/mpeg,mp3',
-       //  ]); 
+      try{
+       validation
+       $validatedData = $request->validate([
+            'song' =>'required|mimes:audio/mpeg,mp3',
+        ]); 
 
          $title=$request->title;   
 
@@ -797,11 +797,11 @@ public function reset(Request $request, $remail)
        Session::put('song','Song added successfully!');
        return redirect()->back();
       //DB::table('mymusics')->where('id',$id)->update($datas);
-     // }
-     // catch(\Exception $e){
-     //  Session::put('exception',$e->getMessage());
-     //  return redirect()->back();
-     // }
+      }
+      catch(\Exception $e){
+       Session::put('exception',$e->getMessage());
+       return redirect()->back();
+      }
 
     }
 
