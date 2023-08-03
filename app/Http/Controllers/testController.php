@@ -760,8 +760,7 @@ public function reset(Request $request, $remail)
         $thisUser=User::where('email', Session::get('logged'))->first();
         $id=$thisUser->id;
 
-      try{
-        ini_set('memory_limit','256M');
+      //try{
        // validation
        $validatedData = $request->validate([
             'song' =>'required|mimes:audio/mpeg,mp3',
@@ -779,7 +778,7 @@ public function reset(Request $request, $remail)
           $songTitle=$create_name;
           
           if(!$song->move($loc, $create_name))
-          throw new Exception('File Didnt Upload');          
+          //throw new Exception('File Didnt Upload');          
        //SINGLE Song
 
       //SINGLE Cover
@@ -801,11 +800,11 @@ public function reset(Request $request, $remail)
        Session::put('song','Song added successfully!');
        return redirect()->back();
       //DB::table('mymusics')->where('id',$id)->update($datas);
-     }
-     catch(\Exception $e){
-      Session::put('exception',$e->getMessage());
-      return redirect()->back();
-     }
+     // }
+     // catch(\Exception $e){
+     //  Session::put('exception',$e->getMessage());
+     //  return redirect()->back();
+     // }
 
     }
 
