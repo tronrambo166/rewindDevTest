@@ -762,9 +762,9 @@ public function reset(Request $request, $remail)
 
       //try{
        // validation
-       $validatedData = $request->validate([
-            'song' =>'required|mimes:audio/mpeg,mp3',
-        ]); 
+       // $validatedData = $request->validate([
+       //      'song' =>'required|mimes:audio/mpeg,mp3',
+       //  ]); 
 
          $title=$request->title;   
 
@@ -775,10 +775,7 @@ public function reset(Request $request, $remail)
           $create_name=$title.'.'.$ext; 
           $loc='mp3Music';
           $song->move($loc, $create_name);
-          $songTitle=$create_name;
-          
-          if(!$song->move($loc, $create_name))
-          //throw new Exception('File Didnt Upload');          
+          $songTitle=$create_name;          
        //SINGLE Song
 
       //SINGLE Cover
