@@ -761,7 +761,7 @@ public function reset(Request $request, $remail)
         $id=$thisUser->id;
 
       try{
-       validation
+       //validation
        $validatedData = $request->validate([
             'song' =>'required|mimes:audio/mpeg,mp3',
         ]); 
