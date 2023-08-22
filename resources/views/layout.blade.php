@@ -114,8 +114,13 @@ $stage_name=$user->fname;
         
         <footer>
             <div class="row fix  fixed-bottom" style="background:black;">
-                <p class="m-auto font-italic text-light py-3 text-responsive small">&copy; Copyright 2023. Rewind Cloud Radio Monitoring, All Rights Reserved</p>  <li class="nav-item">
+                <p class="m-auto font-italic text-light py-3 text-responsive small">&copy; Copyright 2023. Rewind Cloud Radio Monitoring, All Rights Reserved</p>
+				<li class="nav-item mt-2" style="list-style-type: none;">
         <a class="mr-5 mb-3 text-success nav-link   font-weight-bold" href="support">Support</a>
+      </li>
+	  
+	  <li class="nav-item" style="list-style-type: none;">
+        <a href="https://www.acrcloud.com/" target="_blank" class="mr-5 mb-3 text-success nav-link   font-weight-bold" ><img height="35px" width="85px" src="images/ACRCloud-white.png" /></a>
       </li>
             </div>
         </footer>

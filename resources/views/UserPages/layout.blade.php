@@ -404,6 +404,8 @@
 			 <div class="col-sm-4 m-auto" >
 			 <a class="ml-5 text-success nav-link d-inline font-weight-bold" href="terms">Terms</a>
 			 <a class="text-success nav-link d-inline font-weight-bold" href="policy">Privacy Policy</a>
+
+			  <a href="https://www.acrcloud.com/" target="_blank" class="text-success nav-link d-inline font-weight-bold"><img height="35px" width="85px" src="images/ACRCloud-white.png" /></a>
 			</div>
         </footer>
         
