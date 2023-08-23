@@ -398,14 +398,14 @@
         
         <footer>
             <div class="row fix fixed-bottom" style="background:black;">
-			 <div class="col-sm-7 text-right" >
-                <p class="text-light  text-light py-3 text-responsive small">&copy; Copyright 2023. Rewind Cloud Radio Monitoring, All Rights Reserved</p>
+			 <div class="col-sm-6 text-right" >
+                <p class="text-light  text-light py-2 mt-2 text-responsive small">&copy; Copyright 2023. Rewind Cloud Radio Monitoring, All Rights Reserved</p>
             </div>  <div class="col-sm-1" > </div>
-			 <div class="col-sm-4 m-auto" >
+			 <div class="col-sm-5 m-auto" >
 			 <a class="ml-5 text-success nav-link d-inline font-weight-bold" href="terms">Terms</a>
 			 <a class="text-success nav-link d-inline font-weight-bold" href="policy">Privacy Policy</a>
 
-			  <a href="https://www.acrcloud.com/" target="_blank" class="text-success nav-link d-inline font-weight-bold"><img height="35px" width="85px" src="images/ACRCloud-white.png" /></a>
+			  <a href="https://www.acrcloud.com/" target="_blank" class="text-light nav-link d-inline font-weight-bold">Broadcast Monitoring by &nbsp;<img height="30px" width="75px" src="images/ACRCloud-white.png" /></a>
 			</div>
         </footer>
         
