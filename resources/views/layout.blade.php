@@ -119,9 +119,9 @@ $stage_name=$user->fname;
         <a class="mr-5 mb-3 text-success nav-link   font-weight-bold" href="support">Support</a>
       </li>
 	  
-	  <li class="nav-item" style="list-style-type: none;">
+	  <!-- <li class="nav-item" style="list-style-type: none;">
 			  <a href="https://www.acrcloud.com/" target="_blank" class="text-light nav-link font-weight-bold mt-2 mr-3">Broadcast Monitoring by &nbsp;<img height="30px" width="75px" src="images/ACRCloud-white.png" /></a>
-      </li>
+      </li> -->
             </div>
         </footer>
         
