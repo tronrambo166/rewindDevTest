@@ -210,7 +210,7 @@
       </li>
 
       <li class="nav-item ">
-        <a class="{{ Request::is('static20') ? 'text-success' : 'text-light' }} nav-link  font-weight-bold" href="static20">Home </a>
+        <a class="{{ Request::is('/') ? 'text-success' : 'text-light' }} nav-link  font-weight-bold" href="static20">Home </a>
        
       </li>
 
