@@ -26,11 +26,17 @@ class userController extends Controller
 
 public function static20() { 
    if(Session::has('logged')) return redirect('home');
-   $static20=liveSongs::take(20)->get();
+   $static20=liveSongs::take(3)->get();
    $lastDay=DB::table('last_day_songs')->get();
   return view('UserPages.home',compact('static20','lastDay'));
  }
 
+public function rewindChart() { 
+   if(Session::has('logged')) return redirect('home');
+   $static20=liveSongs::take(20)->get();
+   $lastDay=DB::table('last_day_songs')->get();
+  return view('UserPages.rewindChart',compact('static20','lastDay'));
+ }
 
 
  public function artists() { 

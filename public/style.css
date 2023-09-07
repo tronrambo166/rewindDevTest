@@ -22,3 +22,7 @@ ul{list-style-type: none;}
 
  .small_div {background: #e3e3e3;}
  .bar{background: green;}
+ .bar2{background: white;}
+ .chart-header{background: green;}
+ .chart-header th{font-size: 12px; font-weight: 600; font-family: system-ui;}
+ .chart-tr td{overflow: hidden;}
