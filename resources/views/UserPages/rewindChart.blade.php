@@ -1,7 +1,7 @@
 @extends('UserPages.layout')  
 @section('content')
 
-<div class="bg-light py-4">
+<div class="content_bg py-4">
 
 <div class="container mx-auto py-3" style="width: 80%;background:rgb(237, 235, 235);">
 

@@ -26,3 +26,4 @@ ul{list-style-type: none;}
  .chart-header{background: green;}
  .chart-header th{font-size: 12px; font-weight: 600; font-family: system-ui;}
  .chart-tr td{overflow: hidden;}
+ .content_bg {background: #141414;}

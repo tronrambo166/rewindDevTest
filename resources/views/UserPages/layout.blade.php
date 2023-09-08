@@ -38,7 +38,7 @@
   <div class="  navbar-collapse" id="navbarNav">
     <ul class="navbar-nav links w-75">
       <li class="nav-item text-responsive  text-light  mr-md-5 sm-f30">
-      <a class="pt-0 pb-2" href="{{route('static20')}}">
+      <a class="pt-0 pb-2" href="{{route('_home')}}">
           <h3 class="text-success font-weight-bold"> <img style="width:142px; height:55px;" src="images/logo.png"></h3>
       </a>
       
@@ -200,17 +200,17 @@
 <div class="h-100 row  pt-2 pb-0" style="background:black;">
 <nav class=" navbar navbar-expand-md navbar-light py-0 w-100">
   
-  <div class="  navbar-collapse" id="navbarNav">
+  <div class="navbar-collapse" id="navbarNav">
     <ul class="navbar-nav links">
       <li class="nav-item text-responsive  text-light  mr-md-5 sm-f30">
-      <a class="pt-0 pb-2" href="{{route('static20')}}">
+      <a class="pt-0 pb-2" href="{{route('_home')}}">
           <h3 class="text-success font-weight-bold"> <img style="width:142px; height:55px;" src="images/logo.png"></h3>
       </a>
       
       </li>
 
       <li class="nav-item ">
-        <a class="{{ Request::is('/') ? 'text-success' : 'text-light' }} nav-link  font-weight-bold" href="static20">Home </a>
+        <a class="{{ Request::is('_home') ? 'text-success' : 'text-light' }} nav-link  font-weight-bold" href="_home">Home </a>
        
       </li>
 
@@ -218,13 +218,11 @@
          <a class="{{ Request::is('live') ? 'text-success' : 'text-light' }} nav-link  font-weight-bold" href="live">Live</a>
       </li>
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="{{ Request::is('artists') ? 'text-success' : 'text-light' }} nav-link   font-weight-bold" href="artists">Artists</a>
-      </li>
+      </li> -->
 
-      <li class="nav-item">
-        <a class="{{ Request::is('documentation') ? 'text-success' : 'text-light' }} nav-link   font-weight-bold" href="documentation">Support</a>
-      </li>
+      
     
      
 
@@ -234,19 +232,23 @@
     </ul>
 
     @if(Session::has('Userlogged'))
-    <ul class="ml-auto pr-2">
+    <ul class="navbar-nav ml-auto pr-2">
        <li class="nav-item text-responsive  text-light  mr-md-5 sm-f30">
         Welcome, User
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item mr-4">
         <a class="nav-link  text-light" href="{{route('logout')}}">Logout</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="{{ Request::is('documentation') ? 'text-success' : 'text-light' }} nav-link   font-weight-bold" href="documentation">Support</a>
       </li>
 
     </ul>
 
 @else
-<ul class="ml-auto pr-2"> 
+<ul class="navbar-nav ml-auto pr-2"> 
 
 <!--     
         
@@ -375,8 +377,12 @@
 
  
  
-   <li class="nav-item">
+   <li class="nav-item mr-4">
         <a href=""class="nav-link  text-light" data-target="#loginModal" data-toggle="modal"> Login</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="{{ Request::is('documentation') ? 'text-success' : 'text-light' }} nav-link font-weight-bold" href="documentation">Support</a>
       </li>
 </ul>
 

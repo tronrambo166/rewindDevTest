@@ -1,7 +1,7 @@
 @extends('UserPages.layout')  
 @section('content')
 
-<div class="bg-light py-4">
+<div class="content_bg py-4">
 <div class="container mx-auto bg-white" style="width: 80%;"> 
    <h4 style="font-weight: 800;" class="text-center font-weight-bold text-dark py-3">Rewind Charts</h4>
   <div class="row mx-auto shadow" style=""> 
@@ -96,7 +96,7 @@
 
 
          <div class="row py-3"> 
-            <a href="{{route('rewind-chart')}}" style="background:black;" class="font-weight-bold w-100 text-light py-1 m-auto text-center">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></a>
+            <a href="{{route('rewind-chart')}}" style="background:black;" class="font-weight-bold w-100 text-light py-1 m-auto text-center">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success font-weight-bold"></i></a>
           </div>
 
       </div>
@@ -111,7 +111,7 @@
          <div class="row">
          <div class="col-sm-3"> 
           <h6 class="text-center font-weight-bold text-dark">Rewind Artist Top 40</h6> 
-           <button style="background:black;" class="font-weight-bold w-75 text-light mx-auto my-2 text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+           <button style="background:black;" class="font-weight-bold w-75 text-light mx-auto my-2 text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
         </div> 
          <div class="col-sm-9"> 
           <div class="row">
@@ -229,7 +229,7 @@
            </div>
 
            <div class="row">
-            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
            </div>
 
           </div>
@@ -313,7 +313,7 @@
            </div>
 
            <div class="row">
-            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
            </div>
 
 
@@ -399,7 +399,7 @@
            </div>
 
            <div class="row">
-            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
            </div>
 
 
@@ -486,7 +486,7 @@
            </div>
 
            <div class="row">
-            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
            </div>
 
 
@@ -588,7 +588,7 @@
            </div>
 
            <div class="row">
-            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
            </div>
 
           </div>
@@ -672,7 +672,7 @@
            </div>
 
            <div class="row">
-            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
            </div>
 
 
@@ -758,7 +758,7 @@
            </div>
 
            <div class="row">
-            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
            </div>
 
 
@@ -845,7 +845,7 @@
            </div>
 
            <div class="row">
-            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+            <button style="background:black;font-size: 10px;" class="font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
            </div>
 
 
@@ -936,33 +936,33 @@
         <div class="row my-3">
          <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Citizen Radio</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
           <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Radio Jambo</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
 
           <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Citizen Radio</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
           <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Radio Jambo</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
           <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Citizen Radio</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
           <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Radio Jambo</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
         </div>
@@ -972,33 +972,33 @@
         <div class="row my-3">
          <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Citizen Radio</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
           <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Radio Jambo</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
 
           <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Citizen Radio</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
           <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Radio Jambo</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
           <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Citizen Radio</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
           <div class="col-md-2 ">
           <h6 style="font-size: 11px;" class="text-left ml-2 mb-0 text-dark font-weight-bold">Radio Jambo</h6>
-          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-danger"></i></button>
+          <button style="background:black;font-size: 9px;" class="pt-1 font-weight-bold w-100 text-light mx-auto text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
          </div>
 
         </div>
