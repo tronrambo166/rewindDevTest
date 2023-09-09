@@ -139,7 +139,7 @@
              @if($static->position == 1)
             <div class="row">
               <div class="col-md-5">
-                <img src="images/user.jpg" class="border bg-dark" height="180px;">      
+                <img src="images/user.jpg" class="border" height="180px;">      
               </div>
               <div class="col-md-1 px-0 my-auto"> 
                 <p style="background: yellow;" class="pt-1 text-dark font-weight-bold small">NEW</p> 
