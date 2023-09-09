@@ -19,8 +19,8 @@
          <div class="row my-3">
 
         <!-- COL -->
-
-        @foreach($static20 as $static)
+@php $cnt = 0; @endphp
+@foreach($static20 as $static)
 @foreach($lastDay as $yester)
 @if($static->song == $yester->song) 
 
