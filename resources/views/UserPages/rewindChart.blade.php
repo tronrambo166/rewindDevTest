@@ -63,19 +63,16 @@
 
           @if($static->position == 1)
             <div class="row">
-               <div class="col-md-1 mt-1">
-          @if($pos=='up') <i style="color: green;" class="fas fa-arrow-alt-circle-up fa-2x"></i>
-          @elseif($pos=='down') <i style="color: red;" class="fas fa-arrow-alt-circle-down fa-2x"></i>
-          @else <i class="fas fa-arrow-alt-circle-right text-mute fa-2x"></i>
-          @endif 
+              <div class="col-md-5">
+                <img src="images/user.jpg" class="border" height="180px;">      
               </div>
-              <div class="col-md-3">
-                <img src="images/user.jpg" height="180px;">      
-              <p class="text-dark text-left">{{$static->artist}}</p>
+              <div class="col-md-1 px-0 my-auto"> 
+                <p style="background: yellow;" class="pt-1 text-dark font-weight-bold small">NEW</p>
               </div>
-              <div class="col-md-7">
-                <h5 class="mb-1 text-left text-dark font-weight-bold">{{$static->song}}</h5>       
-              <p class="text-dark text-left">{{$static->artist}}</p>
+              <div class="col-md-5 text-center">
+                <h4 class="py-4"></h4>
+                <h4 style="font-weight:900; color: black;" class="mb-1 text-left text-dark font-weight-bold">{{$static->song}}</h4>       
+              <h6 class="text-dark text-left">{{$static->artist}}</h6>
               </div>
             </div>
             @else
