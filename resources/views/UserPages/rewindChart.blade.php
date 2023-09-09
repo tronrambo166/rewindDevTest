@@ -142,7 +142,7 @@
                 <img src="images/user.jpg" class="border" height="180px;">      
               </div>
               <div class="col-md-1 px-0 my-auto"> 
-                <p style="background: yellow;" class="pt-1 text-dark font-weight-bold small">NEW</p> 
+                <p style="background: yellow;" class="pt-1 text-dark font-weight-bold small">NEW</p>
               </div>
               <div class="col-md-5 text-center">
                 <h4 class="py-4"></h4>
