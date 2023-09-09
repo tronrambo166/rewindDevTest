@@ -80,7 +80,7 @@
                <div class="col-md-1 mt-1">
           @if($pos=='up') <i style="color: green;" class="fas fa-arrow-alt-circle-up fa-2x"></i>
           @elseif($pos=='down') <i style="color: red;" class="fas fa-arrow-alt-circle-down fa-2x"></i>
-          @else <i class="fas fa-arrow-alt-circle-right text-mute fa-2x"></i>
+          @else <i class="fas fa-arrow-alt-circle-right text-secondary fa-2x"></i>
           @endif 
               </div>
               <div class="col-md-10">
