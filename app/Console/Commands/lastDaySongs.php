@@ -140,7 +140,7 @@ $cn++;
       $position++; break;
   } 
 }
-if($position>20) break;
+if($position>45) break;
 }
 
 //DATABASE INSERT/UPDATE

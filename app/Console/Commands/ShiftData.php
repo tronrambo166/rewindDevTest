@@ -170,7 +170,7 @@ $cn++;
   } 
 
  } 
-if($position>30) break;
+if($position>45) break;
 }
 
 //DATABASE INSERT/UPDATE
