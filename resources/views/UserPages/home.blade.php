@@ -2,17 +2,17 @@
 @section('content')
 
 <div class="content_bg py-4">
-<div class="container mx-auto bg-white" style="width: 80%;"> 
-   <h4 style="font-weight: 800;" class="text-center font-weight-bold text-dark py-3">Rewind Charts</h4>
+<div class="container mx-auto" style="background: #141414;width: 80%;"> 
+   <h4 style="font-weight: 800;" class="text-center font-weight-bold py-3">Rewind Charts</h4>
   <div class="row mx-auto shadow" style=""> 
 
-         <div class="card px-3 pt-3 bg-white">
+         <div class="content_bg card px-3 py-3">
          <div class="row">
          <div class="col-sm-4"> 
           <p class="bar" style="width:100%; height:15px;"></p> 
         </div> 
 
-         <div class="col-sm-4"> <h5 class="text-center font-weight-bold text-dark">Rewind Top 40</h5> </div>
+         <div class="col-sm-4"> <h5 class="text-center font-weight-bold">Rewind Top 40</h5> </div>
          <div class="col-sm-4"> <p class="bar" style="width:100%; height:15px;"></p> </div>
          </div>
 
@@ -95,7 +95,7 @@
          </div>
 
 
-         <div class="row py-3"> 
+         <div class="row pt-3"> 
             <a href="{{route('rewind-chart')}}" style="background:black;" class="font-weight-bold w-100 text-light py-1 m-auto text-center">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success font-weight-bold"></i></a>
           </div>
 
@@ -110,7 +110,7 @@
 
          <div class="row">
          <div class="col-sm-3"> 
-          <h6 class="text-center font-weight-bold text-dark">Rewind Artist Top 40</h6> 
+          <h6 class="text-center font-weight-bold">Rewind Artist Top 40</h6> 
            <button style="background:black;" class="font-weight-bold w-75 text-light mx-auto my-2 text-center small">VIEW CHART &nbsp;  <i class="fa fa-angle-right text-success"></i></button>
         </div> 
          <div class="col-sm-9"> 
@@ -146,7 +146,7 @@
       </div>
 
 <!-- Region CHART -->
-<h5 style="font-weight: 800;" class="text-center text-dark py-3 mt-4">Rewind Per Region Charts</h5>
+<h5 style="font-weight: 800;" class="text-center py-3 mt-4">Rewind Per Region Charts</h5>
 <div class="row mx-auto shadow" style=""> 
 
          <div class="card w-100 px-3 pt-3 bg-white">
@@ -505,7 +505,7 @@
 
 
 <!-- Artist Region CHART -->
-<h5  style="font-weight: 800;"class="text-center text-dark py-3 mt-4">Rewind Artist Per Region Charts</h5>
+<h5  style="font-weight: 800;"class="text-center py-3 mt-4">Rewind Artist Per Region Charts</h5>
 <div class="row mx-auto shadow" style=""> 
 
          <div class="card w-100 px-3 pt-3 bg-white">
@@ -865,7 +865,7 @@
 
 
 <!-- Station Region CHART -->
-<h5  style="font-weight: 800;"class="text-center text-dark py-3 mt-4">Rewind Artist Per Station Charts</h5>
+<h5  style="font-weight: 800;"class="text-center py-3 mt-4">Rewind Artist Per Station Charts</h5>
 <div class="row mx-auto shadow" style=""> 
 
         <div class="card w-100 px-3 pt-3 bg-white">

@@ -3,18 +3,18 @@
 
 <div class="content_bg py-4">
 
-<div class="container mx-auto py-3" style="width: 80%;background:rgb(237, 235, 235);">
+<div class="container mx-auto py-3 content_bg" style="width: 80%;">
 
 <div class="row">
 
-         <div class="col-sm-3"> <h4 style="font-weight:900;color: black;" class="text-center">Rewind Hot 40</h4> 
+         <div class="col-sm-3"> <h4 style="font-weight:900;color: white;" class="text-center">Rewind Hot 40</h4> 
          </div>
          <div class="col-sm-6 mt-2"> 
           <p class="bar2" style="width:100%; height:15px;"></p> 
         </div> 
 
         
-         <div class="col-sm-3 mt-2"> <p style="font-weight:900;" class="small text-dark" >WEEK OF <?php echo strtoupper(date('M d, Y')); ?></p> </div>
+         <div class="col-sm-3 mt-2"> <p style="font-weight:900;" class="small text-white" >WEEK OF <?php echo strtoupper(date('M d, Y')); ?></p> </div>
          </div>
 
 <div class="row mx-auto shadow" style="background:white;">  
