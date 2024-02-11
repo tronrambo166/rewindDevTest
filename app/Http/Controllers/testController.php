@@ -573,6 +573,7 @@ public function registerB(Request $hos)
            $email=$hos->email;
            $password=Hash::make($hos->password);
            $phone=$hos->phone;
+           $plan=$hos->plan;
            
         $user= User::where('email', $email)->get(); 
         $stage= User::where('stage_name', $stage_name)->get();
@@ -598,8 +599,9 @@ public function registerB(Request $hos)
           'approved' => 1,
           'business' => 1
           ]);
-          Session::put('logged',$email);
-          return redirect('home');
+          //Session::put('logged',$email);
+          Session::put('amount',$plan);
+          return redirect('subscribe/'.$stage_name.'/'.$email);
      }
    }
    catch(\Exception $e){

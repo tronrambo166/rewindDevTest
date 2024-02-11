@@ -27,3 +27,20 @@ ul{list-style-type: none;}
  .chart-header th{font-size: 12px; font-weight: 600; font-family: system-ui;}
  .chart-tr td{overflow: hidden;}
  .content_bg {background: #141414;}
+ #stripBtn{
+ 	background: #333333;
+ 	border-radius: 35px;
+ }
+
+ .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}

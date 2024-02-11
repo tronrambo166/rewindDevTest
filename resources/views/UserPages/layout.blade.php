@@ -16,8 +16,8 @@
   {{-- Vue component files --}}
 
   <style type="text/css">
-      .#col-form-label{text-align: left; font-size: 12px; font-family: lato;}
-      .#login,#register,#user,#artist,#user_log,#artist_log{ font-family: lato;}
+      .col-form-label{text-align: left; font-size: 12px; color:black;}
+      #login,#register,#user,#artist,#user_log,#artist_log{}
         .nav-link{font-size: 13px;}
 
   </style>
@@ -451,17 +451,17 @@
         
       <div class="hidden_currency ">
 
-    <div class="row justify-content-center py-3 mb-5">
+    <div class="row justify-content-center py-3">
         <div class="px-0 w-100 py-2">
             <div class="card collapse" id="all_registers">
 
             <div class=" mt-2 text-center User-Artist-Select">
             <div class="col-md-5"></div>                
             
-            <button  id="user"onclick="user()" class="w-75 btn btn-light font-weight-bold px-3 mr-2">{{ __('User') }}</button> <br><br>
-            <button  id="artist" onclick="artist()" class="font-weight-bold w-75 btn btn-light text-warning px-3 mr-2">{{ __("Artist's Sign Up Request") }}</button>
+            <button  id="user"onclick="user()" class="w-50 btn btn-light px-3 mr-2">{{ __('User') }}</button> <br><br>
+            <button  id="artist" onclick="artist()" class="w-50 btn btn-light  px-3 mr-2">{{ __("Artist's Sign Up Request") }}</button>
 
-            <button  id="business" onclick="business()" class="mt-2 font-weight-bold w-75 btn btn-light text-danger px-3 mr-2">{{ __("Business Sign Up") }}</button>
+            <button  id="business" onclick="business()" class="mt-2 w-50 btn btn-light  px-3 mr-2">{{ __("Business Sign Up") }}</button>
 
                                           </div>
                
@@ -760,13 +760,25 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-left">{{ __('Image') }} <span title="Required" class="text-danger">*</span></label>
 
                             <div class="col-md-6">
-                                <input id="file" type="file" class="form-control @error('email') is-invalid @enderror" name="image" autocomplete="phone">
+                                <input required id="file" type="file" class="form-control @error('email') is-invalid @enderror" name="image" autocomplete="phone">
 
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label for="phone" class="col-md-4 col-form-label text-md-left">{{ __('Select Plan') }} <span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <select required name="plan" class="border w-100 pl-2 py-2">
+                                  <option value="">Select a plan</option>
+                                  <option value="99">$99 / mo</option>
+                                </select>
                             </div>
                         </div>
 
@@ -782,7 +794,7 @@
                             </div>
                             </div> <hr>
 
-                              <div class="row mb-0">
+                            <div class="row mb-0">
                             <div class="col-md-12">
                                 <a href="{{route('login')}}" class=" w-25 d-block mx-auto btn btn-outline-danger">
                                     {{ __('Cancel') }}

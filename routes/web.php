@@ -125,9 +125,9 @@ Route::get('artist_signup/{remail}', function ($remail)
     return view('artist_signup',compact('remail'));
 });
 
-
-
-
+Route::get('subscribe/{name}/{email}', 'userController@subscribe');
+Route::post('subscribe', 'userController@subscribeStripe')->name('subscribe');
+Route::get('add_media', 'userController@add_media')->name('add_media');
 
 
 Route::get('AjaxOverall10', 'streamController@overall10');

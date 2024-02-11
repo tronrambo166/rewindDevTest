@@ -21,6 +21,47 @@ class userController extends Controller
   return view('UserPages.home');
  }
 
+public function add_media() { 
+  return view('UserPages.add_media');
+ }
+
+ public function subscribe($name, $email)
+ {
+   $amount = Session::get('amount');
+   return view('UserPages.subscribe',compact('name','email','amount'));
+ }
+
+ public function subscribeStripe(Request $request)
+ {
+    $amount = Session::get('amount');
+
+    //Stripe
+    try{
+
+        $curr='USD'; //$request->currency; 
+        // $amount=$request->price;
+        // $transferAmount=$amount-($amount*.05);
+
+        $this->validate($request, [
+            'stripeToken' => ['required', 'string']
+        ]);
+        $charge = $this->Client->charges->create ([ 
+                //"billing_address_collection": null,
+                "amount" => $amount*100, //100 * 100,
+                "currency" => $curr,
+                "source" => $request->stripeToken,
+                "description" => "This payment is test purpose only!"
+        ]);
+
+        Session::put('Stripe_pay','Subscription success! Please login to continue.');
+        return redirect("home");
+
+        }
+      catch(\Exception $e){
+      Session::put('Stripe_failed',$e->getMessage());
+      return redirect()->back();
+    }
+ }
 
 
 
