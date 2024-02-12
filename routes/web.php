@@ -127,7 +127,10 @@ Route::get('artist_signup/{remail}', function ($remail)
 
 Route::get('subscribe/{name}/{email}', 'userController@subscribe');
 Route::post('subscribe', 'userController@subscribeStripe')->name('subscribe');
-Route::get('add_media', 'userController@add_media')->name('add_media');
+Route::get('add_media', 'userController@add_media');
+Route::post('add_media', 'userController@add_media_post')->name('add_media');
+Route::get('dld_media/{id}', 'userController@dld_media')->name('dld_media');
+Route::get('del_media/{id}', 'userController@del_media')->name('del_media');
 
 
 Route::get('AjaxOverall10', 'streamController@overall10');

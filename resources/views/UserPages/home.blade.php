@@ -4,14 +4,6 @@
 <div class="content_bg py-4">
 <div class="container mx-auto" style="background: #141414;width: 80%;"> 
 
-  @if(Session::has('Stripe_pay'))
-  <p class="bg-light text-success font-weight-bold text-center py-2">
-    {{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp
-    <a class="btn border py-2 px-3" href="{{route('add_media')}}">add_media</a>
-  </p>
-
-  @endif
-
   @if(Session::has('login_err'))
                    <div class="alert alert-danger" role="alert">
                                   <p class="">{{Session::get('login_err')}}   @php Session::forget('login_err'); @endphp </p> 

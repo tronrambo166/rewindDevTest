@@ -8,10 +8,12 @@ use Session;
 use App\Models\User;
 use App\Models\visitors;
 use App\Models\liveSongs;
+use App\Models\Media;
 use Hash;
 use PDF;
 use Mail;
 use Exception;
+use Response;
 use Stripe\StripeClient;
 
 class userController extends Controller
@@ -26,9 +28,57 @@ class userController extends Controller
   return view('UserPages.home');
  }
 
-public function add_media() { 
-  return view('UserPages.add_media');
+//MEDIA
+public function add_media() {
+$medias = Media::get(); 
+  return view('add_media', compact('medias'));
  }
+
+public function add_media_post(Request $request) { 
+
+  $radio = implode(',', $request->radio);
+  $tv = implode(',', $request->tv);
+
+  //SINGLE 
+          $cover=$request->file('media_file');
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($cover->getClientOriginalExtension());
+          $cover_name=$uniqid.'.'.$ext; 
+          $loc='media/';
+          $cover->move($loc, $cover_name); 
+          
+  //SINGLE 
+
+  $media= Media::create([
+    'radio' => $radio,
+    'tv' => $tv,
+    'media_name' => $request->media_name,
+    'media_file' => $cover_name,
+    'start' => $request->start_date,
+    'end' => $request->end_date,
+  ]); 
+
+  return redirect()->back();
+ }
+
+ public function del_media($id)
+    {           
+       Media::where('id', $id)->delete();
+       return back()->with('success', "Deleted!"); 
+ }
+
+ public function dld_media($id)
+    {           
+      $media = Media::where('id', $id)->first();
+      $file = 'media/'.$media->media_file;
+      if(file_exists($file))
+      return Response::download($file);
+      else {
+        Session::put('failed','No file was found!');
+        return redirect()->back();
+      }
+ }
+//MEDIA
 
  public function subscribe($name, $email)
  {
@@ -60,9 +110,9 @@ public function add_media() {
         ]);
 
         $user= User::where('email', $email)->update(['subscribe' => 1]); 
-
-        Session::put('Stripe_pay','Subscription success! Please login to continue.');
-        return redirect("home");
+        Session::put('logged',$email);
+        Session::put('Stripe_pay','Subscription success!');
+        return redirect("add_media");
 
         }
       catch(\Exception $e){

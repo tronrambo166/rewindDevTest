@@ -1,5 +1,5 @@
-@extends('UserPages.layout')  
-@section('content')
+@extends('layout')  
+@section('page')
 
 <div class="content_bg py-4">
 <div class="container mx-auto" style="background: #141414;width: 80%;"> 
@@ -23,23 +23,28 @@
             <p style="color: #444444;" class="small font-weight-bold my-2" style="">Click below to add media to be monitored per station(s). Please wait 24 hours for the monitoring to be active</p>
           </div>
 
-         <div class="col-md-4 px-3">
+         @foreach($medias as $media)
+         <div class="w-100 media">
+          <div class="col-md-4 px-3">
           <div class="upload-btn-wrapper text-dark w-100 mt-1">
-                        <p class="my-0 border small px-2 py-1 border-dark bg-light rounded">Citizen Food Ad1</p>                     
+                        <p class="my-0 border small px-2 py-1 border-dark bg-light rounded">{{$media->media_name}}</p>                     
                     </div>
-             </div>
+          </div>
 
           <div class="col-md-6">
 
-            <a href="" class="d-inline">
+            <a href="{{route('dld_media', $media->id)}}" class="d-inline">
               <img class="small" src="images/down.svg" width="30px">
             </a>
 
-            <a href="" class="d-inline ml-2 small">
+            <a onclick="return confirm('Are you sure?');" href="{{route('del_media', $media->id)}}" class="d-inline ml-2 small">
               <img class="small mt-1" src="images/x.png" width="17px">
             </a>
 
           </div>
+        </div>
+        @endforeach
+         
           </div>
           </div>
 
@@ -49,15 +54,16 @@
 
          <div class="col-md-8">
           <div class="upload-btn-wrapper text-dark w-100 mt-1">
-                        <a href="" class="btn border border-dark px-4 py-1 mr-2 "><p class="p-0 m-0 small">Add Media</p>
+                        <a data-toggle="collapse" data-target="#media_div" class="btn border border-dark px-4 py-1 mr-2 "><p class="p-0 m-0 small">Add Media</p>
                         </a>  <i class="fa fa-plus text-secondary"></i>                
                     </div>
              </div>
           </div>
           </div>
 
-
-        <div class="wrapper card" style="width: 65%;">
+        <form method="post" class="" action="{{route('add_media')}}" enctype="multipart/form-data"> @csrf
+          
+        <div id="media_div" class="collapse wrapper card" style="width: 65%;">
         <div class="row my-3 w-75 mx-auto">
           <div class="col-sm-12 my-3 text-dark">
             <h5 style="text-decoration: underline;">Station and media entry form</h5>
@@ -68,19 +74,19 @@
           </div>
 
          <div class="col-md-3">
-          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="inv_range[]" value="0-10000" id="inv_range">Citizen Radio</h6>
+          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="radio[]" value="Citizen Radio" id="">Citizen Radio</h6>
          </div>
 
          <div class="col-md-3">
-          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="inv_range[]" value="0-10000" id="inv_range">Kiss Fm</h6>
+          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;"  type="checkbox" name="radio[]" value="Kiss Fm" id="">Kiss Fm</h6>
          </div>
 
          <div class="col-md-3">
-          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="inv_range[]" value="0-10000" id="inv_range">Radio Maisha</h6>
+          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;"  type="checkbox" name="radio[]" value="Radio Maisha" id="">Radio Maisha</h6>
          </div>
 
          <div class="col-md-3">
-          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="inv_range[]" value="0-10000" id="inv_range">Classic 105</h6>
+          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;"  type="checkbox" name="radio[]" value="Classic 105" id="">Classic 105</h6>
          </div>
 
         </div>
@@ -94,19 +100,19 @@
           </div>
 
          <div class="col-md-3">
-          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="inv_range[]" value="0-10000" id="inv_range">Citizen Tv</h6>
+          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="tv[]" value="Citizen Tv" id="">Citizen Tv</h6>
          </div>
 
          <div class="col-md-3">
-          <h6 style="font-size: 11px;" class="text-left  mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="inv_range[]" value="0-10000" id="inv_range">KTN</h6>
+          <h6 style="font-size: 11px;" class="text-left  mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="tv[]" value="KTN" id="">KTN</h6>
          </div>
 
          <div class="col-md-3">
-          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="inv_range[]" value="0-10000" id="inv_range">NTV</h6>
+          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="tv[]" value="NTV" id="">NTV</h6>
          </div>
 
          <div class="col-md-3">
-          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="inv_range[]" value="0-10000" id="inv_range">K24</h6>
+          <h6 style="font-size: 11px;" class="text-left mb-0 text-dark font-weight-bold"><input  class="mr-2" style="width:11px;height:11px;" type="checkbox" name="tv[]" value="K24" id="">K24</h6>
          </div>
 
         </div>
@@ -123,9 +129,9 @@
 
           <div class="upload-btn-wrapper text-dark w-100">
                       <label for="file-upload2" class="btnUp_listing">
-                        <input class="border small mr-2 pl-2" type="text" name="media_name" value="" placeholder="Media Name">
+                        <input required class="border small mr-2 pl-2" type="text" name="media_name" value="" placeholder="Media Name">
                       <img src="images/up.svg" width="30px"> </label>
-                      <input style="" id="file-upload2" required type="file" name="pin" />
+                      <input required style="" id="file-upload2" required type="file" name="media_file" />
                        
                     </div>
              </div>
@@ -138,12 +144,12 @@
 
          <div class="col-md-6">
           <h6 style="font-size: 11px;" class="text-left my-2 mb-0 text-dark font-weight-bold">Start</h6>
-          <input type="date" name="start_date" class="border small">
+          <input required type="date" name="start_date" class="border small">
          </div>
 
          <div class="col-md-6">
           <h6 style="font-size: 11px;" class="text-left my-2 mb-0 text-dark font-weight-bold">End</h6>
-          <input type="date" name="end_date" class="border small">
+          <input required type="date" name="end_date" class="border small">
          </div>
 
         </div>
@@ -151,24 +157,27 @@
         <div class="row my-3 w-75 mx-auto">
 
          <div class="col-md-6">
-          <button class="btn border border-dark px-4 py-1">Save</button>
+          <button type="submit" class="btn border border-dark px-4 py-1">Save</button>
          </div>
 
          <div class="col-md-6">
-          <button class="btn border border-dark px-4 ml-3 py-1">Cancel</button>
+          <a data-toggle="collapse" data-target="#media_div" class="btn border border-dark px-4 ml-3 py-1">Cancel</a>
          </div>
         </div>
 
         </div>
+      </form>
 
         </div>
         <div class="clearfix py-5"></div>
         </div>
 
 
-<div class="clearfix py-5"></div>
+
 </div>
-          
+  </div>
+  </div>        
+<div class="clearfix py-5" style="background: #111111"></div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
