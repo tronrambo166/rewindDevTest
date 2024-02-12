@@ -48,5 +48,11 @@ return [
   'redirect' => env('TIKTOK_REDIRECT_URI')
 ],
 
+ 'stripe' => [
+        'secret_key' => env('STRIPE_SECRET_KEY'),
+        'publishable' => env('STRIPE_KEY'),
+        
+    ],
+
 
 ];

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use Stripe\StripeClient;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->singleton(StripeClient::class, function(){
+        return new StripeClient(config('services.stripe.secret_key'));
+        });
     }
 }

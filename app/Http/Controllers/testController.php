@@ -633,6 +633,12 @@ if($user->count() >0 ) { //return $user->art_id;
 
 $db_password=$user->password; //opd_admin
 if(password_verify($password, $db_password)) {
+
+  if($user->subscribe==0)
+  {
+    return redirect('subscribe/'.$user->stage_name.'/'.$user->email);
+  }
+
     Session::put('logged',$email);
     return redirect('home');
   }

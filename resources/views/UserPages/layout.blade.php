@@ -822,7 +822,7 @@
 
      <div class=" my-3 text-center User-Artist-Select">
             <div class="col-md-5"></div>                
-            <button  id="art_log" onclick="artist_log()" class="w-25 btn btn-success px-3 mr-2">{{ __('Artist') }}</button>
+            <button  id="art_log" onclick="artist_log()" class="small w-50 btn btn-success px-3 mr-2">{{ __('Artist / Business') }}</button>
             <button  id="usr_log"onclick="user_log()" class="w-25 btn btn-light px-3 mr-2">{{ __('User') }}</button>
                                           </div>
 

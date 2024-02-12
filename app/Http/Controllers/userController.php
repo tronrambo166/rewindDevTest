@@ -12,9 +12,14 @@ use Hash;
 use PDF;
 use Mail;
 use Exception;
+use Stripe\StripeClient;
 
 class userController extends Controller
 {
+   public function __construct(StripeClient $client)
+    {
+        $this->Client = $client;
+    }
     // 
 
   public function UserHome() { 
@@ -34,6 +39,7 @@ public function add_media() {
  public function subscribeStripe(Request $request)
  {
     $amount = Session::get('amount');
+    $email = $request->email;
 
     //Stripe
     try{
@@ -41,7 +47,7 @@ public function add_media() {
         $curr='USD'; //$request->currency; 
         // $amount=$request->price;
         // $transferAmount=$amount-($amount*.05);
-
+        
         $this->validate($request, [
             'stripeToken' => ['required', 'string']
         ]);
@@ -52,6 +58,8 @@ public function add_media() {
                 "source" => $request->stripeToken,
                 "description" => "This payment is test purpose only!"
         ]);
+
+        $user= User::where('email', $email)->update(['subscribe' => 1]); 
 
         Session::put('Stripe_pay','Subscription success! Please login to continue.');
         return redirect("home");
