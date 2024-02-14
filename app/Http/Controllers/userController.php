@@ -39,6 +39,7 @@ public function add_media_post(Request $request) {
   $radio = implode(',', $request->radio);
   $tv = implode(',', $request->tv);
 
+try{
   //SINGLE 
           $cover=$request->file('media_file');
           $uniqid=hexdec(uniqid());
@@ -84,7 +85,14 @@ public function add_media_post(Request $request) {
   ]); 
 }
 
+
   return redirect()->back();
+  }
+      catch(\Exception $e){
+      Session::put('Stripe_pay',$e->getMessage());
+      return redirect()->back();
+    }
+
  }
 
  public function del_media($id)
