@@ -676,7 +676,7 @@ $password = $formData->password;
 $user= User::where('email', $email)->first(); 
 //$check_user=json_decode($user,true);
 
-if($user->count() == 0)
+if(!$user)
 { Session::put('login_err',"User don't exist!"); return redirect('/');  }
 
 if($user->count() >0 ) { //return $user->art_id;
