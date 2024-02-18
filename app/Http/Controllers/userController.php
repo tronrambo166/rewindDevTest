@@ -30,8 +30,9 @@ class userController extends Controller
 
 //MEDIA
 public function add_media() {
-$medias = Media::get(); 
-  return view('add_media', compact('medias'));
+  $user=User::where('email',Session::get('logged'))->first();
+  $medias = Media::where('user_id',$user->id)->get(); 
+  return view('add_media', compact('medias', 'user'));
  }
 
 public function add_media_post(Request $request) { 
@@ -61,7 +62,7 @@ try{
   CURLOPT_FOLLOWLOCATION => true,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS => array('name' => $request->media_name,'region' => 'ap-southeast-1', 'type' => 'File'),
+  CURLOPT_POSTFIELDS => array('name' => $request->media_name,'region' => 'eu-west-1', 'type' => 'File'),
   CURLOPT_HTTPHEADER => array(
     'Accept: application/json',
     'Authorization: Bearer '.$bearer
@@ -76,6 +77,8 @@ try{
   Session::put('Stripe_pay', 'Media Create Success! Media id = '.$response['data']['id']);
 
   $media= Media::create([
+    'user_id' => $request->user_id,
+    'add_id' => $response['data']['id'],
     'radio' => $radio,
     'tv' => $tv,
     'media_name' => $request->media_name,

@@ -590,9 +590,11 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 
     for($b=0;$b<10;$b++)
     {
+      if(isset($this->merge[$b])){
         $this->merge[$b]['title']=$this->name[$b];
         $this->merge[$b]['artist']=$this->artist[$b];
         $this->merge[$b]['duration']=$this->duration[$b];
+      }
     }
      //echo '<pre>'; print_r($this->artist); echo '<pre>'; return; 
     
@@ -631,9 +633,11 @@ if($platform_id == null) return view('streaming.insert_id',compact('platform'));
 
     for($b=0;$b<10;$b++)
     {
+      if(isset($this->merge2[$b])){
         $this->merge2[$b]['title']=$this->name2[$b];
         $this->merge2[$b]['artist']=$this->artist2[$b];
         $this->merge2[$b]['duration']=$this->duration2[$b];
+      }
     }
 
 //Top 10 songs

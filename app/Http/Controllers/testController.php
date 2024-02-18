@@ -138,6 +138,43 @@ try{
 
 
 
+function breakdown_ads () {
+   //API
+
+try{
+
+    //API
+  $bearer='eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI3IiwianRpIjoiZDc0NjBiZGQ5MzM2ODNkMzhjOTkzOTYwNDBjMGZjNjMzMDEwOTM2YTE3ZmVjZmY0MmQ0OTE5YTBjYmIxZTAxNTNjYzE3MGM1YmY1ZWIwZGEiLCJpYXQiOjE3MDc3NTk2NTIuNDkyNjM4LCJuYmYiOjE3MDc3NTk2NTIuNDkyNjQxLCJleHAiOjIwMjMzNzg4NTEuMjM2MzY0LCJzdWIiOiIxMzM1OTkiLCJzY29wZXMiOlsiKiIsIndyaXRlLWFsbCIsInJlYWQtYWxsIiwiYnVja2V0cyIsIndyaXRlLWJ1Y2tldHMiLCJyZWFkLWJ1Y2tldHMiLCJhdWRpb3MiLCJ3cml0ZS1hdWRpb3MiLCJyZWFkLWF1ZGlvcyIsImNoYW5uZWxzIiwid3JpdGUtY2hhbm5lbHMiLCJyZWFkLWNoYW5uZWxzIiwibWV0YWRhdGEiLCJyZWFkLW1ldGFkYXRhIl19.d-f_KIetNgHPvHVaEIvGFBrdnmLgk9kPZc-MbcVn5PjKG6S5Mc6a_WfK3SoT58-iPo_9tx301AEkiEEFJdhLdeDqcmd7QXynYJ4LDh8U5_N-birhStibvfkjAvz7SX6Ie8u1XSGArj8R6wdVcgy74xGePThnzRpckAO7fgLLvJIyloCcc50lBq3i-hRbPdpL1jzqAxED4XLPRZiqvGOzZLA-5xdIv45TADsojwwCetdUzYwJvYp5ytw8E87Hoq09KZ7beqC3CwFfCt3pvPHyrAt3FIxyb3-wjJ42-iQllVGKzBz5yHVjmAuqsML6NCRX7brq2mz3888XtNOaUmOUOzGLWnlZx7Q0g99q8awRXN7eq6xofhBhTZqSSnvtfxitCXn4ReJNLM1SzSssEVORARnw8iBRoRK7Qrpue3DfFfaASGN7jG9keg-x4EyE0LkTBAnL5Ptjpjj3c2g8Fm3PMmIRx4O3yTKAGbFo7umK7dtTaclk0fYuQzuKT2Kt5RV-7INGaaMuH2cr3TjPJ718Nh6PSoORRBPwsXIsn9TfJaaQMap77ChD5H2ASk4JW2-DP52xqbf2Oht3O7tb8ImBkc26i1QKbfCs9_L8-HXqdKE7mCRx7I3ivp1un_7fro-Pufn69cYn3YnEV7QDP7w8hahjb02796TCMNP1K5hAw1M';
+  $curl = curl_init();
+  curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://api-v2.acrcloud.com/api/buckets?region=eu-west-1',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Accept: application/json',
+    'Authorization: Bearer '.$bearer
+  ), ));
+  $response = curl_exec($curl);
+  $response = json_decode($response,true);
+  curl_close($curl); 
+  echo '<pre>'; print_r($response);  echo '<pre>'; exit;
+  //API
+
+    //return Excel::download(new ArtistBreakdown, 'breakdown.xlsx');
+  }
+
+  catch(\Exception $e){
+      Session::put('exception',$e->getMessage());
+      return redirect()->back();
+     }
+   }
+
+
 
 	public function getSongs() {
     //API
@@ -357,6 +394,7 @@ public function streaming() {
 try{ 
    $art=User::where('email', Session::get('logged'))->first();$art_id=$art->id;
    $stream = streaming::where('user_id',$art_id)->first();
+
    if($stream->apple_id == null || $stream->deezer_id == null || $stream->youtube_id == null || $stream->spotify_id == null || $stream->boomplay_id == null || $stream->mdundo_id == null)
      $complete = 0;
      else $complete = 1;
@@ -612,6 +650,10 @@ public function registerB(Request $hos)
           'business' => 1
           ]);
           //Session::put('logged',$email);
+          streaming::create([
+          'user_id' =>  $Artist->id
+          ]);
+
           Session::put('amount',$plan);
           return redirect('subscribe/'.$stage_name.'/'.$email);
      }
@@ -634,7 +676,7 @@ $password = $formData->password;
 $user= User::where('email', $email)->first(); 
 //$check_user=json_decode($user,true);
 
-if($user==null)
+if($user->count() == 0)
 { Session::put('login_err',"User don't exist!"); return redirect('/');  }
 
 if($user->count() >0 ) { //return $user->art_id;

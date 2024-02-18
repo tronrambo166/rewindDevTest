@@ -69,6 +69,7 @@ $stage_name=$user->fname;
       </li>
 
 
+      @if($user->business == 1)
         <li class="nav-item">
         <a style="color: #e9e3e3;"class="nav-link  {{ Request::is('streaming') ? 'text-success' : '' }}" href="streaming">Streaming</a>
       </li>
@@ -77,6 +78,7 @@ $stage_name=$user->fname;
         <li class="nav-item">
         <a style="color: #e9e3e3;"class="nav-link  {{ Request::is('social') ? 'text-success' : '' }}" href="social">Social</a>
       </li>
+      @endif
 
 
         <li class="nav-item">

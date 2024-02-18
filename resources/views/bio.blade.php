@@ -67,7 +67,11 @@
                         </div>
 
                          <div class="row mb-3">
+                            @if ($thisUser->business == 1)
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Business Name') }}</label>
+                            @else
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Stage Name') }}</label>
+                            @endif
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="stage_name" value="{{ $thisUser->stage_name }}" required autocomplete="name" autofocus>

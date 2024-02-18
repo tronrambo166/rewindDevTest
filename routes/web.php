@@ -26,6 +26,7 @@ Route::get('about', 'testController@about')->name('about');
 Route::get('bio', 'testController@bio')->name('bio');
 Route::get('radio', 'testController@radio')->name('radio');
 Route::get('breakdown','testController@breakdown')->name('breakdown');
+Route::get('breakdown_ads','testController@breakdown_ads')->name('breakdown_ads');
 Route::post('updateBio', 'testController@updateBio')->name('updateBio');
 Route::get('schedules', 'testController@schedules')->name('schedules');
 Route::get('streaming', 'testController@streaming')->name('streaming');

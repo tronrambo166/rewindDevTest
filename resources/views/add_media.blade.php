@@ -48,20 +48,26 @@
           </div>
           </div>
 
-
+<!-- <a href="{{route('breakdown_ads')}}" class="btn border border-dark px-4 py-1 mr-2 "><p class="p-0 m-0 small">Monitor</p> -->
+  
+                        </a> 
           <div class="wrapper mb-5" style="width: 65%;">
           <div class="row my-3 mx-auto">
 
          <div class="col-md-8">
           <div class="upload-btn-wrapper text-dark w-100 mt-1">
                         <a data-toggle="collapse" data-target="#media_div" class="btn border border-dark px-4 py-1 mr-2 "><p class="p-0 m-0 small">Add Media</p>
-                        </a>  <i class="fa fa-plus text-secondary"></i>                
+                        </a>  <i class="fa fa-plus text-secondary"></i>           
                     </div>
+
+
              </div>
           </div>
           </div>
 
         <form method="post" class="" action="{{route('add_media')}}" enctype="multipart/form-data"> @csrf
+
+          <input type="number" hidden name="user_id" value="{{$user->id}}">
           
         <div id="media_div" class="collapse wrapper card" style="width: 65%;">
         <div class="row my-3 w-75 mx-auto">
