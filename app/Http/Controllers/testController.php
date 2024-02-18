@@ -430,7 +430,7 @@ try{
 public function logout() {
    Session::put('logged', '');
    Session::put('Userlogged', '');
-   
+
    Session::forget('logged');
    Session::forget('Userlogged');
    if(Session::has('contact_id'))

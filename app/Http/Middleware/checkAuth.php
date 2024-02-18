@@ -17,8 +17,9 @@ class checkAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Session::has('logged'))
-        return redirect('/');
-        return $next($request);
+        if(Session::has('logged') && Session::get('logged') !='')
+            return $next($request);
+        else
+            return redirect('/');
     }
 }

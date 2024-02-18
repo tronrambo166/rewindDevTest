@@ -161,7 +161,7 @@ try{
 
 
 public function static20() { 
-   if(Session::has('logged')) return redirect('home');
+   if(Session::has('logged') && Session::get('logged') !='') return redirect('home');
    $static20=liveSongs::take(3)->get();
    $lastDay=DB::table('last_day_songs')->get();
   return view('UserPages.home',compact('static20','lastDay'));
