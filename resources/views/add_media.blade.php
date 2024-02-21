@@ -48,7 +48,7 @@
           </div>
           </div>
 
-<!-- <a href="{{route('breakdown_ads')}}" class="btn border border-dark px-4 py-1 mr-2 "><p class="p-0 m-0 small">Monitor</p> -->
+<!-- <a href="{{route('breakdown_ads')}}" class="btn border"><p class="p-0 m-0 small">Monitor</p> -->
   
                         </a> 
           <div class="wrapper mb-5" style="width: 65%;">

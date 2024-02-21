@@ -51,9 +51,19 @@ $stage_name=$user->fname;
         <a style="color: #e9e3e3;"class="nav-link  {{ Request::is('radio') ? 'text-success' : '' }}" href="radio">Live</a>
       </li>
     
+    @if($user->business == 1)
+      <li class="nav-item">
+        <a style="color: #e9e3e3;"class="nav-link  {{ Request::is('breakdown') ? 'text-success' : '' }}" href="breakdown_ads">Breakdown</a>
+      </li>
+
+      @else
+
       <li class="nav-item">
         <a style="color: #e9e3e3;"class="nav-link  {{ Request::is('breakdown') ? 'text-success' : '' }}" href="breakdown">Breakdown</a>
       </li>
+      @endif
+
+      
 
         <li class="nav-item">
         <a style="color: #e9e3e3;" class="nav-link px-0 {{ Request::is('bio') ? 'text-success' : '' }} text-responsive" href="bio">My Bio</a>

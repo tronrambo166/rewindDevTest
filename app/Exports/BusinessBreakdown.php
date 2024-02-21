@@ -8,26 +8,26 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use DB;
 use Session;
 
-class ArtistBreakdown implements FromView, ShouldAutoSize
+class BusinessBreakdown implements FromView, ShouldAutoSize
 {
 
 use Exportable;
 public $titles=array();
+
 public function __construct()
 {
-	//API
+    $titles2=array();
+    $songs20=array();
+    $i=0; $day;$cn=0;
+    $resp2=array();
+    $resp3=array();
+    $todays=array();
+    $today=array();
+    $todaySongs=array();
+    
+  try{
 
-$titles2=array();
-$songs20=array();
-$i=0; $day;$cn=0;
-$resp2=array();
-$resp3=array();
-$todays=array();
-$today=array();
-$todaySongs=array();
-
-try{
-    // // 5 D A Y S
+    // 5 D A Y S
 for($day=0;$day<=4;$day++) {
 
 $m = date("m"); // Month value
@@ -54,22 +54,34 @@ $resp=json_decode($resp,true);
 
 $resp2=$resp['data'];
 curl_close($curl);
-//echo '<pre>'; print_r($resp2); echo '<pre>'; 
+//echo '<pre>'; print_r($resp); echo '<pre>'; exit;
 
 foreach($resp2 as $songs){ 
-if(isset($songs['metadata']['timestamp_utc']))  //echo '<br>'. 
-  $this->titles[$i]['timestamp']=date('m/d/Y, h:i a',strtotime($songs['metadata']['record_timestamp']));
+  if(isset($songs['metadata']['custom_files'])){
+  if($songs['metadata']['custom_files'][0]['bucket_id'] == '21095'){
 
-if(isset($songs['metadata']['music'][0]['title'])) $this->titles[$i]['title']=$songs['metadata']['music'][0]['title'];
-if(isset($songs['metadata']['music'][0]['album']['name'])) $this->titles[$i]['album']=$songs['metadata']['music'][0]['album']['name'];
-if(isset($songs['metadata']['music'][0]['artists'][0]['name'])) $this->titles[$i]['artist']=$songs['metadata']['music'][0]['artists'][0]['name'];
-if(isset($songs['metadata']['music'][0]['release_date'])) $this->titles[$i]['release_date']=$songs['metadata']['music'][0]['release_date'];
-  if(isset($songs['metadata']['played_duration'])) $this->titles[$i]['duration']=$songs['metadata']['played_duration']; 
-  $i++;
+    if(isset($songs['metadata']['custom_files'][0]['title'])) $this->titles[$i]['title']=$songs['metadata']['custom_files'][0]['title'];
+
+    if(isset($songs['metadata']['played_duration'])) $this->titles[$i]['duration']=$songs['metadata']['played_duration']; 
+
+    if(isset($songs['metadata']['timestamp_utc']))
+      $this->titles[$i]['timestamp']=date('m/d/Y, h:i a',strtotime($songs['metadata']['timestamp_utc']));
+     $i++;
+  }  
+
+ 
 }
 
 }
- }
+
+}
+
+//echo '<pre>'; print_r($titles); echo '<pre>'; exit;
+
+//5 DAYS
+
+
+  }
 
   catch(\Exception $e){
       Session::put('exception',$e->getMessage());
@@ -81,10 +93,10 @@ if(isset($songs['metadata']['music'][0]['release_date'])) $this->titles[$i]['rel
 
 	public function view(): View
 	{
-		$user=DB::table('users')->where('email',Session::get('logged'))->first();
-		$stage_name=$user->stage_name;
+		//$user=DB::table('users')->where('email',Session::get('logged'))->first();
+		//$stage_name=$user->stage_name;
 
 		$titles = $this->titles;
-	 return view('success', compact('titles', 'stage_name'));
+	 return view('successB', compact('titles'));
 	}
 }

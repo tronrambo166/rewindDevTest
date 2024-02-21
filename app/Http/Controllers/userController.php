@@ -15,6 +15,7 @@ use Mail;
 use Exception;
 use Response;
 use Stripe\StripeClient;
+use CURLFILE;
 
 class userController extends Controller
 {
@@ -62,7 +63,7 @@ try{
   CURLOPT_FOLLOWLOCATION => true,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS => array('name' => $request->media_name,'region' => 'eu-west-1', 'type' => 'File'),
+  CURLOPT_POSTFIELDS => array('name' => $request->media_name,'region' => 'us-west-2', 'type' => 'File'),
   CURLOPT_HTTPHEADER => array(
     'Accept: application/json',
     'Authorization: Bearer '.$bearer
@@ -71,6 +72,28 @@ try{
   $response = json_decode($response,true);
   //curl_close($curl); 
   //echo '<pre>'; print_r($response);  echo '<pre>'; exit;
+
+
+
+$curl = curl_init();
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://api-v2.acrcloud.com/api/buckets/'.$response['data']['id'].'/files',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => array('file'=> new CURLFILE('media/'.$cover_name),'title' => $cover_name,'data_type' => 'audio'),
+  CURLOPT_HTTPHEADER => array(
+    'Accept: application/json',
+    'Authorization: Bearer '.$bearer
+  ),
+));
+
+$response = curl_exec($curl);curl_close($curl);
+echo $response; exit;
   //API
 
   if(isset($response['data']['id'])){

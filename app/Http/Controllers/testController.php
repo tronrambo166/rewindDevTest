@@ -11,6 +11,7 @@ use App\Models\mymusic;
 use App\Models\albums;
 use App\Models\streaming;
 use App\Exports\ArtistBreakdown;
+use App\Exports\BusinessBreakdown;
 use Hash;
 use PDF;
 use Mail;
@@ -81,7 +82,7 @@ try{
 // $de = date("d"); // Today's date
 // $y = date("Y"); // Year value
 // $back5days = date('Ymd', mktime(0,0,0,$m,($de-$day),$y)) ;
-// $url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2010/channels/246131/results?type=day&date=$back5days";
+// $url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2945/channels/246131/results?type=day&date=$back5days";
 
 // $curl = curl_init($url);
 // curl_setopt($curl, CURLOPT_URL, $url);
@@ -139,39 +140,78 @@ try{
 
 
 function breakdown_ads () {
-   //API
 
-try{
+//   $titles=array();
+//     $titles2=array();
+//     $songs20=array();
+//     $i=0; $day;$cn=0;
+//     $resp2=array();
+//     $resp3=array();
+//     $todays=array();
+//     $today=array();
+//     $todaySongs=array();
+    
+//  // try{
 
-    //API
-  $bearer='eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI3IiwianRpIjoiZDc0NjBiZGQ5MzM2ODNkMzhjOTkzOTYwNDBjMGZjNjMzMDEwOTM2YTE3ZmVjZmY0MmQ0OTE5YTBjYmIxZTAxNTNjYzE3MGM1YmY1ZWIwZGEiLCJpYXQiOjE3MDc3NTk2NTIuNDkyNjM4LCJuYmYiOjE3MDc3NTk2NTIuNDkyNjQxLCJleHAiOjIwMjMzNzg4NTEuMjM2MzY0LCJzdWIiOiIxMzM1OTkiLCJzY29wZXMiOlsiKiIsIndyaXRlLWFsbCIsInJlYWQtYWxsIiwiYnVja2V0cyIsIndyaXRlLWJ1Y2tldHMiLCJyZWFkLWJ1Y2tldHMiLCJhdWRpb3MiLCJ3cml0ZS1hdWRpb3MiLCJyZWFkLWF1ZGlvcyIsImNoYW5uZWxzIiwid3JpdGUtY2hhbm5lbHMiLCJyZWFkLWNoYW5uZWxzIiwibWV0YWRhdGEiLCJyZWFkLW1ldGFkYXRhIl19.d-f_KIetNgHPvHVaEIvGFBrdnmLgk9kPZc-MbcVn5PjKG6S5Mc6a_WfK3SoT58-iPo_9tx301AEkiEEFJdhLdeDqcmd7QXynYJ4LDh8U5_N-birhStibvfkjAvz7SX6Ie8u1XSGArj8R6wdVcgy74xGePThnzRpckAO7fgLLvJIyloCcc50lBq3i-hRbPdpL1jzqAxED4XLPRZiqvGOzZLA-5xdIv45TADsojwwCetdUzYwJvYp5ytw8E87Hoq09KZ7beqC3CwFfCt3pvPHyrAt3FIxyb3-wjJ42-iQllVGKzBz5yHVjmAuqsML6NCRX7brq2mz3888XtNOaUmOUOzGLWnlZx7Q0g99q8awRXN7eq6xofhBhTZqSSnvtfxitCXn4ReJNLM1SzSssEVORARnw8iBRoRK7Qrpue3DfFfaASGN7jG9keg-x4EyE0LkTBAnL5Ptjpjj3c2g8Fm3PMmIRx4O3yTKAGbFo7umK7dtTaclk0fYuQzuKT2Kt5RV-7INGaaMuH2cr3TjPJ718Nh6PSoORRBPwsXIsn9TfJaaQMap77ChD5H2ASk4JW2-DP52xqbf2Oht3O7tb8ImBkc26i1QKbfCs9_L8-HXqdKE7mCRx7I3ivp1un_7fro-Pufn69cYn3YnEV7QDP7w8hahjb02796TCMNP1K5hAw1M';
-  $curl = curl_init();
-  curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://api-v2.acrcloud.com/api/buckets?region=eu-west-1',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'GET',
-  CURLOPT_HTTPHEADER => array(
-    'Accept: application/json',
-    'Authorization: Bearer '.$bearer
-  ), ));
-  $response = curl_exec($curl);
-  $response = json_decode($response,true);
-  curl_close($curl); 
-  echo '<pre>'; print_r($response);  echo '<pre>'; exit;
-  //API
+//     // 5 D A Y S
+// for($day=0;$day<=4;$day++) {
 
-    //return Excel::download(new ArtistBreakdown, 'breakdown.xlsx');
-  }
+// $m = date("m"); // Month value
+// $de = date("d"); // Today's date
+// $y = date("Y"); // Year value
+// $back5days = date('Ymd', mktime(0,0,0,$m,($de-$day),$y)) ;
+// $url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2945/channels/246131/results?type=day&date=$back5days";
 
-  catch(\Exception $e){
+// $curl = curl_init($url);
+// curl_setopt($curl, CURLOPT_URL, $url);
+// curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+// $headers = array(
+//    "Accept: application/json",
+//    "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI3IiwianRpIjoiMjFiY2RmOTJiZTdjMTU3ZjhhYjRiMWUyZGM1MjBiMTQ4NWMzOTRkNjgyZDJhZTA3MWQyZDgwMTJkNjg0M2M5MjU5MmFmOGQ2MDNmNGI3ZTkiLCJpYXQiOjE2NDY1MDI2NDYuMjM3NjMzLCJuYmYiOjE2NDY1MDI2NDYuMjM3NjM2LCJleHAiOjE5NjIxMjE4NDYuMjAwMTg5LCJzdWIiOiIxMzM1OTkiLCJzY29wZXMiOlsiYm0tcHJvamVjdHMiLCJibS1jcy1wcm9qZWN0cyIsIndyaXRlLWJtLWNzLXByb2plY3RzIiwicmVhZC1ibS1jcy1wcm9qZWN0cyIsImJtLWJkLXByb2plY3RzIiwid3JpdGUtYm0tYmQtcHJvamVjdHMiLCJyZWFkLWJtLWJkLXByb2plY3RzIl19.oNEDD_T_ntzILMZdD_vxinFMGDtMne436wKEDbU887yhJaJaUJmvQH6E5KceV6w7ulCf2oZNvTZw84twUjDyr7UNwqxTvPSx2lJ8b9LF_CnDN24LshKJzmNhK5pzPLdtIdVT9494VSZXX8unIzunlHwAtiprcNzaqBW77r-BSmElFuIwRJRViYlqsuQORQiyAR9W5Wt88XPZfg9uAzcA2q0d1zAaVG6UMyY3UrSlZ62GgpPdweQkqlKvSvItORoaQ-0wTa63PBjd81J4q8UaHVAwP3_Ad_6hDkKSqj36ic79cqSW4qA1_DGOoVfKImLjH9pALqvgtquo-yw85rGa28Qlw0BQZBkDXAlvvVSOKb-MhU-Cd-MU4ACRLNWKNZYFuHH76sMn48ROkzp2Bi6NVbJQGXdayuojIc_gp-niBXvjDjcfvz-ESsC3-UO-kAHtVTx13O0fL7fKgAQqN4cWHY5jTv-MR_FC4qrOOv4d7yjfEikVmGhny7NKAnCV_PfXeP7sVMkDhiKY5hEKCkwAAkocKl0cnkyPOkBSwG3Y8ziW_tCezymwOf8RieIGtV2DhXJI2-3W56P7pbwrGBzbHIydzwVvz366N-BR26k-4pMOpiU5f7oka_dBXtnLzYSKDsEp2NifXgrW2f-Ef5tpgDyN96iG6lzvzjXPEtGDKuY",
+// );
+// curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+// //for debug only!
+// curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+// curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+// $resp = curl_exec($curl);
+// $resp=json_decode($resp,true);
+
+// $resp2=$resp['data'];
+// curl_close($curl);
+// //echo '<pre>'; print_r($resp); echo '<pre>'; exit;
+
+// foreach($resp2 as $songs){ 
+//   if(isset($songs['metadata']['custom_files'])){
+//   if($songs['metadata']['custom_files'][0]['bucket_id'] == '21095'){
+
+//     if(isset($songs['metadata']['custom_files'][0]['title'])) $titles[$i]['title']=$songs['metadata']['custom_files'][0]['title'];
+
+//     if(isset($songs['metadata']['played_duration'])) $titles[$i]['duration']=$songs['metadata']['played_duration']; 
+
+//     if(isset($songs['metadata']['timestamp_utc']))
+//       $titles[$i]['timestamp']=date('m/d/Y, h:i a',strtotime($songs['metadata']['timestamp_utc']));
+//      $i++;
+//   }  
+
+ 
+// }
+
+// }
+
+// }
+
+// echo '<pre>'; print_r($titles); echo '<pre>'; exit;
+
+   return Excel::download(new BusinessBreakdown, 'breakdown_B.xlsx');
+ //}
+
+   //catch(\Exception $e){
       Session::put('exception',$e->getMessage());
       return redirect()->back();
-     }
+     //}
+
    }
 
 
@@ -197,7 +237,7 @@ $m = date("m"); // Month value
 $de = date("d"); // Today's date
 $y = date("Y"); // Year value
 $back5days = date('Ymd', mktime(0,0,0,$m,($de-$day),$y)) ;
-$url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2010/channels/246131/results?type=day&date=$back5days";
+$url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2945/channels/246131/results?type=day&date=$back5days";
 
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_URL, $url);
@@ -285,7 +325,7 @@ $a=0;
 // Today
 
 $currentdate = date('Ymd');
-$url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2010/channels/246131/results?type=day&date=$currentdate";
+$url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2945/channels/246131/results?type=day&date=$currentdate";
 
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_URL, $url);
@@ -342,7 +382,7 @@ $today=array_count_values($todays); arsort($today);
 $i=0;$j=0;
 $titles=array();
 $currentdate = date('Ymd');
-$url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2010/channels/246131/results?type=last";
+$url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2945/channels/246131/results?type=last";
 
 try {
 $curl = curl_init($url);
