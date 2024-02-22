@@ -92,12 +92,14 @@ curl_setopt_array($curl, array(
   ),
 ));
 
-$response = curl_exec($curl);curl_close($curl);
-echo $response; exit;
+$response2 = curl_exec($curl);curl_close($curl);
+$response2 = json_decode($response2,true);
+  //curl_close($curl); 
+  //echo '<pre>'; print_r($response2);  echo '<pre>'; exit;
+
   //API
 
-  if(isset($response['data']['id'])){
-  Session::put('Stripe_pay', 'Media Create Success! Media id = '.$response['data']['id']);
+  if(isset($response2['data']['uid'])){
 
   $media= Media::create([
     'user_id' => $request->user_id,
@@ -109,13 +111,15 @@ echo $response; exit;
     'start' => $request->start_date,
     'end' => $request->end_date,
   ]); 
+
+  Session::put('Stripe_pay', 'Media Create Success! Bucket id = '.$response['data']['id']);
 }
 
 
   return redirect()->back();
   }
       catch(\Exception $e){
-      Session::put('Stripe_pay',$e->getMessage());
+      Session::put('Stripe_pay',$response['message']);
       return redirect()->back();
     }
 

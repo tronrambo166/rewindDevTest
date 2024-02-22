@@ -17,7 +17,7 @@
 
     <tr class="border">  
       <td>@if(isset($arr['title'])) {{$arr['title']}} @endif</td>
-      <td>@if(isset($arr['duration'])) @if ($arr['duration']<10) {{$arr['duration']}} @else {{round($arr['duration']/60)}} @endif mins  @endif</td>
+      <td>@if(isset($arr['duration'])) {{ $arr['duration'] }} sec  @endif</td>
           
        <td>@if(isset($arr['timestamp'])) {{$arr['timestamp']}} @endif</td>
 

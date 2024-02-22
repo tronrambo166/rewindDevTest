@@ -5,6 +5,7 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\Exportable;
+use App\Models\Media;
 use DB;
 use Session;
 
@@ -56,9 +57,12 @@ $resp2=$resp['data'];
 curl_close($curl);
 //echo '<pre>'; print_r($resp); echo '<pre>'; exit;
 
+$user=DB::table('users')->where('email',Session::get('logged'))->first();
+$media = Media::where('user_id', $user->id)->first();
+
 foreach($resp2 as $songs){ 
   if(isset($songs['metadata']['custom_files'])){
-  if($songs['metadata']['custom_files'][0]['bucket_id'] == '21095'){
+  if($songs['metadata']['custom_files'][0]['bucket_id'] == $media->add_id){
 
     if(isset($songs['metadata']['custom_files'][0]['title'])) $this->titles[$i]['title']=$songs['metadata']['custom_files'][0]['title'];
 
