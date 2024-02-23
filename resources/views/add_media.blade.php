@@ -76,7 +76,7 @@
           </div>
 
           <div class="col-sm-12 my-3 text-dark">
-            <h6 class="font-weight-bold" style="">Choose radio station</h6>
+            <h6 class="font-weight-bold" style="">Choose Radio Station</h6>
           </div>
 
          <div class="col-md-3">
@@ -102,7 +102,7 @@
         <div class="row my-3 w-75 mx-auto">
 
           <div class="col-sm-12 my-3 text-dark">
-            <h6 class="font-weight-bold" style="">Choose Tv station</h6>
+            <h6 class="font-weight-bold" style="">Choose Tv Station</h6>
           </div>
 
          <div class="col-md-3">
@@ -127,7 +127,7 @@
 
           <div class="row my-3 w-75 mx-auto">
           <div class="col-sm-12 my-3 text-dark">
-            <h6 class="font-weight-bold" style="">Uplaod Media</h6>
+            <h6 class="font-weight-bold" style="">Upload Media</h6>
           </div>
 
          <div class="col-md-12">
