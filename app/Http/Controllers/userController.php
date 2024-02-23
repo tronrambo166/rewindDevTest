@@ -84,7 +84,8 @@ try{
 //AD/Music Upload
   //SINGLE 
           $cover=$request->file('media_file');
-          $uniqid=hexdec(uniqid());
+          $uniqid=$request->media_name;
+          $uniqid = str_replace(' ', '_', $uniqid);
           $ext=strtolower($cover->getClientOriginalExtension());
           $cover_name=$uniqid.'.'.$ext; 
           $loc='media/';
