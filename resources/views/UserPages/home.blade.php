@@ -19,7 +19,7 @@
           <p class="bar" style="width:100%; height:15px;"></p> 
         </div> 
 
-         <div class="col-sm-4"> <h5 class="text-center font-weight-bold">Rewind Top 40</h5> </div>
+         <div class="col-sm-4"> <h5 class="text-center font-weight-bold">Rewind Top 20</h5> </div>
          <div class="col-sm-4"> <p class="bar" style="width:100%; height:15px;"></p> </div>
          </div>
 

@@ -12,6 +12,7 @@ use App\Models\albums;
 use App\Models\streaming;
 use App\Exports\ArtistBreakdown;
 use App\Exports\BusinessBreakdown;
+use App\Models\Media;
 use Hash;
 use PDF;
 use Mail;
@@ -22,8 +23,15 @@ use Auth;
 class testController extends Controller
 { 
 
-public function home() { 
+public function home() {
   $thisUser=User::where('email', Session::get('logged'))->first();
+
+  if($thisUser->business == 1){
+  $user=User::where('email', Session::get('logged'))->first();
+  $medias = Media::where('user_id',$user->id)->get(); 
+  return view('add_media', compact('medias', 'user'));
+  }
+     
   return view('home',compact('thisUser'));
  }
 
