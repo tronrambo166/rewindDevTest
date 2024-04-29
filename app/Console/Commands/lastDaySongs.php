@@ -61,7 +61,7 @@ $m = date("m"); // Month value
 $de = date("d"); // Today's date
 $y = date("Y"); // Year value
 $back5days = date('Ymd', mktime(0,0,0,$m,($de-$day),$y)) ;
-$url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2010/channels/246131/results?type=day&date=$back5days";
+$url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2945/channels/246131/results?type=day&date=$back5days";
 
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_URL, $url);
@@ -84,7 +84,9 @@ curl_close($curl);
 //echo '<pre>'; print_r($resp2); echo '<pre>'; 
 
 foreach($resp2 as $songs){  
+if(isset($songs['metadata']['music'])) {
 $titles2[$i]=$songs['metadata']['music'][0]['title']; $artists[$i]=$songs['metadata']['music'][0]['artists'][0]['name'];
+}
 
 if(isset($songs['metadata']['music'][0]['title'])) $titles[$i]['title']=$songs['metadata']['music'][0]['title'];
 if(isset($songs['metadata']['music'][0]['album']['name'])) $titles[$i]['album']=$songs['metadata']['music'][0]['album']['name'];
@@ -121,6 +123,8 @@ $cn++;
 
   foreach($title_count as $k=>$val) {
   foreach($titles as $index => $arr){
+
+  if(isset($arr['title']))
   if($k == $arr['title'] && $arr['title'] != 'Breaking News' ) {
     if(isset($arr['title']))  $datas['song'] = $arr['title'];
 

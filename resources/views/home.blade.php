@@ -4,12 +4,19 @@
 
 <div class="row mx-auto" style="width:90%; background:#161616;">  
          <div class="col-md-3"> 
-            <h5 class="text-center text-light mt-2">The Top 20</h5> <hr>
+            <h5 class="text-center text-light mt-2">The Top 20</h5>
+
+            <!-- <a class="text-light" href="http://www.last.fm/api/auth/?api_key=e5ac6bd9fa970f8295755e999e4a286a"> APIAuth</a>
+
+            <a class="text-light" href="https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e5ac6bd9fa970f8295755e999e4a286a&artist=ruger&track=dior&format=json"> getTrack</a> -->
+
+             <hr>
 
             <table class="table tabil mb-4 text-light">
   <thead>
     <tr>
       <th scope="col">Position</th>
+      <th scope="col">Art</th>
       <th scope="col">Artist</th>
       <th scope="col">Song</th>
       <th scope="col">Move</th>
@@ -57,9 +64,10 @@
 $(window).on("load", getSongs);
 
 function getSongs() {
-  var key, value,i=1, j=1,tops=1,dur,move;
+  var key, value,i=1, j=1,k=1,tops=1,dur,move;
   var BreakException = {};
   var stageName=document.getElementById('myStageName').value;
+  var art = '';
 
      $.ajax({
             url:"getSongs", 
@@ -93,13 +101,13 @@ function getSongs() {
 
 // Top 20 chart
            Object.entries(songs20).forEach(entry => {
-           const [title, count] = entry; console.log(title+'=>'+count);
+           const [title, count] = entry; console.log(title+'=>>'+count);
            try{
             Object.entries(songs_all).forEach(entry => {
            const [key, value] = entry; //console.log(key+'=>'+value);
-           if(title != value.artist) {
+           if(title != value.artist) { 
             
-           if( value.title == title && i<22){
+           if( value.title == title && i<30){ 
             if(value.duration<10) dur=value.duration; else dur=(value.duration/60).toFixed();
             
             //New Move
@@ -111,21 +119,50 @@ function getSongs() {
             move='-'; 
                    
             //New Move
-           if(value.title != 'Breaking News'){
-            $('#songs').append('<tr><th scope="row" class="text-center">'+i+'</th> <td>'+value.artist+'</td> <td>'+value.title+' </td> <td> '+move+'</td>  </tr>');
-		   }
+
+            //LastFm
+            const apiUrl = 'https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e5ac6bd9fa970f8295755e999e4a286a&artist='+value.artist+'&track='+value.title+'&format=json';
+
+            //const apiUrl = 'https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e5ac6bd9fa970f8295755e999e4a286a&artist=ruger&track=dior&format=json';
+            // Make a GET request
+            
+            fetch(apiUrl)
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then(data => {
+                art = data.track.album.image[2]['#text'];
+
+                if (typeof art != 'undefined'){
+                if(value.title != 'Breaking News'){
+                $('#songs').append('<tr><th scope="row" class="text-center">'+i+'</th>     <td> <img width="80px" src="'+art+'" /> </td> <td>'+value.artist+'</td>  <td>'+value.title+'</td> <td> '+move+'</td>  </tr>'); i++;
+              } }
+
+              else{ console.log('noo'); }
+
+                
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+            //LastFM
+
+           
                $('#loading').remove();
 
 
                // if(value.artist=='Otile Brown')  document.getElementById('played').innerHTML=count;           
            //console.log(value.album); 
-           i++; throw BreakException; }; }
+            throw BreakException; }; }
 
           });  
 
           }
           catch(e) { if (e !== BreakException) throw e;}
-            
+             
           }); 
 
            
@@ -136,8 +173,9 @@ function getSongs() {
             Object.entries(songs_all).forEach(entry => {
            const [key, value] = entry;
            if( value.title == title && value.artist == stageName && tops<=10){ 
+
               $('#mySongs').append(' <p class="mt-3 w-50 rounds mx-auto bg-light text-dark px-4 py-1">'+tops+'. '+value.title+'</p>');
-              $('#load').remove(); console.log(value.title);
+              $('#load').remove(); //console.log(value.title);
 
            //console.log(value.album); 
            tops++; throw BreakException; 
