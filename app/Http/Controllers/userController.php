@@ -209,13 +209,40 @@ public function static20() {
    if(Session::has('logged') && Session::get('logged') !='') return redirect('home');
    $static20=liveSongs::take(3)->get();
    $lastDay=DB::table('last_day_songs')->get();
-  return view('UserPages.home',compact('static20','lastDay'));
+  return view('UserPages.home_new',compact('static20','lastDay'));
  }
 
 public function rewindChart() { 
    if(Session::has('logged')) return redirect('home');
    $static20=liveSongs::take(20)->get();
    $lastDay=DB::table('last_day_songs')->get();
+
+   //Last FM
+   foreach ($static20 as $stat) {
+    $curl=curl_init();
+    curl_setopt_array($curl, array(
+    CURLOPT_URL=> 'https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e5ac6bd9fa970f8295755e999e4a286a&artist='.$stat->artist.'&track='.$stat->song.'&format=json',
+    CURLOPT_RETURNTRANSFER=> TRUE,
+    CURLOPT_ENCODING=> '',
+    CURLOPT_MAXREDIRS=> 10,
+    CURLOPT_TIMEOUT=> 30,
+    CURLOPT_HTTP_VERSION=> CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST=> 'GET',
+    CURLOPT_HTTPHEADER=> array(
+    'content-type:application/json',
+    'authorization:secret_key'
+    ),
+    ));
+
+    $response=curl_exec($curl);
+    $response=json_decode($response,true);
+    if(isset($response['track']['album']['image']))
+    $stat->image = $response['track']['album']['image'][1]['#text'];
+
+    $error=curl_error($curl);
+    if($error) echo $error;
+  }
+   //Last FM
   return view('UserPages.rewindChart',compact('static20','lastDay'));
  }
 
@@ -594,7 +621,6 @@ if(isset($songs['metadata']['music'][0]['artists'][0]['name'])) $titles['artist'
   //$i++;
 } 
 // Recent
-
     return view('UserPages.live',compact('titles'));
 }
 catch(\Exception $e){

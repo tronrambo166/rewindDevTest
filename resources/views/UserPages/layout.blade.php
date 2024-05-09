@@ -26,24 +26,25 @@
 
 
 <body>
-<div class="container-fluid" style="background: #161616; color:white;">
+ <div class="container-fluid px-0" style="background: #fff5d0d6; color:white;"> 
+ <!-- <div class="container-fluid" style="background: #161616; color:white;">-->
   
 
 @if(!isset($_COOKIE['edit_permit']) )
 
 <!-- LANDING -->   
- <div class="row  pt-2 pb-0" style="background:black;">
+ <div class="row  pt-2 pb-0" style="background:#fff5d0e8;">
 <nav class=" navbar navbar-expand-md navbar-light py-0 w-100">
   
   <div class="  navbar-collapse" id="navbarNav">
     <ul class="navbar-nav links w-75">
       <li class="nav-item text-responsive  text-light  mr-md-5 sm-f30">
       <a class="pt-0 pb-2" href="{{route('_home')}}">
-          <h3 class="text-success font-weight-bold"> <img style="width:142px; height:55px;" src="images/logo.png"></h3>
+          <h3 class="text-success font-weight-bold"> <img  src="images/logo.png"></h3>
       </a>
-      
+     <!--  style="width:142px; height:55px;" -->
       </li>
- <li class="font-weight-bold nav-item text-responsive  text-light  mr-md-5 sm-f30 mt-3">
+ <li class="font-weight-bold nav-item text-responsive black mr-md-5 sm-f30 mt-3">
       Welcome To The Home of Brand Data!
       
       </li>
@@ -53,7 +54,7 @@
 	
 	 <ul class="navbar-nav links float-right">
      <li class="nav-item">
-        <a href=""class="nav-link font-weight-bold btn btn-outline-success px-4 text-light" data-target="#loginModal-editor" data-toggle="modal"> Manage the site</a>
+        <a href=""class="nav-link font-weight-bold btn btn-outline-success px-4 black" data-target="#loginModal-editor" data-toggle="modal"> Manage the site</a>
       </li>
 	  </ul>
 
@@ -197,25 +198,25 @@
  @else
  
        
-<div class="h-100 row  pt-2 pb-0" style="background:black;">
+<div class="h-100 row  pt-2 pb-0" style="background:#FFF5D0;">
 <nav class=" navbar navbar-expand-md navbar-light py-0 w-100">
   
   <div class="navbar-collapse" id="navbarNav">
     <ul class="navbar-nav links">
-      <li class="nav-item text-responsive  text-light  mr-md-5 sm-f30">
+      <li class="nav-item text-responsive  text-light sm-f30">
       <a class="pt-0 pb-2" href="{{route('_home')}}">
-          <h3 class="text-success font-weight-bold"> <img style="width:142px; height:55px;" src="images/logo.png"></h3>
-      </a>
+          <h3 class="text-success font-weight-bold"> <img  src="images/logo.png"></h3>
+      </a> <!-- style="width:142px; height:55px;" -->
       
       </li>
 
-      <li class="nav-item ">
-        <a class="{{ Request::is('_home') ? 'text-success' : 'text-light' }} nav-link  font-weight-bold" href="_home">Home </a>
+      <li class="nav-item mt-2">
+        <a class="{{ Request::is('_home') ? 'text-success' : '' }} nav-link  font-weight-bold" href="_home"><i class="fa fa-home"> </i> Home </a>
        
       </li>
 
-      <li class="nav-item ">
-         <a class="{{ Request::is('live') ? 'text-success' : 'text-light' }} nav-link  font-weight-bold" href="live">Live</a>
+      <li class="nav-item mt-2">
+         <a class="{{ Request::is('live') ? 'text-success' : '' }} nav-link  font-weight-bold" href="live">Live</a>
       </li>
 
       <!-- <li class="nav-item">
@@ -233,16 +234,16 @@
 
     @if(Session::has('Userlogged'))
     <ul class="navbar-nav ml-auto pr-2">
-       <li class="nav-item text-responsive  text-light  mr-md-5 sm-f30">
+       <li class="nav-item text-responsive mr-md-5 sm-f30">
         Welcome, User
       </li>
 
       <li class="nav-item mr-4">
-        <a class="nav-link  text-light" href="{{route('logout')}}">Logout</a>
+        <a class="nav-link black" href="{{route('logout')}}">Logout</a>
       </li>
 
       <li class="nav-item">
-        <a class="{{ Request::is('documentation') ? 'text-success' : 'text-light' }} nav-link   font-weight-bold" href="documentation">Support</a>
+        <a class="{{ Request::is('documentation') ? 'text-success' : '' }} nav-link   font-weight-bold black" href="documentation">Support</a>
       </li>
 
     </ul>
@@ -378,11 +379,11 @@
  
  
    <li class="nav-item mr-4">
-        <a href=""class="nav-link  text-light" data-target="#loginModal" data-toggle="modal"> Login</a>
+        <a href=""class="nav-link " data-target="#loginModal" data-toggle="modal"> Login</a>
       </li>
 
       <li class="nav-item">
-        <a class="{{ Request::is('documentation') ? 'text-success' : 'text-light' }} nav-link font-weight-bold" href="documentation">Support</a>
+        <a class="{{ Request::is('documentation') ? 'text-success' : '' }} nav-link font-weight-bold" href="documentation">Support</a>
       </li>
 </ul>
 

@@ -1,5 +1,33 @@
-/* (A) FONT */
-html, body { font-family: arial, sans-serif; }
+
+/*Calling Fonts*/
+    @font-face {
+        font-family: 'Satoshi-Black';
+        src: url('font/Satoshi-Black.otf') format('opentype');
+    }
+
+        @font-face {
+        font-family: 'Satoshi-Bold';
+        src: url('font/Outfit-Bold.otf') format('opentype');
+    }
+
+
+        @font-face {
+        font-family: 'Satoshi-Regular';
+        src: url('font/Satoshi-Regular.otf') format('opentype');
+    }
+
+            @font-face {
+        font-family: 'Satoshi-Medium';
+        src: url('font/Satoshi-Medium.otf') format('opentype');
+    }
+
+    @font-face {
+        font-family: 'Satoshi-Light';
+        src: url('font/Satoshi-Light.otf') format('opentype');
+    /*Calling Fonts*/
+  }
+
+html, body { font-family: Satoshi-Regular; }
 
 /* (B) PERIOD SELECTOR */
 #calPeriod input, #calPeriod select {

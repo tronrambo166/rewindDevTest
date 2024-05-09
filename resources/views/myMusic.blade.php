@@ -14,6 +14,12 @@
 .table td, .table th {
      border-top: none;}
      #login{border: 2px solid red;}
+     #singleDiv label, .singleDiv input, .singleDiv p,
+     #albumDiv label, .albumDiv input, .albumDiv p {
+      font-size: 14px;
+     }
+
+     .art_btn{color:white; font-size: 10px; padding-right:5px; padding-left:5px; margin:0;}
 </style>
 
 <div class="row mx-auto" style="width:90%; background:#161616;">  
@@ -57,7 +63,7 @@
       
       <td>{{$i}}</td>
       <td class="text-left pl-5">
-        <img src="images/singles/{{$music->song_art}}" width="75px" height="75px">
+        <img src="{{$music->song_art}}" width="75px" height="75px">
         &nbsp; {{$music->title}}</td>
       <td>{{$music->album}}</td>
       <td>{{$music->description}}</td>
@@ -152,7 +158,11 @@
                             <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Title') }} <span title="Required" class="text-danger">*</span></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="title"  required autocomplete="name" autofocus>
+                                <input onkeyup="getArt(this.value);" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="title"  required autocomplete="name" autofocus>
+
+                                <span class="small text-info" role="alert">
+                                        <p>Type correctly to get art image!</p>
+                                    </span>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -179,7 +189,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('Description') }} <span title="Required" class="text-danger">(optional)</span></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('Description') }} <span title="Required" class="text-warning">(optional)</span></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="description" value="{{ old('email') }}"  autocomplete="email">
@@ -193,7 +203,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Composer') }} <span title="Required" class="text-danger">(optional)</span></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Composer') }} <span title="Required" class="text-warning">(optional)</span></label>
 
                             <div class="col-md-6">
                                 <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="composer"  autocomplete="new-password">
@@ -208,7 +218,7 @@
                         
                         
                          <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Publisher') }} <span title="Required" class="text-danger">(optional)</span></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Publisher') }} <span title="Required" class="text-warning">(optional)</span></label>
 
                             <div class="col-md-6">
                                 <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="publisher"  autocomplete="new-password">
@@ -228,7 +238,20 @@
                             <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Song art') }} <span title="Required" class="text-danger">*</span></label>
 
                             <div class="col-md-6">
-                                 <input required="" type="file" class="form-control" name="song_art"  >
+                              <div id="user_choose" class="">
+                                <input type="file" class="form-control" name="song_art"  >
+                              </div>
+
+                              <div id="suggest" class="collapse">
+                                <div id="image"></div>
+
+                                <div class="mt-1">
+                                  <!-- <a style="background: green;" class="py-1 art_btn btn" href="">Use</a>  -->
+                                  <a onclick="no(event);" style="background: darkred;" class="py-1 btn btn-warning art_btn " href="">Cancel</a>
+                                </div>
+                              </div>
+                              <input id="song_art" type="text" hidden name="song_art" value="">
+                                 
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -308,7 +331,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('Album Description') }} <span title="Required" class="text-danger">(optional)</span></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('Album Description') }} <span title="Required" class="text-warning">(optional)</span></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="album_description" value="{{ old('email') }}"  autocomplete="email">
@@ -322,7 +345,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Composer') }} <span title="Required" class="text-danger">(optional)</span></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Composer') }} <span title="Required" class="text-warning">(optional)</span></label>
 
                             <div class="col-md-6">
                                 <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="composer"  autocomplete="new-password">
@@ -337,7 +360,7 @@
                         
                         
                          <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Publisher') }} <span title="Required" class="text-danger">(optional)</span></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Publisher') }} <span title="Required" class="text-warning">(optional)</span></label>
 
                             <div class="col-md-6">
                                 <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="publisher"  autocomplete="new-password">
@@ -388,12 +411,17 @@
   </div>
 </div>
 
+
+<input type="text" hidden="" id="myStageName" value="{{$thisUser->stage_name}}">
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
-    $('#login').css('border', '2px solid red');
+    $('#login').css('border', '2px solid green');
 
      function single(){
     $('#register').css('border', 'none');    
-    $('#login').css('border', '2px solid red');
+    $('#login').css('border', '2px solid green');
 
     $('#singleDiv').show();
     $('#albumDiv').hide();
@@ -401,12 +429,61 @@
 
      function album(){ 
     $('#login').css('border', 'none');
-    $('#register').css('border', '2px solid red');
+    $('#register').css('border', '2px solid green');
 
    $('#singleDiv').hide();
     $('#albumDiv').show();
     
     }
+
+</script>
+
+<script type="text/javascript">
+  function getArt(value) {
+    //Reset
+    $('#user_choose').show();
+    $('#suggest').hide();
+    document.getElementById('song_art').value = '';
+    //Reset
+
+  var title = value;
+  var artist=document.getElementById('myStageName').value;
+  var art = '';
+      const apiUrl = 'https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e5ac6bd9fa970f8295755e999e4a286a&artist='+artist+'&track='+title+'&format=json';
+      fetch(apiUrl)
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then(data => {
+                art = data.track.album.image[2]['#text'];
+                if(art){
+                $('#user_choose').hide();
+                $('#suggest').show();
+                $('#image').html('<img width="100px;" src="'+art+'" />');
+                document.getElementById('song_art').value = art;
+              }
+                
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+
+            }
+
+            function no(e) {
+              e.preventDefault();
+              document.getElementById('song_art').value = '';
+              $('#user_choose').show();
+                $('#suggest').hide();
+            }
+
+
+  
+
+
 
 </script>
 

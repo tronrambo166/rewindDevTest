@@ -1,4 +1,34 @@
 
+/*Calling Fonts*/
+    @font-face {
+        font-family: 'Satoshi-Black';
+        src: url('font/Satoshi-Black.otf') format('opentype');
+    }
+
+        @font-face {
+        font-family: 'Satoshi-Bold';
+        src: url('font/Satoshi-Bold.otf') format('opentype');
+    }
+
+
+        @font-face {
+        font-family: 'Satoshi-Regular';
+        src: url('font/Satoshi-Regular.otf') format('opentype');
+    }
+
+            @font-face {
+        font-family: 'Satoshi-Medium';
+        src: url('font/Satoshi-Medium.otf') format('opentype');
+    }
+
+    @font-face {
+        font-family: 'Satoshi-Light';
+        src: url('font/Satoshi-Light.otf') format('opentype');
+    }
+    /*Calling Fonts*/
+
+
+html, body { font-family: Satoshi-Regular; }
 
 ul li a{color: black; font-weight: bold; text-decoration: none; padding-top: 20px; display: block;}
 ul li a:hover{color: black;  text-decoration: none; }
@@ -44,3 +74,59 @@ ul{list-style-type: none;}
     .top: 0;
     opacity: 0;
 }
+
+#navbarNav ul li a{color:black;}
+.primary{background: #57B660;}
+.black{color:black;}
+.radius_img{border-radius: 7px;}
+.bolder{ font-family: Satoshi-Bold; }
+
+
+
+
+
+.slick-slider {
+  width: 100%;
+  background-color: transparent;
+  .slick-track {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 200px;
+    justify-content: center;
+  }
+  .slick-slide{
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px 0px;
+    margin: 0;
+    background-color: #fff5d0d6;
+    transition: all 0.3s ease;
+    height: auto;
+    text-align: center;
+    &.slick-current,
+    &.slick-center {
+      background:linear-gradient(45deg, rgb(184 172 172 / 12%), rgb(146 136 143 / 10%));
+      padding: 20px 0px;
+      //margin: 50px 0px;
+      border-radius: 8px;
+    }
+  }
+}
+
+.slick-prev,
+.slick-next {
+  z-index:10;  
+  top: 0px;
+  background-color: transparent;
+}
+.slick-prev {
+  left: 10px;
+}
+.slick-next {
+  right: 10px;
+}.slick-list-draggable{margin: 0;padding:0;}
+/*Slider*/
+
+.slide_img{ height: 145px; width: 88%;}

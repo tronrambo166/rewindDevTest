@@ -51,7 +51,7 @@ try{
   $albums=albums::distinct()->get(['album_title','album_id','image','artist_id']);
 
   //echo '<pre>'; print_r($albums); echo '<pre>'; exit;
-  return view('myMusic',compact('musics','albumMusics','albums'));
+  return view('myMusic',compact('musics','albumMusics','albums','thisUser'));
   }
     catch(\Exception $e){
       Session::put('exception',$e->getMessage());
@@ -881,6 +881,11 @@ public function reset(Request $request, $remail)
 
          $title=$request->title;   
 
+
+         if($request->song_art != '') 
+            $datas['song_art']=$request->song_art;
+
+          else{
        //SINGLE Song
           $song=$request->file('song');
           $uniqid=hexdec(uniqid());
@@ -898,9 +903,10 @@ public function reset(Request $request, $remail)
           $create_cover_name=$title.'.'.$ext; 
           $loc='images/singles';
           $cover->move($loc, $create_cover_name);
-          $datas['song_art']=$create_cover_name;  
-          
+          $create_cover_name = $loc='images/singles/'.$create_cover_name;
+          $datas['song_art']=$create_cover_name;        
        //SINGLE Cover
+          }
 
       mymusic::insert($request->except(['_token']));
     
