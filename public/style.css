@@ -107,7 +107,7 @@ ul{list-style-type: none;}
     text-align: center;
     &.slick-current,
     &.slick-center {
-      background:linear-gradient(45deg, rgb(184 172 172 / 12%), rgb(146 136 143 / 10%));
+      background:linear-gradient(45deg, rgb(184 172 172 / 38%), rgb(146 136 143 / 26%));
       padding: 20px 0px;
       //margin: 50px 0px;
       border-radius: 8px;

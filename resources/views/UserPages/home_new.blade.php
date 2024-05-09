@@ -110,7 +110,7 @@ $('.slick-slider').slick({
   swipe: true,
 //  infinite: true,
   swipeToSlide: false,
-   autoplay: true,
+   sautoplay: true,
    autoplaySpeed: 2000,
   //adaptiveHeight: true,
 });
