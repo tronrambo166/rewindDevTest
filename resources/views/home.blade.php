@@ -1,6 +1,7 @@
 @extends('layout')  
 @section('page')
 
+<style>.shimmer{background:#ffffffe6;background-image:linear-gradient(to right, #e2e3e4 0%, #f6f7f8 20%, #e2e3e4 40%, #e2e3e4 100%);background-repeat:no-repeat}</style>
 
 <div class="row mx-auto" style="width:90%; background:#161616;">  
          <div class="col-md-3"> 
@@ -26,12 +27,18 @@
   <tbody id="songs"> 
     <tr id="loading">
      
-      <td class="font-weight-bold"> Loading... </td>
+     <!--  <td class="font-weight-bold"> Loading... </td> -->
+     
     </tr>
 
     
   </tbody>
 </table>
+
+
+<div id="shimmerDiv">
+       <div class="shimmer  shimmer_large_para"></div><div class="shimmer  shimmer_large_para"></div><div class="shimmer  shimmer_large_para"></div><div class="shimmer  shimmer_large_para"></div><div class="shimmer  shimmer_large_para"></div><div class="shimmer  shimmer_large_para"></div><div class="shimmer  shimmer_large_para"></div><div class="shimmer  shimmer_large_para"></div><div class="shimmer  shimmer_large_para"></div><div class="shimmer  shimmer_large_para"></div>
+</div>
 
 <div class="clearfix py-3"></div>
 
@@ -152,6 +159,7 @@ function getSongs() {
 
            
                $('#loading').remove();
+               $('#shimmerDiv').remove();
 
 
                // if(value.artist=='Otile Brown')  document.getElementById('played').innerHTML=count;           

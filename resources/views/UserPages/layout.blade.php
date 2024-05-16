@@ -52,9 +52,9 @@
     </ul>
 
 	
-	 <ul class="navbar-nav links float-right">
-     <li class="nav-item">
-        <a href=""class="nav-link font-weight-bold btn btn-outline-success px-4 black" data-target="#loginModal-editor" data-toggle="modal"> Manage the site</a>
+	 <ul class="navbar-nav links float-right w-25">
+     <li class="nav-item w-100">
+        <a href=""class=" w-50 mx-auto font-weight-bold text-center nav-link outline_btn_black" data-target="#loginModal-editor" data-toggle="modal"> Manage the site</a>
       </li>
 	  </ul>
 

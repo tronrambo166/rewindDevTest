@@ -15,6 +15,7 @@ $stage_name=$user->fname;
 	
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="calander/6-calendar.css">
+    <link rel="stylesheet" href="shimmer.css">
    
 {{-- Vue component files 
 <script src="https://unpkg.com/vue"></script>
@@ -39,7 +40,7 @@ $stage_name=$user->fname;
     <ul class="navbar-nav links"> 
       <li class="nav-item text-responsive  text-light  mr-md-5 sm-f30">
          <a class="pt-0 pb-2 " href="{{route('home')}}">
-        <img style="width:142px; height:55px;" src="images/logo.png">
+        <img style="width:142px; height:55px;" src="images/logo_old.png">
       </a>
         
       </li>

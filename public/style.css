@@ -94,6 +94,7 @@ ul{list-style-type: none;}
     flex-wrap: nowrap;
     height: 200px;
     justify-content: center;
+    width: 2627px;
   }
   .slick-slide{
     float: none;
@@ -107,7 +108,7 @@ ul{list-style-type: none;}
     text-align: center;
     &.slick-current,
     &.slick-center {
-      background:linear-gradient(45deg, rgb(184 172 172 / 38%), rgb(146 136 143 / 26%));
+      background:linear-gradient(45deg, rgb(184 172 172 / 14%), rgb(79 76 79 / 8%));
       padding: 20px 0px;
       //margin: 50px 0px;
       border-radius: 8px;
@@ -127,6 +128,28 @@ ul{list-style-type: none;}
 .slick-next {
   right: 10px;
 }.slick-list-draggable{margin: 0;padding:0;}
+.slick-list{padding:0 !important;}
 /*Slider*/
 
 .slide_img{ height: 145px; width: 88%;}
+
+
+.primary_btn{
+	background: #57B660;
+	color:white;
+	border-radius: 35px;
+    padding: 5px 25px;
+}
+
+.outline_btn_black{
+	border: 1px solid black;
+	color:black !important;
+	border-radius: 35px;
+    padding: 5px 25px;
+}
+
+.bio_form input{
+	color: #babcbf;
+    background-color: #080808 !important;
+    border:none;
+}

@@ -11,7 +11,20 @@
 
    
 
- <div class="row pt-3 my-5" style="width:40%;"> 
+ <div class="row my-0 py-0 w-75 mx-auto text-center" style="max-height: 135px;" > 
+  <div class="w-50 mx-auto">
+    <lottie-player src="lottiWave.json" background="##fff" speed="1" style="width: 300px; max-height: 200px" loop autoplay direction="1" controls mode="normal"></lottie-player>
+  </div>
+ </div>
+
+
+
+<!--  <div id="waveform" class="w-50 mx-auto" style="height: 90px;"> 
+ </div> -->
+
+ 
+
+ <div class="row pt-3 mb-5" style="width:40%;"> 
   <h1 style="font-size:60px;" class="d-block w-100 black bolder py-3">Rewind Top twenty</h1>
   
             <a href="{{route('rewind-chart')}}" style="background:;" class="font-weight-bold float-left radius_img primary black py-1 text-center small d-block px-3 py-2">View Chart &nbsp; 
@@ -19,53 +32,16 @@
             </a>
     </div>
 
-
-<!-- Region Artist -->
-
-<!-- <div class="row mx-auto shadow" style=""> 
-        <div class="px-5 py-3 mx-auto" style="width: 80%;">
-        <div class="row">
-
-         <div class="col-md-2 px-0"> 
-          <img class="radius_img"  width="90%" height="130px" src="images/artists/1731549835021026.jpg">
-         </div>
-
-         <div class="col-md-2 px-0"> 
-          <img class="radius_img"  width="90%" height="130px" src="images/artists/nya.png">
-         </div>
-
-         <div class="col-md-2 px-0"> 
-          <img class="radius_img"  width="90%" height="130px" src="images/artists/1731549835021026.jpg">
-         </div>
-
-         <div class="col-md-2 px-0"> 
-          <img class="radius_img"  width="90%" height="130px" src="images/artists/nya.png">
-         </div>
-
-         <div class="col-md-2 px-0"> 
-          <img class="radius_img"  width="92%" height="130px" src="images/artists/1731549835021026.jpg">
-         </div>
-
-         <div class="col-md-2 px-0"> 
-          <img class="radius_img"  width="90%" height="130px" src="images/artists/nya.png">
-         </div>
-          
-        </div> 
-        </div> 
-</div>  -->
-      <!-- Region CHART -->
-
-
        <!-- Auto Play Silder -->
       <h4 class="mb-0 float-right text-dark font-weight-bold" style="width: 77%;">Top 20</h4>
       <div class="float-right" style="overflow: hidden; width: 77%;"> 
-        <div class="slick-slider my-3">
+        <div class="slick-slider my-3 ">
          <div class=""> 
           <img class="radius_img slide_img"  
           src="images/artists/nya.png">
          </div>
 
-          <div class="px-0"> 
+          <div class=""> 
           <img class="radius_img slide_img"  
           src="images/artists/nya2.png">
           </div>
@@ -75,7 +51,7 @@
           src="images/artists/nya.png">
          </div>
 
-          <div class="px-0"> 
+          <div class=""> 
           <img class="radius_img slide_img" 
           src="images/artists/nya2.png">
           </div>
@@ -99,6 +75,9 @@
           
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="https://unpkg.com/wavesurfer.js@7"></script>
+
 <script src="slick.js"></script>
 
 <script type="text/javascript">
@@ -110,12 +89,21 @@ $('.slick-slider').slick({
   swipe: true,
 //  infinite: true,
   swipeToSlide: false,
-   sautoplay: true,
-   autoplaySpeed: 2000,
+   autoplay: true,
+   autoplaySpeed: 5000,
   //adaptiveHeight: true,
 });
 
-// $('.slick-current').append('<h5 style="color:black;"> Top 20 </h5>');
+const wavesurfer = WaveSurfer.create({
+  container: '#waveform',
+  waveColor: 'green',
+  progressColor: '#383351',
+  url: './audio.wav',
+})
+wavesurfer.on('click', () => {
+  wavesurfer.play()
+})
+
 </script>
 
 

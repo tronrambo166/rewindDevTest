@@ -2,28 +2,28 @@
 /*Calling Fonts*/
     @font-face {
         font-family: 'Satoshi-Black';
-        src: url('font/Satoshi-Black.otf') format('opentype');
+        src: url('../font/Satoshi-Black.otf') format('opentype');
     }
 
         @font-face {
         font-family: 'Satoshi-Bold';
-        src: url('font/Outfit-Bold.otf') format('opentype');
+        src: url('../font/Satoshi-Bold.otf') format('opentype');
     }
 
 
         @font-face {
         font-family: 'Satoshi-Regular';
-        src: url('font/Satoshi-Regular.otf') format('opentype');
+        src: url('../font/Satoshi-Regular.otf') format('opentype');
     }
 
             @font-face {
         font-family: 'Satoshi-Medium';
-        src: url('font/Satoshi-Medium.otf') format('opentype');
+        src: url('../font/Satoshi-Medium.otf') format('opentype');
     }
 
     @font-face {
         font-family: 'Satoshi-Light';
-        src: url('font/Satoshi-Light.otf') format('opentype');
+        src: url('../font/Satoshi-Light.otf') format('opentype');
     /*Calling Fonts*/
   }
 

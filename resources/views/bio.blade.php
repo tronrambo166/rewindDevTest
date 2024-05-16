@@ -19,7 +19,7 @@
                 
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('updateBio') }}" enctype="multipart/form-data">
+                    <form class="bio_form" method="POST" action="{{ route('updateBio') }}" enctype="multipart/form-data">
                         @csrf
 
 
@@ -123,7 +123,7 @@
 
                         <div class="row mb-4">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="text-dark btn btn-success">
+                                <button type="submit" class=" btn primary_btn">
                                     {{ __('Update') }}
                                 </button>
                             </div>

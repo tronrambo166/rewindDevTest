@@ -9,7 +9,7 @@
 
 <style type="text/css">
  .borders{border:none;}
- .borders td{font-size: 20px;}
+ .borders td{font-size: 15px;}
  .borders: hover{background: #3a3838;}
 .table td, .table th {
      border-top: none;}
@@ -36,20 +36,20 @@
                  <li>{{ Session::get('song') }} @php Session::forget('song'); @endphp</li>  </ul> </div> <br/>
                  @endif
 
-             <button class=" mx-auto d-block mt-3 mb-4 p-2 w-25 font-weight-bold btn btn-outline-success" type="button" data-target="#musicModal" data-toggle="modal" aria-expanded="false" aria-controls="collapseExample">Upload Music</button>
+             <button class=" mx-auto d-block mt-4 mb-4  w-25 font-weight-bold btn outline_btn" type="button" data-target="#musicModal" data-toggle="modal" aria-expanded="false" aria-controls="collapseExample">Upload Music</button>
 
 
-             <p class="text-left py-3 my-0 bg-dark font-weight-bold text-success h5 pl-2">Recent Music
+             <p style="width: 85%;" class="mx-auto text-left py-3 my-0 bg-dark font-weight-bold text-success h5 pl-2">Recent Music
 
               <button class=" float-right btn py-0 text-primary" type="button" data-toggle="collapse" data-target="#musicDIv" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-2x fa-angle-down"></i></button></p> 
 
-  <div id="musicDIv" class="show musics" style="max-height: 400px; overflow-y: scroll;">
-  <table class="shadow mb-3 w-100  shadow border-none table tabil text-light" style="width:90%; background:#1e1e1e;">
+  <div id="musicDIv" class="show musics mx-auto " style="max-height: 400px; overflow-y: scroll;width: 85%;">
+  <table class="shadow mb-3 w-100  shadow border-none table tabil text-light" style="background:#1e1e1e;">
   <thead>
-    <tr class="  w-100">
+    <tr class="w-100">
        
 
-      <th width="5%"> No</th>
+      <th> No</th>
       <th> Title</th>
       <th> Album</th>
       <th> Description</th>
@@ -59,14 +59,14 @@
   </thead>
   <tbody> @php $i=0; @endphp
     @foreach($musics as $music)  @php $i++; @endphp
-    <tr class="borders">
+    <tr class="borders text-center">
       
-      <td>{{$i}}</td>
-      <td class="text-left pl-5">
+      <td class="text-center" >{{$i}}</td>
+      <td class="text-left pl-5 w-25 pr-0">
         <img src="{{$music->song_art}}" width="75px" height="75px">
         &nbsp; {{$music->title}}</td>
-      <td>{{$music->album}}</td>
-      <td>{{$music->description}}</td>
+      <td class="text-center pt-4" >{{$music->album}}</td>
+      <td class="text-center" >{{$music->description}}</td>
     </tr>
 
    @endforeach
@@ -76,11 +76,11 @@
 </div>
 
 
-  <p class="text-left py-3 my-0 bg-dark font-weight-bold text-success h5 pl-2">Albums
+  <p style="width: 85%;" class="mx-auto text-left py-3 my-0 bg-dark font-weight-bold text-success h5 pl-2">Albums
 
               <button class=" float-right btn py-0 text-primary" type="button" data-toggle="collapse" data-target="#musicDIv" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-2x fa-angle-down"></i></button></p> 
 
- <div class="row">
+ <div style="width: 85%;" class="mx-auto row">
 
 @foreach($albums as $album)
 @if($album->artist_id == $artist_id)
