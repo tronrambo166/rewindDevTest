@@ -13,7 +13,7 @@
 
  <div class="row my-0 py-0 w-75 mx-auto text-center" style="max-height: 135px;" > 
   <div class="w-50 mx-auto">
-    <lottie-player src="lottiWave.json" background="##fff" speed="1" style="width: 300px; max-height: 200px" loop autoplay direction="1" controls mode="normal"></lottie-player>
+    <lottie-player src="lottiWave.json" background="##fff" speed="1" style="width: 350px; max-height: 250px" loop autoplay direction="1" mode="normal"></lottie-player>
   </div>
  </div>
 
@@ -33,39 +33,40 @@
     </div>
 
        <!-- Auto Play Silder -->
-      <h4 class="mb-0 float-right text-dark font-weight-bold" style="width: 77%;">Top 20</h4>
-      <div class="float-right" style="overflow: hidden; width: 77%;"> 
+      <div class="float-right" style="overflow: hidden; width: 82%;"> 
         <div class="slick-slider my-3 ">
          <div class=""> 
           <img class="radius_img slide_img"  
-          src="images/artists/nya.png">
+          src="images/slider/1.png">
          </div>
 
           <div class=""> 
           <img class="radius_img slide_img"  
-          src="images/artists/nya2.png">
+          src="images/slider/2.png">
           </div>
 
           <div class=""> 
           <img class="radius_img slide_img" 
-          src="images/artists/nya.png">
+          src="images/slider/3.png">
          </div>
 
           <div class=""> 
           <img class="radius_img slide_img" 
-          src="images/artists/nya2.png">
+          src="images/slider/4.png">
           </div>
 
           <div class=""> 
           <img class="radius_img slide_img" 
-           src="images/artists/nya.png">
+           src="images/slider/5.png">
          </div>
 
           <div class=""> 
-          <img class="radius_img slide_img"  src="images/artists/nya2.png">
+          <img class="radius_img slide_img"  src="images/slider/6.png">
          </div>
 
         </div>
+
+         <h4 class="mx-5 mt-3 h6 float-left text-dark font-weight-bold" style="width:;">Top 20</h4>
       </div>
       <!-- Auto Play Silder -->
 
@@ -82,7 +83,7 @@
 
 <script type="text/javascript">
 $('.slick-slider').slick({
-  centerMode: true,
+  centerMode: false,
   slidesToShow: 5,
   dots: false,
   arrows: false,
@@ -90,7 +91,7 @@ $('.slick-slider').slick({
 //  infinite: true,
   swipeToSlide: false,
    autoplay: true,
-   autoplaySpeed: 5000,
+   autoplaySpeed: 4000,
   //adaptiveHeight: true,
 });
 

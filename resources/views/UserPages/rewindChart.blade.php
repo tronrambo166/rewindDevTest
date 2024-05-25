@@ -1,9 +1,9 @@
 @extends('UserPages.layout')  
 @section('content')
 
-<div class="content_bg py-4">
+<div class="py-4">
 
-<div class="container mx-auto py-3 content_bg" style="width: 80%;">
+<div class="container mx-auto py-3" style="width: 80%;">
 
 <div class="row">
 
@@ -11,15 +11,123 @@
          </div>
          <div class="col-sm-6 mt-2"> 
           <p class="bar2" style="width:100%; height:15px;"></p> 
-        </div> 
+         </div> 
 
         
          <div class="col-sm-3 mt-2"> <p style="font-weight:900;" class="small text-white" >WEEK OF <?php echo strtoupper(date('M d, Y')); ?></p> </div>
          </div>
 
-<div class="row mx-auto shadow" style="background:white;">  
+         <div class="clearfix py-5"></div>
 
-  <table class="table tabil mb-4 text-white border-none">
+
+<!-- Auto Play Silder -->
+      <div class="float-right" style="overflow: ; width: 82%;"> 
+        <div class="slick-slider my-3">
+          <div class=""> 
+          <img class="radius_img slide_img2"  
+          src="images/slider/2.png">
+          </div>
+
+         <div class="bg-white p-3 cards_40" style="width: 240px !important; height: 250px;"> 
+
+          <div class="row pb-5">
+            <div class="col-sm-3">
+              <h6 class="mb-0 bolder_black d-block small">128K</h6>
+              <p class="small" style="font-size: 10px;color:lightgrey;">Listenings</p>
+            </div>
+
+            <div class="col-sm-9">
+
+              <div class="d-block text-right">
+                <h5 style="border-bottom:3px solid #13d0e3;" class="bolder_black d-inline-block text-right">01</h5>
+              </div>
+              
+              <p class="small bolder_black text-right">Corona Virus</p>
+
+             <div class="clearfix d-inline-block">
+                <span class="small d-inline" style="color:darkgrey;">Song by: &nbsp; </span>
+               <p class="small bolder_black d-inline">Bobby Wine</p>
+             </div>
+
+             <div class="clearfix row">
+                <span class="col-sm-9 pl-4 small text-left" style="padding-right:3px;color:darkgrey;">Peak pos &nbsp; </span>
+               <p style="padding-left:3px;" class="col-sm-3 pr-4 small bolder_black text-right">1</p>
+             </div>
+
+            </div>
+          </div>
+
+          <img class="radius_img2 slide_img2"  
+          src="images/slider/4.png">
+
+          <div class="row pt-2">
+            <div class="col-sm-7"></div>
+            <div class="col-sm-5">
+              <img style="width: 16px;" class="mr-1" src="images/slider/heart.png">
+              <img style="width: 15px;" src="images/slider/image.png">
+            </div>
+          </div>
+         </div>    
+
+          
+
+                  <div class="bg-white p-3 cards_40" style="width: 240px !important; height: 250px;"> 
+
+          <div class="row pb-5">
+            <div class="col-sm-3">
+              <h6 class="mb-0 bolder_black d-block small">128K</h6>
+              <p class="small" style="font-size: 10px;color:lightgrey;">Listenings</p>
+            </div>
+
+            <div class="col-sm-9">
+
+              <div class="d-block text-right">
+                <h5 style="border-bottom:3px solid #13d0e3;" class="bolder_black d-inline-block text-right">01</h5>
+              </div>
+              
+              <p class="small bolder_black text-right">Corona Virus</p>
+
+             <div class="clearfix d-inline-block">
+                <span class="small d-inline" style="color:darkgrey;">Song by: &nbsp; </span>
+               <p class="small bolder_black d-inline">Bobby Wine</p>
+             </div>
+
+             <div class="clearfix row">
+                <span class="col-sm-9 pl-4 small text-left" style="padding-right:3px;color:darkgrey;">Peak pos &nbsp; </span>
+               <p style="padding-left:3px;" class="col-sm-3 pr-4 small bolder_black text-right">1</p>
+             </div>
+
+            </div>
+          </div>
+
+          <img class="radius_img2 slide_img2"  
+          src="images/slider/4.png">
+
+          <div class="row pt-2">
+            <div class="col-sm-7"></div>
+            <div class="col-sm-5">
+              <img style="width: 16px;" class="mr-1" src="images/slider/heart.png">
+              <img style="width: 15px;" src="images/slider/image.png">
+            </div>
+          </div>
+         
+
+
+
+        </div>
+
+      </div>
+      <!-- Auto Play Silder -->
+<div class="clearfix py-5 my-5"></div>
+
+
+
+<div class="mx-auto shadow" style="background:white;">  
+
+  
+
+
+<!--   <table class="table tabil mb-4 text-white border-none">
   <thead>
     <tr class="chart-header">
       <th scope="col" class="py-3 small text-left" style="width:65%;">THIS WEEK</th>
@@ -200,7 +308,7 @@
 
     
   </tbody>
-</table>
+</table> -->
 
 <div class="clearfix py-4"></div>
 </div>
@@ -247,52 +355,26 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="slick.js"></script>
+
+<script type="text/javascript">
+$('.slick-slider').slick({
+  centerMode: false,
+  slidesToShow: 5,
+  dots: false,
+  arrows: true,
+  swipe: true,
+//  infinite: true,
+  swipeToSlide: false,
+   autoplay: false,
+   autoplaySpeed: 4000,
+  //adaptiveHeight: true,
+});
+
+</script>
 
 
 <script type="text/javascript">
-/*
-$(window).on("load", getSongs);
-
-function getSongs() {
-  var key, value,i=1, j=1,tops=1,dur,p=1;
-  var BreakException = {};
-  //var stageName=document.getElementById('myStageName').value;
-
-     $.ajax({
-            url:"move", 
-            method:"GET",
-            dataType: 'json',
-          success: function(data) {  
-            const songs20=data.data;
-            const songs_all=data.data2;
-            const today=data.today;
-            const artists=data.artists;
-            const all_titles=data.all_titles;
-
-
-// Top 20 chart
-           Object.entries(songs20).forEach(entry => {
-           const [title, pos] = entry;
-           console.log(title,pos);
-           if(pos=='up')
-           $('#move'+p).html('<i class="fas fa-arrow-alt-circle-up text-success fa-2x"></i>'); 
-           if(pos=='down')
-           $('#move'+p).html('<i class="fas fa-arrow-alt-circle-down text-danger fa-2x"></i>'); 
-          if(pos=='not')
-           $('#move'+p).html('-'); 
-           p++;
-          
-            
-          }); 
-
-            
-          },
-          error:function(error)
-          {console.log(error);}
-
-        });
-}
-*/
 
 </script>
 

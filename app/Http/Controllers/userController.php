@@ -207,6 +207,13 @@ $response2 = json_decode($response2,true);
 
 public function static20() { 
    if(Session::has('logged') && Session::get('logged') !='') return redirect('home');
+   // $static20=liveSongs::take(3)->get();
+   // $lastDay=DB::table('last_day_songs')->get();
+  return view('UserPages.welcome');
+ }
+
+ public function get_started() { 
+   if(Session::has('logged') && Session::get('logged') !='') return redirect('home');
    $static20=liveSongs::take(3)->get();
    $lastDay=DB::table('last_day_songs')->get();
   return view('UserPages.home_new',compact('static20','lastDay'));

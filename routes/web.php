@@ -95,6 +95,7 @@ Route::post('registerB', 'testController@registerB')->name('registerB');
 
  //USER PART
  Route::get('/', 'userController@static20')->name('login');
+ Route::get('get-started', 'userController@get_started')->name('get-started');
  Route::get('_home', 'userController@static20')->name('_home');
  Route::get('rewind-chart', 'userController@rewindChart')->name('rewind-chart');
 

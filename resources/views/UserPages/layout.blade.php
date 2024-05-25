@@ -26,14 +26,14 @@
 
 
 <body>
- <div class="container-fluid px-0" style="background: #fff5d0d6; color:white;"> 
+ <div class="container-fluid px-0" style="background: #fff5d0e3; color:white;"> 
  <!-- <div class="container-fluid" style="background: #161616; color:white;">-->
   
 
 @if(!isset($_COOKIE['edit_permit']) )
 
 <!-- LANDING -->   
- <div class="row  pt-2 pb-0" style="background:#fff5d0e8;">
+<div class="row  pt-2 pb-0" style="background:#fff5d0e8;">
 <nav class=" navbar navbar-expand-md navbar-light py-0 w-100">
   
   <div class="  navbar-collapse" id="navbarNav">
@@ -63,7 +63,7 @@
 </div>
 
 
-<div class="row mx-auto shadow h-100" style="width:90%; background:#161616;">  
+<div class="row mx-auto shadow h-100" style="width:90%; background:#d71616; border-radius: 5px;">  
  <div class="col-md-5 mt-5"> 
             <h1 class="text-center mt-5 pt-5" style="font-family:fantasy;">We are launcing soon.</h1> <hr> 
 
@@ -90,7 +90,7 @@
 </div>
 
 <!-- MODAL -->
-<div  class="modal fade" id="loginModal-editor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div  class="modal fade" id="loginModal-editor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -120,7 +120,7 @@
     <div class="row justify-content-center py-3 mb-5">
         <div class="px-0 w-100 py-2">
 
-                <!-- HIDDEN login-->
+                 HIDDEN login-->
 
 
  <div id="artist_log" class="card-body text-center py-0">
@@ -187,7 +187,7 @@
     
      
     </div>
-  </div>
+  </div> -->
   <!-- MODAL --> 
   
 </div>
@@ -404,9 +404,9 @@
        
         
         <footer>
-            <div class="row fix fixed-bottom" style="background:black;">
+            <div class="row fix fixed-bottom" style="background:#FFF5D0;">
 			 <div class="col-sm-7 text-right" >
-                <p class="text-light  text-light py-2 mt-2 text-responsive small">&copy; Copyright 2023. Rewind Cloud Radio Monitoring, All Rights Reserved</p>
+                <p class="text-dark py-2 mt-2 text-responsive small">&copy; Copyright 2023. Rewind Cloud Radio Monitoring, All Rights Reserved</p>
             </div>  <div class="col-sm-1" > </div>
 			 <div class="col-sm-4 m-auto" >
 			 <a class="ml-5 text-success nav-link d-inline font-weight-bold" href="terms">Terms</a>
