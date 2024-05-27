@@ -2,29 +2,96 @@
 @section('content')
 
 
-<div class="container mx-auto py-3" style="width: 80%; overflow: hidden;">
+<div class="container mx-auto py-3" style="width: 85%; overflow: hidden;">
+<div class="clearfix py-5"></div>
 
-<div class="row">
+<div class="slider_wrap p-4 pb-5" style="background: #F4E6B5; border-radius: 25px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 
-         <div class="col-sm-3"> <h4 style="font-weight:900;color: white;" class="text-center">Rewind Hot 40</h4> 
-         </div>
-         <div class="col-sm-6 mt-2"> 
-          <p class="bar2" style="width:100%; height:15px;"></p> 
-         </div> 
-
-        
-         <div class="col-sm-3 mt-2"> <p style="font-weight:900;" class="small text-white" >WEEK OF <?php echo strtoupper(date('M d, Y')); ?></p> </div>
-         </div>
-
-         <div class="clearfix py-5"></div>
-
+   <div class="row"> 
+    <div class="col-sm-10">
+      <h4 style="font-weight:900;color: black;" class="ml-4">Rewind Hot 40</h4> 
+      <p class="ml-4 small text-dark">This Week</p>
+    </div>
+    <div class="col-sm-2">
+      <p style="font-weight:900;color:black;" class="h5 mr-5" ><?php echo strtoupper(date('d M, Y')); ?></p>
+    </div>
+    
+   </div>
 
 <!-- Auto Play Silder -->
-      <div class="float-right" style="background: #fff5d0e3; overflow:hidden ; width: 88%;"> 
+      <div class="mx-auto" style="background: #F4E6B5; overflow:hidden ; width: 88%;"> 
         <div class="slick-slider" id="slider1" style="margin-top: 100px;">   
 
-          
+          @foreach($static20 as $static) <?php $cnt=0; $duplicate =0; ?>
+@foreach($lastDay as $yester)
+   
+@if($static->song == $yester->song)  
+@if($static->position < $yester->position) 
+<?php $pos='up'; $cnt++;?>
+@elseif($static->position == $yester->position) 
+<?php  $pos='-'; $cnt++;?>
+@else <?php $pos='down'; $cnt++; ?>
+@endif
 
+@foreach($static20 as $check)
+@if($check->song == $static->artist)
+<?php $duplicate =1; ?>
+ @endif @endforeach
+
+   @if($duplicate==0)
+     
+
+    
+          <div class="bg-white px-2 pt-3 pb-0 cards_40" style=" height: 250px;"> 
+          <div class="row pb-4">
+            <div class="col-sm-3">
+              <h6 class="mb-0 bolder_black d-block small">128K</h6>
+              <p class="small" style="font-size: 10px;color:lightgrey;">Listenings</p>
+            </div>
+
+            <div class="col-sm-9">
+
+              <div class="d-block text-right">
+                <h5 style="border-bottom:3px solid #13d0e3;" class="bolder_black d-inline-block text-right">{{$static->position}}</h5>
+              </div>
+              
+              <p class="small bolder_black text-right">{{$static->song}}</p>
+
+             <div class="clearfix d-inline-block">
+                <span class="small d-inline" style="color:darkgrey;">Song by: &nbsp; </span>
+               <p class="small bolder_black d-inline">{{ucfirst($static->artist)}}</p>
+             </div>
+
+             <div class="clearfix row">
+                <span class="col-sm-9 pl-4 small text-left" style="padding-right:3px;color:darkgrey;">Peak pos &nbsp; </span>
+               <p style="padding-left:3px;" class="col-sm-3 pr-4 small bolder_black text-right">1</p>
+             </div>
+
+            </div>
+          </div>
+
+          <img class="radius_img2 slide_img2"  
+          src="images/slider/4.png">
+
+          <div class="row pt-2">
+            <div class="col-sm-7"></div>
+            <div class="col-sm-5">
+              <img style="width: 16px;" class="mr-1" src="images/slider/heart.png">
+              <img style="width: 15px;" src="images/slider/image.png">
+            </div>
+          </div>
+        </div>
+  
+  @endif
+
+
+   @endif
+   @endforeach
+
+  @endforeach
+          
+<!-- 
           <div class="bg-white p-3 cards_40" style=" height: 250px;"> 
           <div class="row pb-5">
             <div class="col-sm-3">
@@ -268,205 +335,17 @@
               <img style="width: 15px;" src="images/slider/image.png">
             </div>
           </div>
-        </div>
+        </div> -->
 
 
       </div>
       <!-- Auto Play Silder -->
 
 
-<div class="clearfix py-5 my-5"></div>
-<button class="slick-next slick-arrow" aria-label="Next" type="button" style="">Next</button>
+<div class="clearfix py-5"></div>
 
+</div>
 
-
-<div class="mx-auto shadow" style="background:white;">  
-
-  
-
-
-<!--   <table class="table tabil mb-4 text-white border-none">
-  <thead>
-    <tr class="chart-header">
-      <th scope="col" class="py-3 small text-left" style="width:65%;">THIS WEEK</th>
-      <th scope="col" class="py-3 small">AWARD</th>
-      <th scope="col" class="small px-4">LAST WEEK</th>
-      <th scope="col" class="small">PEAK POS.</th>
-      <th scope="col" class="small">WKS ON CHART</th>
-    
-    </tr>
-  </thead>
-  <tbody id="songs">
-
-   @foreach($static20 as $static) <?php $cnt=0; $duplicate =0; ?>
-   @foreach($lastDay as $yester)
-   
-
-@if($static->song == $yester->song)  
-@if($static->position < $yester->position) 
-<?php $pos='up'; $cnt++;?>
-@elseif($static->position == $yester->position) 
-<?php  $pos='-'; $cnt++;?>
-@else <?php $pos='down'; $cnt++; ?>
-@endif
-
-@foreach($static20 as $check)
-@if($check->song == $static->artist)
-<?php $duplicate =1; ?>
- @endif @endforeach
-
-   @if($duplicate==0)
-     
-
-     <tr id="loading" class="chart-tr">
-     
-      <td scope="" class="py-0 text-center"> 
-        <div class="row">
-          <div class="col-md-2 py-4" style="background:black;">
-            <h3 class="text-center @if($static->position == 1) pt-5 @endif" style="font-weight:900;">{{$static->position}}</h3></div>
-
-          <div class="col-md-10 pt-3">
-
-          @if($static->position == 1)
-            <div class="row">
-              <div class="col-md-5">
-                <img src="images/user.jpg" class="border" height="180px;">      
-              </div>
-              <div class="col-md-1 px-0 my-auto"> 
-                <p style="background: yellow;" class="pt-1 text-dark font-weight-bold small">NEW</p>
-              </div>
-              <div class="col-md-5 text-center">
-                <h4 class="py-4"></h4>
-                <h4 style="font-weight:900; color: black;" class="mb-1 text-left text-dark font-weight-bold">{{$static->song}}</h4>       
-              <h6 class="text-dark text-left">{{$static->artist}}</h6>
-              </div>
-            </div>
-            @else
-            <div class="row">
-
-               <div class="col-md-5">
-                <img src="{{$static->image}}" class="border" height="90px;">      
-               </div>
-
-               <div class="col-md-1 mt-1">
-                  @if($pos=='up') <i style="color: green;" class="fas fa-arrow-alt-circle-up fa-2x"></i>
-                  @elseif($pos=='down') <i style="color: red;" class="fas fa-arrow-alt-circle-down fa-2x"></i>
-                  @else <i class="fas fa-arrow-alt-circle-right text-secondary fa-2x"></i>
-                  @endif 
-              </div>
-              <div class="col-md-6">
-                <h5 class="mb-1 text-left text-dark font-weight-bold">{{$static->song}}</h5>       
-              <p class="text-dark text-left">{{$static->artist}}</p>
-              </div>
-            </div>
-            @endif
-
-
-          </div>
-        </div>
-        
-         </td>
-
-      <td style="width: 8%;" scope="row" class="text-center bg-light"> </td>
-        <td scope="row" class="text-center">
-         <h6 style="font-family:monospace;" class="py-3 text-dark font-weight-bold"> 
-        {{$static->position}}</h6> 
-      </td>
-
-      <td style="width: 9%;" scope="row" class="text-center bg-light">
-         <h6 style="font-family:monospace;" class="py-3 text-dark font-weight-bold"> 
-        {{$static->position}}</h6> 
-      </td>
-
-      <td style="width: 9%;" scope="row" class="text-center">
-         <h6 style="font-family:monospace;" class="py-3 text-dark font-weight-bold"> 
-        {{$static->position}}</h6> 
-      </td>
-
-    </tr> 
-
-  
-  @endif
-
-
-   @endif
-   @endforeach
-
-@if($cnt==0)
-
-      <tr id="loading" class="chart-tr">
-      <td scope="" class="py-0 text-center"> 
-        <div class="row">
-          <div class="col-md-2 py-4" style="background:black;">
-            <h3 class="text-center @if($static->position == 1) pt-5 @endif" style="font-weight:900;">{{$static->position}}
-            </h3>
-          </div>
-
-          <div class="col-md-10 pt-3">
-
-             @if($static->position == 1)
-            <div class="row">
-              <div class="col-md-5">
-                <img src="images/user.jpg" class="border" height="180px;">      
-              </div>
-              <div class="col-md-1 px-0 my-auto"> 
-                <p style="background: yellow;" class="pt-1 text-dark font-weight-bold small">NEW</p>
-              </div>
-              <div class="col-md-5 text-center">
-                <h4 class="py-4"></h4>
-                <h4 style="font-weight:900; color: black;" class="mb-1 text-left text-dark font-weight-bold">{{$static->song}}</h4>       
-              <h6 class="text-dark text-left">{{$static->artist}}</h6>
-              </div>
-            </div>
-            @else
-            <div class="row">
-
-              <div class="col-md-5">
-                <img src="{{$static->image}}" class="border" height="90px;">      
-               </div>
-
-               <div class="col-md-1 mt-1">
-              <i style="color: green;" class="fas fa-arrow-alt-circle-up fa-2x"></i> 
-              </div>
-              <div class="col-md-6">
-                <h5 class="mb-1 text-left text-dark font-weight-bold">{{$static->song}}</h5>       
-              <p class="text-dark text-left">{{$static->artist}}</p>
-              </div>
-            </div>
-            @endif
-
-            
-
-          </div>
-        </div>
-        
-         </td>
-
-      <td style="width: 8%;" scope="row" class="text-center bg-light"> </td>
-        <td scope="row" class="text-center">
-         <h6 style="font-family:monospace;" class="py-3 text-dark font-weight-bold"> 
-        {{$static->position}}</h6> 
-      </td>
-
-      <td style="width: 9%;" scope="row" class="text-center bg-light">
-         <h6 style="font-family:monospace;" class="py-3 text-dark font-weight-bold"> 
-        {{$static->position}}</h6> 
-      </td>
-
-      <td style="width: 9%;" scope="row" class="text-center">
-         <h6 style="font-family:monospace;" class="py-3 text-dark font-weight-bold"> 
-        {{$static->position}}</h6> 
-      </td>
-
-    </tr>
-
-    
-   @endif
-    @endforeach
-
-    
-  </tbody>
-</table> -->
 </div>
 
 
@@ -504,7 +383,7 @@
 
 </div>
 
-</div>
+<div class="clearfix py-5 my-5"></div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="slick.js"></script>

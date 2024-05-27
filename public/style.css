@@ -143,7 +143,7 @@ ul{list-style-type: none;}
   left: 10px;
 }
 .slick-next {
-  	right: 119px;
+  	right: 145px;
     position: absolute;
     background: white;
     border-radius: 50%;
@@ -158,7 +158,7 @@ ul{list-style-type: none;}
 /*Slider*/
 
 .slide_img{ height: 180px; width: 90%;}
-.slide_img2{ height: 174px !important; width: 88%;}
+.slide_img2{ height: 182px !important; width: 90%;}
 
 .primary_btn{
 	background: #57B660;
@@ -188,8 +188,9 @@ ul{list-style-type: none;}
 
 .primary_btn:hover{color: white;}
 .cards_40{border-radius:15px !important; width:260px !important; 
-	    margin-right: 15px !important; height: 430px !important; }
+	    margin-right: 15px !important; height: 392px !important; }
 
 .icons{
 	height: 16px !important;
 }
+.slick-next:onfocus{border:none;}

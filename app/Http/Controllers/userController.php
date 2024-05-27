@@ -598,7 +598,7 @@ $i=0;$j=0;
 $titles=array();
 $currentdate = date('Ymd');
 try{
-$url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2010/channels/246131/results?type=last";
+$url = "https://api-v2.acrcloud.com/api/bm-bd-projects/2945/channels/246131/results?type=last";
 
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_URL, $url);
